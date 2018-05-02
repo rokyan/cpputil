@@ -13,9 +13,9 @@ namespace cpputil {
 
         reference_wrapper(T&) noexcept;
         reference_wrapper(T&&) = delete;
-        reference_wrapper(const reference_wrapper&) noexcept;
+        reference_wrapper(const reference_wrapper&) noexcept = default;
 
-        reference_wrapper& operator=(const reference_wrapper&) noexcept;
+        reference_wrapper& operator=(const reference_wrapper&) noexcept = default;
 
         operator T&() const noexcept;
         T& get() const noexcept;
@@ -31,17 +31,6 @@ namespace cpputil {
     reference_wrapper<T>::reference_wrapper(T& t) noexcept
         : _ptr(std::addressof(t))
     {}
-
-    template<typename T>
-    reference_wrapper<T>::reference_wrapper(const reference_wrapper& other) noexcept
-        : _ptr(other._ptr)
-    {}
-
-    template<typename T>
-    reference_wrapper<T>& reference_wrapper<T>::operator=(const reference_wrapper& other) noexcept {
-        _ptr = other._ptr;
-        return *this;
-    }
 
     template<typename T>
     reference_wrapper<T>::operator T&() const noexcept {

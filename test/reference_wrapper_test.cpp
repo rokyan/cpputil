@@ -18,12 +18,14 @@ namespace test {
     }
 
     TYPED_TEST(reference_wrapper_typed_test, test_constructors) {
-        // Reference wrapper is nothrow constructible from lvalue of type TypeParam
-        EXPECT_TRUE((std::is_nothrow_constructible_v<cpputil::reference_wrapper<TypeParam>, TypeParam&>));
-        // Reference wrapper is not constructible from rvalue of type TypeParam
-        EXPECT_TRUE((!std::is_constructible_v<cpputil::reference_wrapper<TypeParam>, TypeParam>));
-        // Reference wrapper is nothrow copy constructible
-        EXPECT_TRUE((std::is_nothrow_copy_constructible_v<cpputil::reference_wrapper<TypeParam>>));
+        EXPECT_TRUE((std::is_nothrow_constructible_v<cpputil::reference_wrapper<TypeParam>, TypeParam&>)) <<
+            "Reference wrapper must be nothrow constructible from lvalue of type TypeParam";
+        EXPECT_TRUE((!std::is_constructible_v<cpputil::reference_wrapper<TypeParam>, TypeParam>)) <<
+            "Reference wrapper must not be constructible from rvalue of type TypeParam";
+        EXPECT_TRUE((std::is_nothrow_copy_constructible_v<cpputil::reference_wrapper<TypeParam>>)) <<
+            "Reference wrapper must be nothrow copy constructible";
+        EXPECT_TRUE((std::is_trivially_copyable_v<cpputil::reference_wrapper<TypeParam>>)) <<
+            "Reference wrapper must be trivially copyable";
 
         TypeParam referenced{};
         cpputil::reference_wrapper<TypeParam> rw1(referenced);
@@ -34,8 +36,8 @@ namespace test {
     }
 
     TYPED_TEST(reference_wrapper_typed_test, test_copy_assignment_operator) {
-        // Reference wrapper is nothrow copy assignable
-        EXPECT_TRUE((std::is_nothrow_copy_assignable_v<cpputil::reference_wrapper<TypeParam>>));
+        EXPECT_TRUE((std::is_nothrow_copy_assignable_v<cpputil::reference_wrapper<TypeParam>>)) <<
+            "Reference wrapper must be nothrow copy assignable";
 
         TypeParam referenced1{};
         cpputil::reference_wrapper<TypeParam> rw1(referenced1);
