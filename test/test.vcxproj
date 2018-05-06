@@ -37,9 +37,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\cpputil.h" />
+    <ClInclude Include="..\include\cpputil\exchange.h" />
     <ClInclude Include="..\include\cpputil\reference_wrapper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="exchange_test.cpp" />
     <ClCompile Include="reference_wrapper_test.cpp" />
   </ItemGroup>
   <ItemDefinitionGroup />
