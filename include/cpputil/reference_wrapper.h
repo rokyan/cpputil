@@ -1,8 +1,8 @@
 #pragma once
 
 #include <type_traits>
-#include <utility>
 #include <memory>
+#include "forward.h"
 
 namespace cpputil {
 
@@ -45,7 +45,7 @@ namespace cpputil {
     template<typename T>
     template<typename... ArgTypes>
     std::invoke_result_t<T&, ArgTypes...> reference_wrapper<T>:: operator()(ArgTypes&&... args) const {
-        return std::invoke(get(), std::forward<ArgTypes>(args)...);
+        return std::invoke(get(), cpputil::forward<ArgTypes>(args)...);
     }
 
     template<typename T>

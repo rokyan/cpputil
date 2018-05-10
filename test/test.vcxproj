@@ -39,6 +39,8 @@
     <ClInclude Include="..\include\cpputil.h" />
     <ClInclude Include="..\include\cpputil\exchange.h" />
     <ClInclude Include="..\include\cpputil\basic_functors.h" />
+    <ClInclude Include="..\include\cpputil\forward.h" />
+    <ClInclude Include="..\include\cpputil\move.h" />
     <ClInclude Include="..\include\cpputil\reference_wrapper.h" />
   </ItemGroup>
   <ItemGroup>

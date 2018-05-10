@@ -1,13 +1,14 @@
 #pragma once
 
-#include <utility>
+#include "forward.h"
+#include "move.h"
 
 namespace cpputil {
 
     template<typename T, typename U>
-    constexpr T exchange(T& o, U&& new_value) {
-        T old_value(std::move(o));
-        o = std::forward<U>(new_value);
+    constexpr T exchange(T& t, U&& new_value) {
+        T old_value(cpputil::move(t));
+        t = cpputil::forward<U>(new_value);
         return old_value;
     }
 }

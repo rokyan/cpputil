@@ -1,6 +1,6 @@
 #pragma once
 
-#include <utility>
+#include "forward.h"
 
 namespace cpputil {
 
@@ -21,7 +21,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) + std::forward<U>(y));
+            return (cpputil::forward<T>(x) + cpputil::forward<U>(y));
         }
     };
 
@@ -38,7 +38,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) - std::forward<U>(y));
+            return (cpputil::forward<T>(x) - cpputil::forward<U>(y));
         }
     };
 
@@ -55,7 +55,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) * std::forward<U>(y));
+            return (cpputil::forward<T>(x) * cpputil::forward<U>(y));
         }
     };
 
@@ -72,7 +72,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) / std::forward<U>(y));
+            return (cpputil::forward<T>(x) / cpputil::forward<U>(y));
         }
     };
 
@@ -89,7 +89,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) % std::forward<U>(y));
+            return (cpputil::forward<T>(x) % cpputil::forward<U>(y));
         }
     };
 
@@ -106,7 +106,7 @@ namespace cpputil {
 
         template<typename T>
         constexpr decltype(auto) operator()(T&& x) const {
-            return -std::forward<T>(x);
+            return -cpputil::forward<T>(x);
         }
     };
 
@@ -125,7 +125,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) == std::forward<U>(y));
+            return (cpputil::forward<T>(x) == cpputil::forward<U>(y));
         }
     };
 
@@ -142,7 +142,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) != std::forward<U>(y));
+            return (cpputil::forward<T>(x) != cpputil::forward<U>(y));
         }
     };
 
@@ -159,7 +159,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) > std::forward<U>(y));
+            return (cpputil::forward<T>(x) > cpputil::forward<U>(y));
         }
     };
 
@@ -176,7 +176,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) < std::forward<U>(y));
+            return (cpputil::forward<T>(x) < cpputil::forward<U>(y));
         }
     };
 
@@ -193,7 +193,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) >= std::forward<U>(y));
+            return (cpputil::forward<T>(x) >= cpputil::forward<U>(y));
         }
     };
 
@@ -210,7 +210,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) <= std::forward<U>(y));
+            return (cpputil::forward<T>(x) <= cpputil::forward<U>(y));
         }
     };
 
@@ -229,7 +229,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) && std::forward<U>(y));
+            return (cpputil::forward<T>(x) && cpputil::forward<U>(y));
         }
     };
 
@@ -246,7 +246,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) || std::forward<U>(y));
+            return (cpputil::forward<T>(x) || cpputil::forward<U>(y));
         }
     };
 
@@ -263,7 +263,7 @@ namespace cpputil {
 
         template<typename T>
         constexpr decltype(auto) operator()(T&& x) const {
-            return !std::forward<T>(x);
+            return !cpputil::forward<T>(x);
         }
     };
 
@@ -282,7 +282,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) & std::forward<U>(y));
+            return (cpputil::forward<T>(x) & cpputil::forward<U>(y));
         }
     };
 
@@ -299,7 +299,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) | std::forward<U>(y));
+            return (cpputil::forward<T>(x) | cpputil::forward<U>(y));
         }
     };
 
@@ -316,7 +316,7 @@ namespace cpputil {
 
         template<typename T, typename U>
         constexpr decltype(auto) operator()(T&& x, U&& y) const {
-            return (std::forward<T>(x) ^ std::forward<U>(y));
+            return (cpputil::forward<T>(x) ^ cpputil::forward<U>(y));
         }
     };
 
@@ -333,7 +333,7 @@ namespace cpputil {
 
         template<typename T>
         constexpr decltype(auto) operator()(T&& x) const {
-            return ~std::forward<T>(x);
+            return ~cpputil::forward<T>(x);
         }
     };
 }
