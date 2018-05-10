@@ -46,6 +46,7 @@
   <ItemGroup>
     <ClCompile Include="exchange_test.cpp" />
     <ClCompile Include="basic_functors_test.cpp" />
+    <ClCompile Include="forward_test.cpp" />
     <ClCompile Include="reference_wrapper_test.cpp" />
     <ClCompile Include="move_test.cpp" />
   </ItemGroup>
