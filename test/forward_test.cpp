@@ -1,23 +1,9 @@
 #include <gtest\gtest.h>
 #include <type_traits>
 #include <forward.h>
+#include "traits.h"
 
 namespace test {
-
-    // Test traits
-
-    namespace {
-
-        template<typename T>
-        constexpr std::is_lvalue_reference<T&&> is_lvalue(T&&) {
-            return {};
-        }
-
-        template<typename T>
-        constexpr std::is_rvalue_reference<T&&> is_rvalue(T&&) {
-            return {};
-        }
-    }
 
     // Setup typed tests
 

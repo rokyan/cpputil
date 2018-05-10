@@ -42,6 +42,7 @@
     <ClInclude Include="..\include\cpputil\forward.h" />
     <ClInclude Include="..\include\cpputil\move.h" />
     <ClInclude Include="..\include\cpputil\reference_wrapper.h" />
+    <ClInclude Include="traits.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="exchange_test.cpp" />
