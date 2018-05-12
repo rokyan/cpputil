@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\cpputil.h" />
+    <ClInclude Include="..\include\cpputil\as_const.h" />
     <ClInclude Include="..\include\cpputil\exchange.h" />
     <ClInclude Include="..\include\cpputil\basic_functors.h" />
     <ClInclude Include="..\include\cpputil\forward.h" />
@@ -45,6 +46,7 @@
     <ClInclude Include="traits.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="as_const_test.cpp" />
     <ClCompile Include="exchange_test.cpp" />
     <ClCompile Include="basic_functors_test.cpp" />
     <ClCompile Include="forward_test.cpp" />
