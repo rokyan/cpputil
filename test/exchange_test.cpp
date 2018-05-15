@@ -40,7 +40,9 @@ namespace test
         using value_type = T;
     };
 
-    TYPED_TEST_CASE(exchange_typed_test, testing::Types<int>);
+    using test_types = testing::Types<int>;
+
+    TYPED_TEST_CASE(exchange_typed_test, test_types);
 
     // Typed tests
 
