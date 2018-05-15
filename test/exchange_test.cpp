@@ -1,12 +1,15 @@
 #include <gtest\gtest.h>
 #include <exchange.h>
 
-namespace test {
+namespace test
+{
+    // Helper test types
 
-    namespace {
-
+    namespace
+    {
         template<typename T>
-        struct move_only {
+        struct move_only
+        {
             move_only(move_only&&) = default;
             move_only& operator=(move_only&&) = default;
 
@@ -14,9 +17,11 @@ namespace test {
         };
 
         template<typename T>
-        struct convertible {
-            convertible& operator=(const T& data) {
-                this->data = data;
+        struct convertible_to
+        {
+            convertible_to& operator=(T&& other_data)
+            {
+                data = cpputil::move(other_data);
                 return *this;
             }
 
@@ -26,7 +31,29 @@ namespace test {
         };
     }
 
-    TEST(test_exchange, exchange_lvalue_case) {
+    // Setup typed tests
+
+    template<typename T>
+    class exchange_typed_test : public testing::Test
+    {
+    public:
+        using value_type = T;
+    };
+
+    TYPED_TEST_CASE(exchange_typed_test, testing::Types<int>);
+
+    // Typed tests
+
+    TYPED_TEST(exchange_typed_test, test_exchange_return_type)
+    {
+        EXPECT_TRUE((std::is_same_v<value_type,
+            decltype(cpputil::exchange(std::declval<value_type&>(), std::declval<value_type>()))>));
+    }
+
+    // Tests
+
+    TEST(exchange_test, exchange_lvalue_case)
+    {
         auto value = 0;
         const auto new_value = 1;
         const auto old_value = cpputil::exchange(value, new_value);
@@ -37,7 +64,8 @@ namespace test {
             "Incorrect value is returned by exchange function";
     }
 
-    TEST(test_exchange, exchange_rvalue_case) {
+    TEST(exchange_test, exchange_rvalue_case)
+    {
         auto value = 0;
         const auto old_value = cpputil::exchange(value, 1);
 
@@ -47,9 +75,12 @@ namespace test {
             "Incorrect value is returned by exchange function";
     }
 
-    TEST(test_exchange, test_move_only) {
-        move_only<int> value{0};
-        const auto old_value = std::exchange(value, move_only<int>{1});
+    TEST(exchange_test, test_move_only)
+    {
+        using move_only_t = move_only<int>;
+
+        move_only_t value{0};
+        const auto old_value = std::exchange(value, move_only_t{1});
 
         EXPECT_EQ(value.data, 1) <<
             "Incorrect value is assigned by exchange function";
@@ -57,8 +88,11 @@ namespace test {
             "Incorrect value is returned by exchange function";
     }
 
-    TEST(test_exchange, test_convertible_support) {
-        convertible<int> value_1{0};
+    TEST(exchange_test, test_convertible_to)
+    {
+        using convertible_to_t = convertible_to<int>;
+
+        convertible_to_t value_1{0};
         const auto old_value_1 = std::exchange(value_1, 1);
 
         EXPECT_EQ(value_1.data, 1) <<
@@ -67,7 +101,7 @@ namespace test {
             "Incorrect value is returned by exchange function";
 
         auto value_2{0};
-        const auto old_value_2 = std::exchange(value_2, convertible<int>{1});
+        const auto old_value_2 = std::exchange(value_2, convertible_to_t{1});
 
         EXPECT_EQ(value_2, 1) <<
             "Incorrect value is assigned by exchange function";
