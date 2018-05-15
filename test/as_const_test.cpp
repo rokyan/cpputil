@@ -1,29 +1,40 @@
 #include <gtest\gtest.h>
-#include <type_traits>
 #include <as_const.h>
+#include <type_traits>
 
-namespace test {
-
+namespace test
+{
     // Setup typed tests
 
     template<typename T>
-    class as_const_typed_test : public testing::Test {
+    class as_const_typed_test : public testing::Test
+    {
     public:
-        T value{};
+        using value_type = T;
     };
 
-    TYPED_TEST_CASE(as_const_typed_test, testing::Types<int>);
+    using test_types = testing::Types<int>;
+
+    TYPED_TEST_CASE(as_const_typed_test, test_types);
 
     // Tests
 
-    TYPED_TEST(as_const_typed_test, test_as_const_ret_value) {
-        EXPECT_EQ(&this->value, &cpputil::as_const(this->value));
+    TYPED_TEST(as_const_typed_test, test_as_const_ret_value_type)
+    {
+        EXPECT_TRUE((std::is_same_v<const value_type&, decltype(cpputil::as_const(std::declval<value_type&>()))>));
+        EXPECT_TRUE((std::is_same_v<const value_type&, decltype(cpputil::as_const(std::declval<const value_type&>()))>));
     }
 
-    TYPED_TEST(as_const_typed_test, test_as_const_ret_value_type) {
-        EXPECT_TRUE((std::is_same_v<const TypeParam&,
-            decltype(cpputil::as_const(std::declval<TypeParam&>()))>));
-        EXPECT_TRUE((std::is_same_v<const TypeParam&,
-            decltype(cpputil::as_const(std::declval<const TypeParam&>()))>));
+    TYPED_TEST(as_const_typed_test, test_as_const_noexcept)
+    {
+        EXPECT_TRUE(noexcept(cpputil::as_const(std::declval<value_type&>())));
+        EXPECT_TRUE(noexcept(cpputil::as_const(std::declval<const value_type&>())));
+    }
+
+    TYPED_TEST(as_const_typed_test, test_as_const_ret_value)
+    {
+        value_type value{};
+
+        EXPECT_EQ(std::addressof(value), std::addressof(cpputil::as_const(value)));
     }
 }
