@@ -39,7 +39,7 @@
     <ClInclude Include="..\include\cpputil.h" />
     <ClInclude Include="..\include\cpputil\as_const.h" />
     <ClInclude Include="..\include\cpputil\exchange.h" />
-    <ClInclude Include="..\include\cpputil\basic_functors.h" />
+    <ClInclude Include="..\include\cpputil\operator_functors.h" />
     <ClInclude Include="..\include\cpputil\forward.h" />
     <ClInclude Include="..\include\cpputil\move.h" />
     <ClInclude Include="..\include\cpputil\reference_wrapper.h" />
@@ -47,7 +47,7 @@
   <ItemGroup>
     <ClCompile Include="as_const_test.cpp" />
     <ClCompile Include="exchange_test.cpp" />
-    <ClCompile Include="basic_functors_test.cpp" />
+    <ClCompile Include="operator_functors_test.cpp" />
     <ClCompile Include="forward_test.cpp" />
     <ClCompile Include="reference_wrapper_test.cpp" />
     <ClCompile Include="move_test.cpp" />
