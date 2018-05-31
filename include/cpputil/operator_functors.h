@@ -4,13 +4,19 @@
 
 namespace cpputil
 {
-
     struct transparent_tag {};
 
     struct transparent_functor
     {
         using is_transparent = transparent_tag;
     };
+
+#define TRANSPARENT_FUNCTOR_FCO_IMPL(EXPR) \
+    noexcept(noexcept(EXPR)) \
+    -> decltype(EXPR) \
+    { \
+        return (EXPR); \
+    }
 
     // Arithmetic operations
 
@@ -28,11 +34,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) + cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) + cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) + cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) + cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -49,11 +51,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) - cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) - cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) - cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) - cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -70,11 +68,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) * cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) * cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) * cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) * cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -91,11 +85,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) / cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) / cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) / cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) / cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -112,11 +102,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) % cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) % cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) % cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) % cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -133,11 +119,7 @@ namespace cpputil
     {
         template<typename T>
         constexpr auto operator()(T&& x) const
-            noexcept(noexcept(-cpputil::forward<T>(x)))
-            -> decltype(-cpputil::forward<T>(x))
-        {
-            return -cpputil::forward<T>(x);
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(-cpputil::forward<T>(x))
     };
 
     // Comparison operations
@@ -156,11 +138,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) == cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) == cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) == cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) == cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -177,11 +155,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) != cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) != cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) != cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) != cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -198,11 +172,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) > cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) > cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) > cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) > cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -219,11 +189,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) < cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) < cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) < cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) < cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -240,11 +206,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) >= cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) >= cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) >= cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) >= cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -261,11 +223,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) <= cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) <= cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) <= cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) <= cpputil::forward<U>(y))
     };
 
     // Logical operations
@@ -284,11 +242,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) && cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) && cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) && cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) && cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -305,11 +259,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) || cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) || cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) || cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) || cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -326,11 +276,7 @@ namespace cpputil
     {
         template<typename T>
         constexpr auto operator()(T&& x) const
-            noexcept(noexcept(!cpputil::forward<T>(x)))
-            -> decltype(!cpputil::forward<T>(x))
-        {
-            return !cpputil::forward<T>(x);
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(!cpputil::forward<T>(x))
     };
 
     // Bitwise operations
@@ -349,11 +295,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) & cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) & cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) & cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) & cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -370,11 +312,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) | cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) | cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) | cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) | cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -391,11 +329,7 @@ namespace cpputil
     {
         template<typename T, typename U>
         constexpr auto operator()(T&& x, U&& y) const
-            noexcept(noexcept(cpputil::forward<T>(x) ^ cpputil::forward<U>(y)))
-            -> decltype(cpputil::forward<T>(x) ^ cpputil::forward<U>(y))
-        {
-            return (cpputil::forward<T>(x) ^ cpputil::forward<U>(y));
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(cpputil::forward<T>(x) ^ cpputil::forward<U>(y))
     };
 
     template<typename T = void>
@@ -412,10 +346,6 @@ namespace cpputil
     {
         template<typename T>
         constexpr auto operator()(T&& x) const
-            noexcept(noexcept(~cpputil::forward<T>(x)))
-            -> decltype(~cpputil::forward<T>(x))
-        {
-            return ~cpputil::forward<T>(x);
-        }
+            TRANSPARENT_FUNCTOR_FCO_IMPL(~cpputil::forward<T>(x))
     };
 }
