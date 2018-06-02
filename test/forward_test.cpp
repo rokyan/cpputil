@@ -1,4 +1,5 @@
 #include <gtest\gtest.h>
+#include <declval.h>
 #include <forward.h>
 #include <type_traits>
 
@@ -20,16 +21,16 @@ namespace test
     TYPED_TEST(forward_typed_test, test_forward_ret_value_type)
     {
         // Test lvalue case. Emulate type deduction for forwarding references.
-        EXPECT_TRUE((std::is_same_v<value_type&, decltype(cpputil::forward<value_type&>(std::declval<value_type&>()))>));
+        EXPECT_TRUE((std::is_same_v<value_type&, decltype(cpputil::forward<value_type&>(cpputil::declval<value_type&>()))>));
         // Test rvalue case. Emulate type deduction for forwarding references.
-        EXPECT_TRUE((std::is_same_v<value_type&&, decltype(cpputil::forward<value_type>(std::declval<value_type>()))>));
+        EXPECT_TRUE((std::is_same_v<value_type&&, decltype(cpputil::forward<value_type>(cpputil::declval<value_type>()))>));
     }
 
     TYPED_TEST(forward_typed_test, test_forward_noexcept)
     {
         // Test lvalue case. Emulate type deduction for forwarding references.
-        EXPECT_TRUE(noexcept(cpputil::forward<value_type&>(std::declval<value_type&>())));
+        EXPECT_TRUE(noexcept(cpputil::forward<value_type&>(cpputil::declval<value_type&>())));
         // Test rvalue case. Emulate type deduction for forwarding references.
-        EXPECT_TRUE(noexcept(cpputil::forward<value_type>(std::declval<value_type>())));
+        EXPECT_TRUE(noexcept(cpputil::forward<value_type>(cpputil::declval<value_type>())));
     }
 }

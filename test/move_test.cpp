@@ -1,4 +1,5 @@
 #include <gtest\gtest.h>
+#include <declval.h>
 #include <move.h>
 #include <type_traits>
 
@@ -102,14 +103,14 @@ namespace test
 
     TYPED_TEST(move_typed_test, test_move_ret_value_type)
     {
-        EXPECT_TRUE((std::is_same_v<value_type&&, decltype(cpputil::move(std::declval<value_type&>()))>));
-        EXPECT_TRUE((std::is_same_v<value_type&&, decltype(cpputil::move(std::declval<value_type>()))>));
+        EXPECT_TRUE((std::is_same_v<value_type&&, decltype(cpputil::move(cpputil::declval<value_type&>()))>));
+        EXPECT_TRUE((std::is_same_v<value_type&&, decltype(cpputil::move(cpputil::declval<value_type>()))>));
     }
 
     TYPED_TEST(move_typed_test, test_move_noexcept)
     {
-        EXPECT_TRUE(noexcept(cpputil::move(std::declval<value_type&>())));
-        EXPECT_TRUE(noexcept(cpputil::move(std::declval<value_type>())));
+        EXPECT_TRUE(noexcept(cpputil::move(cpputil::declval<value_type&>())));
+        EXPECT_TRUE(noexcept(cpputil::move(cpputil::declval<value_type>())));
     }
 
     TYPED_TEST(move_if_noexcept_typed_test, test_move_if_noexcept_ret_value_type)
@@ -117,13 +118,13 @@ namespace test
         EXPECT_TRUE((
             std::is_same_v<
                 std::conditional_t<cpputil::detail::move_if_noexcept_condition_v<value_type>, const value_type&, value_type&&>,
-                decltype(cpputil::move_if_noexcept(std::declval<value_type&>()))
+                decltype(cpputil::move_if_noexcept(cpputil::declval<value_type&>()))
             >
         ));
     }
 
     TYPED_TEST(move_if_noexcept_typed_test, test_move_if_noexcept_noexcept)
     {
-        EXPECT_TRUE(noexcept(cpputil::move_if_noexcept(std::declval<value_type&>())));
+        EXPECT_TRUE(noexcept(cpputil::move_if_noexcept(cpputil::declval<value_type&>())));
     }
 }

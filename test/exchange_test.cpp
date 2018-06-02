@@ -1,4 +1,5 @@
 #include <gtest\gtest.h>
+#include <declval.h>
 #include <exchange.h>
 
 namespace test
@@ -49,7 +50,7 @@ namespace test
     TYPED_TEST(exchange_typed_test, test_exchange_return_type)
     {
         EXPECT_TRUE((std::is_same_v<value_type,
-            decltype(cpputil::exchange(std::declval<value_type&>(), std::declval<value_type>()))>));
+            decltype(cpputil::exchange(cpputil::declval<value_type&>(), cpputil::declval<value_type>()))>));
     }
 
     // Tests
