@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\cpputil.h" />
+    <ClInclude Include="..\include\cpputil\apply.h" />
     <ClInclude Include="..\include\cpputil\as_const.h" />
     <ClInclude Include="..\include\cpputil\exchange.h" />
     <ClInclude Include="..\include\cpputil\operator_functors.h" />
@@ -54,6 +55,7 @@
     <ClCompile Include="not_fn_test.cpp" />
     <ClCompile Include="reference_wrapper_test.cpp" />
     <ClCompile Include="move_test.cpp" />
+    <ClCompile Include="apply_test.cpp" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
