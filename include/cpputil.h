@@ -9,3 +9,4 @@
 #include "cpputil\declval.h"
 #include "cpputil\forward.h"
 #include "cpputil\move.h"
+#include "cpputil\packer.h"
