@@ -47,6 +47,7 @@
     <ClInclude Include="..\include\cpputil\packer.h" />
     <ClInclude Include="..\include\cpputil\reference_wrapper.h" />
     <ClInclude Include="..\include\cpputil\declval.h" />
+    <ClInclude Include="test_types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="as_const_test.cpp" />
