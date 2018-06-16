@@ -1,6 +1,5 @@
-/*
- * packer struct template with corresponding type traits implementation
- * based on http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4115.html
+/**
+ * Based on http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4115.html
  */
 
 #pragma once
