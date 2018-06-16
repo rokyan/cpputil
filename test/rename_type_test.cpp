@@ -6,7 +6,7 @@
 
 namespace test
 {
-    TEST(rename_type_test, test_rename)
+    TEST(rename_type_test, test_rename_type)
     {
         EXPECT_TRUE((std::is_same_v<cpputil::packer<>,
             cpputil::rename_type_t<cpputil::packer<>, cpputil::packer>>));
