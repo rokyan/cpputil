@@ -40,6 +40,7 @@
     <ClInclude Include="..\include\cpputil\apply.h" />
     <ClInclude Include="..\include\cpputil\as_const.h" />
     <ClInclude Include="..\include\cpputil\exchange.h" />
+    <ClInclude Include="..\include\cpputil\foreach_argument.h" />
     <ClInclude Include="..\include\cpputil\operator_functors.h" />
     <ClInclude Include="..\include\cpputil\forward.h" />
     <ClInclude Include="..\include\cpputil\move.h" />
@@ -54,6 +55,7 @@
   <ItemGroup>
     <ClCompile Include="as_const_test.cpp" />
     <ClCompile Include="exchange_test.cpp" />
+    <ClCompile Include="foreach_argument_test.cpp" />
     <ClCompile Include="operator_functors_test.cpp" />
     <ClCompile Include="forward_test.cpp" />
     <ClCompile Include="not_fn_test.cpp" />
