@@ -12,7 +12,7 @@ namespace cpputil
     template<typename Func, typename... Args>
     void foreach_argument(Func&& f, Args&&... args)
     {
-        (static_cast<void>(cpputil::forward<Func>(f)(cpputil::forward<Args>(args))), ...);
+        (static_cast<void>(std::invoke(cpputil::forward<Func>(f), cpputil::forward<Args>(args))), ...);
     }
 
     // foreach_tuple_argument implementation
@@ -22,7 +22,7 @@ namespace cpputil
     {
         foreach_argument(
             [&f](auto&&... elems) {
-                cpputil::forward<Func>(f)(cpputil::forward<decltype(elems)>(elems)...);
+                std::invoke(cpputil::forward<Func>(f), cpputil::forward<decltype(elems)>(elems)...);
             },
             std::get<Is>(t)...);
     }
