@@ -16,6 +16,6 @@ namespace cpputil
     {
         using index_sequence_type = std::make_index_sequence<std::tuple_size_v<std::decay_t<Tuple>>>;
 
-        return apply(cpputil::forward<Func>(f), cpputil::forward<Tuple>(t), index_sequence_type{});
+        return cpputil::apply(cpputil::forward<Func>(f), cpputil::forward<Tuple>(t), index_sequence_type{});
     }
 }

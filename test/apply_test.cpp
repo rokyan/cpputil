@@ -19,12 +19,12 @@ namespace test
 
     struct testable
     {
-        int foo(int x, int y) const
+        int sum_of_two(int x, int y) const
         {
             return x + y;
         }
 
-        int bar = 1;
+        int one = 1;
     };
 
     TEST(apply_test, test_basic_apply_scenario)
@@ -47,20 +47,29 @@ namespace test
 
     TEST(apply_test, test_value_category_correctness)
     {
-        callable cb;
+        callable c;
 
-        EXPECT_EQ(cpputil::apply(cb, std::make_tuple(4, 2)), 6);
-        EXPECT_EQ(cpputil::apply(cpputil::move(cb), std::make_tuple(4, 2)), 2);
+        EXPECT_EQ(cpputil::apply(c, std::make_tuple(4, 2)), 6);
+        EXPECT_EQ(cpputil::apply(cpputil::move(c), std::make_tuple(4, 2)), 2);
     }
 
     TEST(apply_test, test_pointer_to_member_call)
     {
         testable t;
 
-        auto bar_ptr = &testable::bar;
-        auto foo_ptr = &testable::foo;
+        const auto one_ptr = &testable::one;
+        const auto sum_of_two_ptr = &testable::sum_of_two;
 
-        EXPECT_EQ(cpputil::apply(bar_ptr, std::make_tuple(t)), 1);
-        EXPECT_EQ(cpputil::apply(foo_ptr, std::make_tuple(t, 4, 2)), 6);
+        EXPECT_EQ(cpputil::apply(one_ptr, std::make_tuple(t)), 1);
+        EXPECT_EQ(cpputil::apply(sum_of_two_ptr, std::make_tuple(t, 4, 2)), 6);
+    }
+
+    TEST(apply_test, test_variadic)
+    {
+        const auto gen_sum = [](auto&&... es) {
+            return (es + ...);
+        };
+
+        EXPECT_EQ(cpputil::apply(gen_sum, std::make_tuple(1, 2L, 3LL, 4.0f, 5.0)), 15.0);
     }
 }
