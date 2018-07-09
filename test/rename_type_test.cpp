@@ -1,7 +1,7 @@
 #include <gtest\gtest.h>
-#include <rename_type.h>
-#include <packer.h>
-#include <types.h>
+#include <rename_type.hpp>
+#include <packer.hpp>
+#include <types.hpp>
 #include <tuple>
 
 namespace test

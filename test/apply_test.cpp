@@ -1,6 +1,6 @@
 #include <gtest\gtest.h>
-#include <apply.h>
-#include <move.h>
+#include <apply.hpp>
+#include <move.hpp>
 
 namespace test
 {

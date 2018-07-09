@@ -2,7 +2,7 @@
 
 #include <type_traits>
 #include <functional>
-#include <forward.h>
+#include <forward.hpp>
 
 namespace cpputil
 {

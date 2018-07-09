@@ -1,7 +1,7 @@
 #pragma once
 
 #include <type_traits>
-#include "forward.h"
+#include "forward.hpp"
 
 namespace cpputil
 {

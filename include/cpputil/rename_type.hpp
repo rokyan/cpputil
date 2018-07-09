@@ -1,5 +1,5 @@
 /**
- * Based on Peter Dimov's http://www.pdimov.com/cpp2/simple_cxx11_metaprogramming.html
+ * Based on Peter Dimov's http://www.pdimov.com/cpp2/simple_cxx11_metaprogramming.hpptml
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 #include <gtest\gtest.h>
-#include <declval.h>
-#include <not_fn.h>
+#include <declval.hpp>
+#include <not_fn.hpp>
 #include <type_traits>
 #include <functional>
 

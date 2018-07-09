@@ -1,6 +1,6 @@
 #pragma once
 
-#include "forward.h"
+#include "forward.hpp"
 
 namespace cpputil
 {

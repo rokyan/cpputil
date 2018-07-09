@@ -1,6 +1,6 @@
 #include <gtest\gtest.h>
-#include <declval.h>
-#include <move.h>
+#include <declval.hpp>
+#include <move.hpp>
 #include <type_traits>
 
 namespace test

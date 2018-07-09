@@ -1,7 +1,7 @@
 #pragma once
 
-#include "forward.h"
-#include "move.h"
+#include "forward.hpp"
+#include "move.hpp"
 
 namespace cpputil
 {

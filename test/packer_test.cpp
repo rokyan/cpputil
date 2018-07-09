@@ -1,6 +1,6 @@
 #include <gtest\gtest.h>
-#include <packer.h>
-#include <types.h>
+#include <packer.hpp>
+#include <types.hpp>
 
 namespace test
 {

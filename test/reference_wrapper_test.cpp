@@ -1,5 +1,5 @@
 #include <gtest\gtest.h>
-#include <reference_wrapper.h>
+#include <reference_wrapper.hpp>
 #include <type_traits>
 
 namespace test

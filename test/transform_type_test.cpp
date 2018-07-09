@@ -1,7 +1,7 @@
 #include <gtest\gtest.h>
-#include <transform_type.h>
-#include <packer.h>
-#include <types.h>
+#include <transform_type.hpp>
+#include <packer.hpp>
+#include <types.hpp>
 #include <type_traits>
 
 namespace test

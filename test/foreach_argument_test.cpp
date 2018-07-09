@@ -1,6 +1,6 @@
 #include <gtest\gtest.h>
-#include <foreach_argument.h>
-#include <move.h>
+#include <foreach_argument.hpp>
+#include <move.hpp>
 #include <string>
 
 namespace test

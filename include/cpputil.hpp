@@ -1,0 +1,15 @@
+#pragma once
+
+#include "cpputil\reference_wrapper.hpp"
+#include "cpputil\operator_functors.hpp"
+#include "cpputil\foreach_argument.hpp"
+#include "cpputil\transform_type.hpp"
+#include "cpputil\rename_type.hpp"
+#include "cpputil\packer.hpp"
+#include "cpputil\not_fn.hpp"
+#include "cpputil\apply.hpp"
+#include "cpputil\as_const.hpp"
+#include "cpputil\exchange.hpp"
+#include "cpputil\declval.hpp"
+#include "cpputil\forward.hpp"
+#include "cpputil\move.hpp"

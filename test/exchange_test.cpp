@@ -1,6 +1,6 @@
 #include <gtest\gtest.h>
-#include <declval.h>
-#include <exchange.h>
+#include <declval.hpp>
+#include <exchange.hpp>
 
 namespace test
 {

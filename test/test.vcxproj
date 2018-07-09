@@ -36,21 +36,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\cpputil.h" />
-    <ClInclude Include="..\include\cpputil\apply.h" />
-    <ClInclude Include="..\include\cpputil\as_const.h" />
-    <ClInclude Include="..\include\cpputil\exchange.h" />
-    <ClInclude Include="..\include\cpputil\foreach_argument.h" />
-    <ClInclude Include="..\include\cpputil\operator_functors.h" />
-    <ClInclude Include="..\include\cpputil\forward.h" />
-    <ClInclude Include="..\include\cpputil\move.h" />
-    <ClInclude Include="..\include\cpputil\not_fn.h" />
-    <ClInclude Include="..\include\cpputil\packer.h" />
-    <ClInclude Include="..\include\cpputil\reference_wrapper.h" />
-    <ClInclude Include="..\include\cpputil\declval.h" />
-    <ClInclude Include="..\include\cpputil\rename_type.h" />
-    <ClInclude Include="..\include\cpputil\transform_type.h" />
-    <ClInclude Include="types.h" />
+    <ClInclude Include="..\include\cpputil.hpp" />
+    <ClInclude Include="..\include\cpputil\apply.hpp" />
+    <ClInclude Include="..\include\cpputil\as_const.hpp" />
+    <ClInclude Include="..\include\cpputil\exchange.hpp" />
+    <ClInclude Include="..\include\cpputil\foreach_argument.hpp" />
+    <ClInclude Include="..\include\cpputil\operator_functors.hpp" />
+    <ClInclude Include="..\include\cpputil\forward.hpp" />
+    <ClInclude Include="..\include\cpputil\move.hpp" />
+    <ClInclude Include="..\include\cpputil\not_fn.hpp" />
+    <ClInclude Include="..\include\cpputil\packer.hpp" />
+    <ClInclude Include="..\include\cpputil\pair.hpp" />
+    <ClInclude Include="..\include\cpputil\reference_wrapper.hpp" />
+    <ClInclude Include="..\include\cpputil\declval.hpp" />
+    <ClInclude Include="..\include\cpputil\rename_type.hpp" />
+    <ClInclude Include="..\include\cpputil\transform_type.hpp" />
+    <ClInclude Include="types.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="as_const_test.cpp" />
