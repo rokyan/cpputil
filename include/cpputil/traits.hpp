@@ -2,6 +2,14 @@
 
 namespace traits
 {
+    // identity implementation.
+
+    template<typename T>
+    struct identity
+    {
+        using type = T;
+    };
+
     // integral_constant implementation.
 
     template<typename T, T v>
@@ -43,4 +51,48 @@ namespace traits
 
     template<typename T, typename... Ts>
     inline constexpr auto is_contained_in_v = is_contained_in<T, Ts...>::value;
+
+    // remove_const, remove_volatile, remove_cv traits implementation.
+
+    template<typename T>
+    struct remove_const :
+        identity<T> {};
+
+    template<typename T>
+    struct remove_const<const T> :
+        identity<T> {};
+
+    template<typename T>
+    using remove_const_t = typename remove_const<T>::type;
+
+    template<typename T>
+    struct remove_volatile :
+        identity<T> {};
+
+    template<typename T>
+    struct remove_volatile<volatile T> :
+        identity<T> {};
+
+    template<typename T>
+    using remove_volatile_t = typename remove_volatile<T>::type;
+
+    template<typename T>
+    struct remove_cv :
+        identity<remove_const_t<remove_volatile_t<T>>> {};
+
+    template<typename T>
+    using remove_cv_t = typename remove_cv<T>::type;
+
+    // is_same implementation.
+
+    template<typename T, typename U>
+    struct is_same :
+        false_type {};
+
+    template<typename T>
+    struct is_same<T, T> :
+        true_type {};
+
+    template<typename T, typename U>
+    inline constexpr auto is_same_v = is_same<T, U>::value;
 }

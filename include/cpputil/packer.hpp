@@ -8,7 +8,7 @@
 
 namespace cpputil
 {
-    // packer holds an arbitrary parameter pack
+    // packer holds an arbitrary parameter pack.
 
     template<typename...>
     struct packer {};
@@ -29,4 +29,18 @@ namespace cpputil
 
     template<typename T, typename U>
     inline constexpr auto contains_types_v = contains_types<T, U>::value;
+
+    // packer related meta functions.
+
+    template<typename, template<typename> typename>
+    struct packer_map;
+
+    template<template<typename...> typename Packer, template<typename> typename Func, typename... Ts>
+    struct packer_map<Packer<Ts...>, Func>
+    {
+        using type = Packer<Func<Ts>...>;
+    };
+
+    template<typename Packer, template<typename> typename Func>
+    using packer_map_t = typename packer_map<Packer, Func>::type;
 }
