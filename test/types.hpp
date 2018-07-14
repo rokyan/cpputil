@@ -2,7 +2,7 @@
 
 namespace test
 {
-#define DECLARE_TEST_TYPE(TYPE_NAME) struct TYPE_NAME {};
+    #define DECLARE_TEST_TYPE(TYPE_NAME) struct TYPE_NAME {};
 
     DECLARE_TEST_TYPE(T0)
     DECLARE_TEST_TYPE(T1)

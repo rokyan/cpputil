@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <type_traits>
+#include <traits.hpp>
 
 namespace cpputil
 {
@@ -13,23 +13,6 @@ namespace cpputil
     template<typename...>
     struct packer {};
 
-    // is_contained_in type trait checks if type T is in template parameter pack Ts...
-
-    template<typename, typename...>
-    struct is_contained_in :
-        std::false_type {};
-
-    template<typename T, typename... Ts>
-    struct is_contained_in<T, T, Ts...> :
-        std::true_type {};
-
-    template<typename T, typename U, typename... Ts>
-    struct is_contained_in<T, U, Ts...> :
-        is_contained_in<T, Ts...> {};
-
-    template<typename T, typename... Ts>
-    inline constexpr auto is_contained_in_v = is_contained_in<T, Ts...>::value;
-
     // contains_types checks for packer<Ts...> and packer<Us...> if Ts... is a superset of Us...
 
     template<typename T, typename U>
@@ -37,11 +20,11 @@ namespace cpputil
 
     template<typename... Ts>
     struct contains_types<packer<Ts...>, packer<>> :
-        std::true_type {};
+        traits::true_type {};
 
     template<typename... Ts, typename U, typename... Us>
     struct contains_types<packer<Ts...>, packer<U, Us...>> :
-        std::bool_constant<is_contained_in_v<U, Ts...> &&
+        traits::bool_constant<traits::is_contained_in_v<U, Ts...> &&
             contains_types<packer<Ts...>, packer<Us...>>::value> {};
 
     template<typename T, typename U>
