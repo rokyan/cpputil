@@ -83,6 +83,30 @@ namespace traits
     template<typename T>
     using remove_cv_t = typename remove_cv<T>::type;
 
+    // is_const, is_volatile traits implementation.
+
+    template<typename T>
+    struct is_const :
+        false_type {};
+
+    template<typename T>
+    struct is_const<const T> :
+        true_type {};
+
+    template<typename T>
+    inline constexpr auto is_const_v = is_const<T>::value;
+
+    template<typename T>
+    struct is_volatile :
+        false_type {};
+
+    template<typename T>
+    struct is_volatile<volatile T> :
+        true_type {};
+
+    template<typename T>
+    inline constexpr auto is_volatile_v = is_volatile<T>::value;
+
     // is_same implementation.
 
     template<typename T, typename U>
@@ -95,4 +119,17 @@ namespace traits
 
     template<typename T, typename U>
     inline constexpr auto is_same_v = is_same<T, U>::value;
+
+    // conditional implementation.
+
+    template<bool Condition, typename T, typename U>
+    struct conditional :
+        identity<T> {};
+
+    template<typename T, typename U>
+    struct conditional<false, T, U> :
+        identity<U> {};
+
+    template<bool Condition, typename T, typename U>
+    using conditional_t = typename conditional<Condition, T, U>::type;
 }
