@@ -59,6 +59,54 @@ namespace test
             "Error while adding a type to a packer as a last type";
     }
 
+    TEST(packer_test, test_packer_remove_first)
+    {
+        using packer_t_0 = cpputil::empty_packer;
+        using expected_packer_t_0 = cpputil::empty_packer;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_0,
+            cpputil::packer_remove_first_t<packer_t_0>>)) <<
+            "Error while removing the first type from an empty packer";
+
+        using packer_t_1 = cpputil::packer<T0>;
+        using expected_packer_t_1 = cpputil::empty_packer;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_1,
+            cpputil::packer_remove_first_t<packer_t_1>>)) <<
+            "Error while removing the first type from a packer with a single element";
+
+        using packer_t_2 = cpputil::packer<T0, T1>;
+        using expected_packer_t_2 = cpputil::packer<T1>;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_2,
+            cpputil::packer_remove_first_t<packer_t_2>>)) <<
+            "Error while removing the first type from a packer with multiple element";
+    }
+
+    TEST(packer_test, test_packer_remove_last)
+    {
+        using packer_t_0 = cpputil::empty_packer;
+        using expected_packer_t_0 = cpputil::empty_packer;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_0,
+            cpputil::packer_remove_last_t<packer_t_0>>)) <<
+            "Error while removing the last type from an empty packer";
+
+        using packer_t_1 = cpputil::packer<T0>;
+        using expected_packer_t_1 = cpputil::empty_packer;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_1,
+            cpputil::packer_remove_last_t<packer_t_1>>)) <<
+            "Error while removing the last type from a packer with a single element";
+
+        using packer_t_2 = cpputil::packer<T0, T1>;
+        using expected_packer_t_2 = cpputil::packer<T0>;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_2,
+            cpputil::packer_remove_last_t<packer_t_2>>)) <<
+            "Error while removing the last type from a packer with multiple element";
+    }
+
     TEST(packer_test, test_packer_map)
     {
         EXPECT_TRUE((traits::is_same_v<cpputil::empty_packer,

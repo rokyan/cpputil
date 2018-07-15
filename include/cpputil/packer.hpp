@@ -1,10 +1,11 @@
 /**
- * Based on http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4115.hpptml
+ * Based on http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4115.html
  */
 
 #pragma once
 
 #include <traits.hpp>
+#include <utility> // for std::tuple and std::index_sequence
 
 namespace cpputil
 {
@@ -17,6 +18,8 @@ namespace cpputil
 
     // packer related meta functions.
 
+    // contains_types implementation.
+
     template<typename T, typename U>
     struct contains_types;
 
@@ -27,10 +30,12 @@ namespace cpputil
     template<typename... Ts, typename U, typename... Us>
     struct contains_types<packer<Ts...>, packer<U, Us...>> :
         traits::bool_constant<traits::is_contained_in_v<U, Ts...> &&
-            contains_types<packer<Ts...>, packer<Us...>>::value> {};
+        contains_types<packer<Ts...>, packer<Us...>>::value> {};
 
     template<typename T, typename U>
     inline constexpr auto contains_types_v = contains_types<T, U>::value;
+
+    // packer_add_first implementation.
 
     template<typename, typename>
     struct packer_add_first;
@@ -44,6 +49,8 @@ namespace cpputil
     template<typename Packer, typename T>
     using packer_add_first_t = typename packer_add_first<Packer, T>::type;
 
+    // packer_add_last implementation.
+
     template<typename, typename>
     struct packer_add_last;
 
@@ -56,6 +63,64 @@ namespace cpputil
     template<typename Packer, typename T>
     using packer_add_last_t = typename packer_add_last<Packer, T>::type;
 
+    // packer_remove_first implementation.
+
+    template<typename>
+    struct packer_remove_first;
+
+    template<template<typename...> typename Packer>
+    struct packer_remove_first<Packer<>>
+    {
+        using type = Packer<>;
+    };
+
+    template<template<typename...> typename Packer, typename T, typename... Ts>
+    struct packer_remove_first<Packer<T, Ts...>>
+    {
+        using type = Packer<Ts...>;
+    };
+
+    template<typename T>
+    using packer_remove_first_t = typename packer_remove_first<T>::type;
+
+    // packer_remove_last implementation.
+
+    template<typename>
+    struct packer_remove_last;
+
+    template<template<typename...> typename Packer>
+    struct packer_remove_last<Packer<>>
+    {
+        using type = Packer<>;
+    };
+
+    namespace detail
+    {
+        template<typename, typename>
+        struct packer_remove_last_helper;
+
+        template<typename T, typename Sequence>
+        using packer_remove_last_helper_t = typename packer_remove_last_helper<T, Sequence>::type;
+
+        template<template<typename...> typename Packer, typename... Ts, std::size_t... Is>
+        struct packer_remove_last_helper<Packer<Ts...>, std::index_sequence<Is...>>
+        {
+            using type = Packer<std::tuple_element_t<Is, std::tuple<Ts...>>...>;
+        };
+    }
+
+    template<template<typename...> typename Packer, typename... Ts>
+    struct packer_remove_last<Packer<Ts...>>
+    {
+        using type = packer_remove_last_helper_t<Packer<Ts...>,
+            std::make_index_sequence<sizeof...(Ts) - 1>>;
+    };
+
+    template<typename T>
+    using packer_remove_last_t = typename packer_remove_last<T>::type;
+
+    // packer_map implementation.
+
     template<typename, template<typename> typename>
     struct packer_map;
 
@@ -67,6 +132,8 @@ namespace cpputil
     {
         using type = Packer<Func<Ts>...>;
     };
+
+    // packer_filter implementation.
 
     template<typename, template<typename> typename>
     struct packer_filter;
