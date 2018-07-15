@@ -9,163 +9,168 @@
 
 namespace cpputil
 {
-    // packer holds an arbitrary parameter pack.
-
-    template<typename...>
-    struct packer {};
-
-    using empty_packer = packer<>;
-
-    // packer related meta functions.
-
-    // contains_types implementation.
-
-    template<typename T, typename U>
-    struct contains_types;
-
-    template<typename... Ts>
-    struct contains_types<packer<Ts...>, packer<>> :
-        traits::true_type {};
-
-    template<typename... Ts, typename U, typename... Us>
-    struct contains_types<packer<Ts...>, packer<U, Us...>> :
-        traits::bool_constant<traits::is_contained_in_v<U, Ts...> &&
-        contains_types<packer<Ts...>, packer<Us...>>::value> {};
-
-    template<typename T, typename U>
-    inline constexpr auto contains_types_v = contains_types<T, U>::value;
-
-    // packer_size implementation.
-
-    template<typename>
-    struct packer_size;
-
-    template<template<typename...> typename Packer, typename... Ts>
-    struct packer_size<Packer<Ts...>> :
-        traits::integral_constant<std::size_t, sizeof...(Ts)> {};
-
-    template<typename T>
-    inline constexpr auto packer_size_v = packer_size<T>::value;
-
-    // packer_add_first implementation.
-
-    template<typename, typename>
-    struct packer_add_first;
-
-    template<template<typename...> typename Packer, typename T, typename... Ts>
-    struct packer_add_first<Packer<Ts...>, T>
+    namespace pck
     {
-        using type = Packer<T, Ts...>;
-    };
+        // packer holds an arbitrary parameter pack.
 
-    template<typename Packer, typename T>
-    using packer_add_first_t = typename packer_add_first<Packer, T>::type;
+        template<typename...>
+        struct packer {};
 
-    // packer_add_last implementation.
+        using empty_packer = packer<>;
 
-    template<typename, typename>
-    struct packer_add_last;
+        /**
+         * packer related meta functions.
+         */
 
-    template<template<typename...> typename Packer, typename T, typename... Ts>
-    struct packer_add_last<Packer<Ts...>, T>
-    {
-        using type = Packer<Ts..., T>;
-    };
+        // contains_types implementation.
 
-    template<typename Packer, typename T>
-    using packer_add_last_t = typename packer_add_last<Packer, T>::type;
+        template<typename T, typename U>
+        struct contains_types;
 
-    // packer_remove_first implementation.
+        template<typename... Ts>
+        struct contains_types<packer<Ts...>, packer<>> :
+            traits::true_type {};
 
-    template<typename>
-    struct packer_remove_first;
+        template<typename... Ts, typename U, typename... Us>
+        struct contains_types<packer<Ts...>, packer<U, Us...>> :
+            traits::bool_constant<traits::is_contained_in_v<U, Ts...> &&
+            contains_types<packer<Ts...>, packer<Us...>>::value> {};
 
-    template<template<typename...> typename Packer>
-    struct packer_remove_first<Packer<>>
-    {
-        using type = Packer<>;
-    };
+        template<typename T, typename U>
+        inline constexpr auto contains_types_v = contains_types<T, U>::value;
 
-    template<template<typename...> typename Packer, typename T, typename... Ts>
-    struct packer_remove_first<Packer<T, Ts...>>
-    {
-        using type = Packer<Ts...>;
-    };
+        // size implementation.
 
-    template<typename T>
-    using packer_remove_first_t = typename packer_remove_first<T>::type;
+        template<typename>
+        struct size;
 
-    // packer_remove_last implementation.
+        template<template<typename...> typename Packer, typename... Ts>
+        struct size<Packer<Ts...>> :
+            traits::integral_constant<std::size_t, sizeof...(Ts)> {};
 
-    template<typename>
-    struct packer_remove_last;
+        template<typename T>
+        inline constexpr auto size_v = size<T>::value;
 
-    template<template<typename...> typename Packer>
-    struct packer_remove_last<Packer<>>
-    {
-        using type = Packer<>;
-    };
+        // add_first implementation.
 
-    namespace detail
-    {
         template<typename, typename>
-        struct packer_remove_last_helper;
+        struct add_first;
 
-        template<typename T, typename Sequence>
-        using packer_remove_last_helper_t = typename packer_remove_last_helper<T, Sequence>::type;
-
-        template<template<typename...> typename Packer, typename... Ts, std::size_t... Is>
-        struct packer_remove_last_helper<Packer<Ts...>, std::index_sequence<Is...>>
+        template<template<typename...> typename Packer, typename T, typename... Ts>
+        struct add_first<Packer<Ts...>, T>
         {
-            using type = Packer<std::tuple_element_t<Is, std::tuple<Ts...>>...>;
+            using type = Packer<T, Ts...>;
+        };
+
+        template<typename Packer, typename T>
+        using add_first_t = typename add_first<Packer, T>::type;
+
+        // add_last implementation.
+
+        template<typename, typename>
+        struct add_last;
+
+        template<template<typename...> typename Packer, typename T, typename... Ts>
+        struct add_last<Packer<Ts...>, T>
+        {
+            using type = Packer<Ts..., T>;
+        };
+
+        template<typename Packer, typename T>
+        using add_last_t = typename add_last<Packer, T>::type;
+
+        // remove_first implementation.
+
+        template<typename>
+        struct remove_first;
+
+        template<template<typename...> typename Packer>
+        struct remove_first<Packer<>>
+        {
+            using type = Packer<>;
+        };
+
+        template<template<typename...> typename Packer, typename T, typename... Ts>
+        struct remove_first<Packer<T, Ts...>>
+        {
+            using type = Packer<Ts...>;
+        };
+
+        template<typename T>
+        using remove_first_t = typename remove_first<T>::type;
+
+        // remove_last implementation.
+
+        template<typename>
+        struct remove_last;
+
+        template<template<typename...> typename Packer>
+        struct remove_last<Packer<>>
+        {
+            using type = Packer<>;
+        };
+
+        namespace detail
+        {
+            template<typename, typename>
+            struct remove_last_helper;
+
+            template<typename T, typename Sequence>
+            using remove_last_helper_t = typename remove_last_helper<T, Sequence>::type;
+
+            template<template<typename...> typename Packer, typename... Ts, std::size_t... Is>
+            struct remove_last_helper<Packer<Ts...>, std::index_sequence<Is...>>
+            {
+                using type = Packer<std::tuple_element_t<Is, std::tuple<Ts...>>...>;
+            };
+        }
+
+        template<template<typename...> typename Packer, typename... Ts>
+        struct remove_last<Packer<Ts...>>
+        {
+            using type = detail::remove_last_helper_t<Packer<Ts...>,
+                std::make_index_sequence<sizeof...(Ts)-1>>;
+        };
+
+        template<typename T>
+        using remove_last_t = typename remove_last<T>::type;
+
+        // map implementation.
+
+        template<typename, template<typename> typename>
+        struct map;
+
+        template<typename Packer, template<typename> typename Func>
+        using map_t = typename map<Packer, Func>::type;
+
+        template<template<typename...> typename Packer, template<typename> typename Func, typename... Ts>
+        struct map<Packer<Ts...>, Func>
+        {
+            using type = Packer<Func<Ts>...>;
+        };
+
+        // filter implementation.
+
+        template<typename, template<typename> typename>
+        struct filter;
+
+        template<typename Packer, template<typename> typename Func>
+        using filter_t = typename filter<Packer, Func>::type;
+
+        template<template<typename...> typename Packer, template<typename> typename Func>
+        struct filter<Packer<>, Func>
+        {
+            using type = Packer<>;
+        };
+
+        template<template<typename...> typename Packer, template<typename> typename Func, typename T, typename... Ts>
+        struct filter<Packer<T, Ts...>, Func>
+        {
+            using filtered_tail_t = filter_t<Packer<Ts...>, Func>;
+
+            using type = traits::conditional_t<Func<T>::value,
+                add_first_t<filtered_tail_t, T>,
+                filtered_tail_t>;
         };
     }
-
-    template<template<typename...> typename Packer, typename... Ts>
-    struct packer_remove_last<Packer<Ts...>>
-    {
-        using type = detail::packer_remove_last_helper_t<Packer<Ts...>,
-            std::make_index_sequence<sizeof...(Ts) - 1>>;
-    };
-
-    template<typename T>
-    using packer_remove_last_t = typename packer_remove_last<T>::type;
-
-    // packer_map implementation.
-
-    template<typename, template<typename> typename>
-    struct packer_map;
-
-    template<typename Packer, template<typename> typename Func>
-    using packer_map_t = typename packer_map<Packer, Func>::type;
-
-    template<template<typename...> typename Packer, template<typename> typename Func, typename... Ts>
-    struct packer_map<Packer<Ts...>, Func>
-    {
-        using type = Packer<Func<Ts>...>;
-    };
-
-    // packer_filter implementation.
-
-    template<typename, template<typename> typename>
-    struct packer_filter;
-
-    template<typename Packer, template<typename> typename Func>
-    using packer_filter_t = typename packer_filter<Packer, Func>::type;
-
-    template<template<typename...> typename Packer, template<typename> typename Func>
-    struct packer_filter<Packer<>, Func>
-    {
-        using type = Packer<>;
-    };
-
-    template<template<typename...> typename Packer, template<typename> typename Func, typename T, typename... Ts>
-    struct packer_filter<Packer<T, Ts...>, Func>
-    {
-        using filtered_tail_t = packer_filter_t<Packer<Ts...>, Func>;
-
-        using type = traits::conditional_t<Func<T>::value,
-            packer_add_first_t<filtered_tail_t, T>,
-            filtered_tail_t>;
-    };
 }
