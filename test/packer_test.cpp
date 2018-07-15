@@ -1,4 +1,5 @@
 #include <gtest\gtest.h>
+#include <literals.hpp>
 #include <packer.hpp>
 #include <types.hpp>
 
@@ -32,14 +33,16 @@ namespace test
 
     TEST(packer_test, test_packer_size)
     {
+        using namespace cpputil::literals;
+
         const auto packer_size_0 = cpputil::packer_size_v<cpputil::empty_packer>;
-        EXPECT_EQ(std::size_t(0), packer_size_0);
+        EXPECT_EQ(0_zu, packer_size_0);
 
         const auto packer_size_1 = cpputil::packer_size_v<cpputil::packer<T0>>;
-        EXPECT_EQ(std::size_t(1), packer_size_1);
+        EXPECT_EQ(1_zu, packer_size_1);
 
         const auto packer_size_2 = cpputil::packer_size_v<cpputil::packer<T0, T1>>;
-        EXPECT_EQ(std::size_t(2), packer_size_2);
+        EXPECT_EQ(2_zu, packer_size_2);
     }
 
     TEST(packer_test, test_packer_add_first)
