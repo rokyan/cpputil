@@ -11,6 +11,11 @@ namespace test
         auto from_int = 1_zu;
 
         EXPECT_TRUE((traits::is_same_v<std::size_t, decltype(from_int)>));
-        EXPECT_EQ(1, from_int);
+        EXPECT_EQ(std::size_t{ 1 }, from_int);
+
+        auto from_double = 1.1_zu;
+
+        EXPECT_TRUE((traits::is_same_v<std::size_t, decltype(from_double)>));
+        EXPECT_EQ(std::size_t{ 1 }, from_int);
     }
 }

@@ -9,7 +9,13 @@ namespace cpputil
         /**
         * Based on http://open-std.org/JTC1/SC22/WG21/docs/papers/2016/p0330r0.pdf
         */
+
         constexpr std::size_t operator"" _zu(unsigned long long value)
+        {
+            return static_cast<std::size_t>(value);
+        }
+
+        constexpr std::size_t operator"" _zu(long double value)
         {
             return static_cast<std::size_t>(value);
         }

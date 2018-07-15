@@ -13,3 +13,4 @@
 #include "cpputil\declval.hpp"
 #include "cpputil\forward.hpp"
 #include "cpputil\move.hpp"
+#include "cpputil\literals.hpp"
