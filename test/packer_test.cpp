@@ -25,6 +25,23 @@ namespace test
             cpputil::packer<T0, T1, T2>>));
     }
 
+    TEST(packer_test, test_empty_packer)
+    {
+        EXPECT_TRUE((traits::is_same_v<cpputil::packer<>, cpputil::empty_packer>));
+    }
+
+    TEST(packer_test, test_packer_size)
+    {
+        const auto packer_size_0 = cpputil::packer_size_v<cpputil::empty_packer>;
+        EXPECT_EQ(std::size_t(0), packer_size_0);
+
+        const auto packer_size_1 = cpputil::packer_size_v<cpputil::packer<T0>>;
+        EXPECT_EQ(std::size_t(1), packer_size_1);
+
+        const auto packer_size_2 = cpputil::packer_size_v<cpputil::packer<T0, T1>>;
+        EXPECT_EQ(std::size_t(2), packer_size_2);
+    }
+
     TEST(packer_test, test_packer_add_first)
     {
         using packer_t_0 = cpputil::packer<>;

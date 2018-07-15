@@ -35,6 +35,18 @@ namespace cpputil
     template<typename T, typename U>
     inline constexpr auto contains_types_v = contains_types<T, U>::value;
 
+    // packer_size implementation.
+
+    template<typename>
+    struct packer_size;
+
+    template<template<typename...> typename Packer, typename... Ts>
+    struct packer_size<Packer<Ts...>> :
+        traits::integral_constant<std::size_t, sizeof...(Ts)> {};
+
+    template<typename T>
+    inline constexpr auto packer_size_v = packer_size<T>::value;
+
     // packer_add_first implementation.
 
     template<typename, typename>
