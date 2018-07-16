@@ -170,22 +170,19 @@ namespace cpputil
         template<typename, template<typename> typename>
         struct map;
 
-        template<typename Packer, template<typename> typename Func>
-        using map_t = typename map<Packer, Func>::type;
-
         template<template<typename...> typename Packer, template<typename> typename Func, typename... Ts>
         struct map<Packer<Ts...>, Func>
         {
             using type = Packer<Func<Ts>...>;
         };
 
+        template<typename Packer, template<typename> typename Func>
+        using map_t = typename map<Packer, Func>::type;
+
         // filter implementation.
 
         template<typename, template<typename> typename>
         struct filter;
-
-        template<typename Packer, template<typename> typename Func>
-        using filter_t = typename filter<Packer, Func>::type;
 
         template<template<typename...> typename Packer, template<typename> typename Func>
         struct filter<Packer<>, Func>
@@ -196,11 +193,14 @@ namespace cpputil
         template<template<typename...> typename Packer, template<typename> typename Func, typename T, typename... Ts>
         struct filter<Packer<T, Ts...>, Func>
         {
-            using filtered_tail_t = filter_t<Packer<Ts...>, Func>;
+            using filtered_tail_t = typename filter<Packer<Ts...>, Func>::type;
 
             using type = traits::conditional_t<Func<T>::value,
                 add_first_t<filtered_tail_t, T>,
                 filtered_tail_t>;
         };
+
+        template<typename Packer, template<typename> typename Func>
+        using filter_t = typename filter<Packer, Func>::type;
     }
 }
