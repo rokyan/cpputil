@@ -129,7 +129,7 @@ namespace cpputil
         struct remove_last<Packer<Ts...>>
         {
             using type = detail::remove_last_helper_t<Packer<Ts...>,
-                std::make_index_sequence<sizeof...(Ts)-1>>;
+                std::make_index_sequence<sizeof...(Ts) - 1>>;
         };
 
         template<typename T>
