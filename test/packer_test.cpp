@@ -146,6 +146,19 @@ namespace test
         EXPECT_TRUE((traits::is_same_v<T0, get_first_t<packer_t_1>>));
     }
 
+    TEST(packer_test, test_get_last)
+    {
+        using cpputil::pck::get_last_t;
+
+        using packer_t_0 = packer<T0>;
+
+        EXPECT_TRUE((traits::is_same_v<T0, get_last_t<packer_t_0>>));
+
+        using packer_t_1 = packer<T0, T1>;
+
+        EXPECT_TRUE((traits::is_same_v<T1, get_last_t<packer_t_1>>));
+    }
+
     TEST(packer_test, test_map)
     {
         using cpputil::pck::map_t;

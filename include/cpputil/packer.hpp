@@ -149,6 +149,22 @@ namespace cpputil
         template<typename T>
         using get_first_t = typename get_first<T>::type;
 
+        // get_last implementation.
+
+        template<typename>
+        struct get_last;
+
+        template<template<typename...> typename Packer, typename... Ts>
+        struct get_last<Packer<Ts...>>
+        {
+            static_assert(sizeof...(Ts) > 0, "Packer cannot be empty.");
+
+            using type = std::tuple_element_t<sizeof...(Ts) - 1, std::tuple<Ts...>>;
+        };
+
+        template<typename T>
+        using get_last_t = typename get_last<T>::type;
+
         // map implementation.
 
         template<typename, template<typename> typename>
