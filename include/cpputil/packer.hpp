@@ -135,6 +135,20 @@ namespace cpputil
         template<typename T>
         using remove_last_t = typename remove_last<T>::type;
 
+        // get_first implementation.
+
+        template<typename>
+        struct get_first;
+
+        template<template<typename...> typename Packer, typename T, typename... Ts>
+        struct get_first<Packer<T, Ts...>>
+        {
+            using type = T;
+        };
+
+        template<typename T>
+        using get_first_t = typename get_first<T>::type;
+
         // map implementation.
 
         template<typename, template<typename> typename>

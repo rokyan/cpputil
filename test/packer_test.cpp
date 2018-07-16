@@ -133,6 +133,19 @@ namespace test
             "Error while removing the last type from a packer with multiple element";
     }
 
+    TEST(packer_test, test_get_first)
+    {
+        using cpputil::pck::get_first_t;
+
+        using packer_t_0 = packer<T0>;
+
+        EXPECT_TRUE((traits::is_same_v<T0, get_first_t<packer_t_0>>));
+
+        using packer_t_1 = packer<T0, T1>;
+
+        EXPECT_TRUE((traits::is_same_v<T0, get_first_t<packer_t_1>>));
+    }
+
     TEST(packer_test, test_map)
     {
         using cpputil::pck::map_t;
