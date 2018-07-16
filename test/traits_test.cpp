@@ -39,4 +39,22 @@ namespace test
         EXPECT_TRUE((traits::is_same_v<T0, traits::remove_cv_t<volatile T0>>));
         EXPECT_TRUE((traits::is_same_v<T0, traits::remove_cv_t<const volatile T0>>));
     }
+
+    TEST(traits_test, test_is_const)
+    {
+        EXPECT_FALSE(traits::is_const_v<T0>);
+        EXPECT_FALSE(traits::is_const_v<volatile T0>);
+
+        EXPECT_TRUE(traits::is_const_v<const T0>);
+        EXPECT_TRUE(traits::is_const_v<const volatile T0>);
+    }
+
+    TEST(traits_test, test_is_volatile)
+    {
+        EXPECT_FALSE(traits::is_volatile_v<T0>);
+        EXPECT_FALSE(traits::is_volatile_v<const T0>);
+
+        EXPECT_TRUE(traits::is_volatile_v<volatile T0>);
+        EXPECT_TRUE(traits::is_volatile_v<const volatile T0>);
+    }
 }
