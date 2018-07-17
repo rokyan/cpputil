@@ -4,16 +4,23 @@
 
 namespace test
 {
-    TEST(traits_test, test_is_contained_in)
+    TEST(traits_test, test_identity)
     {
-        EXPECT_TRUE((traits::is_contained_in_v<T0, T0>));
-        EXPECT_TRUE((traits::is_contained_in_v<T0, T0, T1>));
-        EXPECT_TRUE((traits::is_contained_in_v<T0, T0, T1, T2>));
+        EXPECT_TRUE((traits::is_same_v<T0, traits::identity_t<T0>>));
+    }
 
-        EXPECT_FALSE((traits::is_contained_in_v<T0>));
-        EXPECT_FALSE((traits::is_contained_in_v<T0, T1>));
-        EXPECT_FALSE((traits::is_contained_in_v<T0, T1, T2>));
-        EXPECT_FALSE((traits::is_contained_in_v<T0, T1, T2, T3>));
+    TEST(traits_test, test_integral_constant)
+    {
+        using T = int;
+        using integral_constant_t = traits::integral_constant<T, T{}>;
+
+        EXPECT_EQ(integral_constant_t::value, T{});
+
+        EXPECT_TRUE((traits::is_same_v<integral_constant_t::value_type, T>));
+        EXPECT_TRUE((traits::is_same_v<integral_constant_t::type, integral_constant_t>));
+
+        EXPECT_EQ(integral_constant_t{}(), T{});
+        EXPECT_EQ(static_cast<T>(integral_constant_t{}), T{});
     }
 
     TEST(traits_test, test_remove_const)
@@ -56,5 +63,23 @@ namespace test
 
         EXPECT_TRUE(traits::is_volatile_v<volatile T0>);
         EXPECT_TRUE(traits::is_volatile_v<const volatile T0>);
+    }
+
+    TEST(traits_test, test_is_same)
+    {
+        EXPECT_TRUE((traits::is_same_v<T0, T0>));
+        EXPECT_FALSE((traits::is_same_v<T0, T1>));
+    }
+
+    TEST(traits_test, test_is_contained_in)
+    {
+        EXPECT_TRUE((traits::is_contained_in_v<T0, T0>));
+        EXPECT_TRUE((traits::is_contained_in_v<T0, T0, T1>));
+        EXPECT_TRUE((traits::is_contained_in_v<T0, T0, T1, T2>));
+
+        EXPECT_FALSE((traits::is_contained_in_v<T0>));
+        EXPECT_FALSE((traits::is_contained_in_v<T0, T1>));
+        EXPECT_FALSE((traits::is_contained_in_v<T0, T1, T2>));
+        EXPECT_FALSE((traits::is_contained_in_v<T0, T1, T2, T3>));
     }
 }

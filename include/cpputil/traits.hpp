@@ -10,6 +10,9 @@ namespace traits
         using type = T;
     };
 
+    template<typename T>
+    using identity_t = typename identity<T>::type;
+
     // integral_constant implementation.
 
     template<typename T, T v>
@@ -34,23 +37,6 @@ namespace traits
 
     using false_type = bool_constant<false>;
     using true_type = bool_constant<true>;
-
-    // is_contained_in implementation.
-
-    template<typename, typename...>
-    struct is_contained_in :
-        std::false_type {};
-
-    template<typename T, typename... Ts>
-    struct is_contained_in<T, T, Ts...> :
-        std::true_type {};
-
-    template<typename T, typename U, typename... Ts>
-    struct is_contained_in<T, U, Ts...> :
-        is_contained_in<T, Ts...> {};
-
-    template<typename T, typename... Ts>
-    inline constexpr auto is_contained_in_v = is_contained_in<T, Ts...>::value;
 
     // remove_const, remove_volatile, remove_cv traits implementation.
 
@@ -132,4 +118,21 @@ namespace traits
 
     template<bool Condition, typename T, typename U>
     using conditional_t = typename conditional<Condition, T, U>::type;
+
+    // is_contained_in implementation.
+
+    template<typename, typename...>
+    struct is_contained_in :
+        std::false_type {};
+
+    template<typename T, typename... Ts>
+    struct is_contained_in<T, T, Ts...> :
+        std::true_type {};
+
+    template<typename T, typename U, typename... Ts>
+    struct is_contained_in<T, U, Ts...> :
+        is_contained_in<T, Ts...> {};
+
+    template<typename T, typename... Ts>
+    inline constexpr auto is_contained_in_v = is_contained_in<T, Ts...>::value;
 }
