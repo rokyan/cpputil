@@ -190,4 +190,24 @@ namespace test
             filter_t<packer_t, traits::is_const>>)) <<
             "filter operation has produced a wrong result.";
     }
+
+    TEST(packer_test, test_chain)
+    {
+        using cpputil::pck::chain_t;
+
+        using expected_packer_t_0 = packer<T0, T1>;
+        using chained_packer_t_0 = chain_t<packer<T0, T1>>;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_0, chained_packer_t_0>));
+
+        using expected_packer_t_1 = packer<T0, T1, T2, T3>;
+        using chained_packer_t_1 = chain_t<packer<T0, T1>, packer<T2, T3>>;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_1, chained_packer_t_1>));
+
+        using expected_packer_t_2 = packer<T0, T1, T2, T3, T4, T5>;
+        using chained_packer_t_2 = chain_t<packer<T0, T1>, packer<T2, T3>, packer<T4, T5>>;
+
+        EXPECT_TRUE((traits::is_same_v<expected_packer_t_2, chained_packer_t_2>));
+    }
 }

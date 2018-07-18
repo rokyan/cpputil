@@ -202,5 +202,31 @@ namespace cpputil
 
         template<typename Packer, template<typename> typename Func>
         using filter_t = typename filter<Packer, Func>::type;
+
+        // chain implementation.
+
+        template<typename...>
+        struct chain;
+
+        template<template<typename...> typename Packer, typename... Ts>
+        struct chain<Packer<Ts...>>
+        {
+            using type = Packer<Ts...>;
+        };
+
+        template<template<typename...> typename Packer, typename... Ts, typename... Us>
+        struct chain<Packer<Ts...>, Packer<Us...>>
+        {
+            using type = Packer<Ts..., Us...>;
+        };
+
+        template<template<typename...> typename Packer, typename... Ts, typename... Packers>
+        struct chain<Packer<Ts...>, Packers...>
+        {
+            using type = typename chain<Packer<Ts...>, typename chain<Packers...>::type>::type;
+        };
+
+        template<typename... Packers>
+        using chain_t = typename chain<Packers...>::type;
     }
 }
