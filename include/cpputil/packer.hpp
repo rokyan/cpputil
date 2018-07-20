@@ -22,23 +22,6 @@ namespace cpputil
          * packer related meta functions.
          */
 
-        // contains_types implementation.
-
-        template<typename T, typename U>
-        struct contains_types;
-
-        template<typename... Ts>
-        struct contains_types<packer<Ts...>, packer<>> :
-            traits::true_type {};
-
-        template<typename... Ts, typename U, typename... Us>
-        struct contains_types<packer<Ts...>, packer<U, Us...>> :
-            traits::bool_constant<traits::is_contained_in_v<U, Ts...> &&
-            contains_types<packer<Ts...>, packer<Us...>>::value> {};
-
-        template<typename T, typename U>
-        inline constexpr auto contains_types_v = contains_types<T, U>::value;
-
         // size implementation.
 
         template<typename>
@@ -228,5 +211,54 @@ namespace cpputil
 
         template<typename... Packers>
         using chain_t = typename chain<Packers...>::type;
+
+        // same implementation
+
+        template<typename, typename>
+        struct same;
+
+        template<template<typename...> typename Packer, template<typename...> typename OtherPacker>
+        struct same<Packer<>, OtherPacker<>> :
+            traits::true_type {};
+
+        template<template<typename...> typename Packer, template<typename...> typename OtherPacker,
+            typename... Ts>
+        struct same<Packer<Ts...>, OtherPacker<>> :
+            traits::false_type {};
+
+        template<template<typename...> typename Packer, template<typename...> typename OtherPacker,
+            typename... Us>
+            struct same<Packer<>, OtherPacker<Us...>> :
+            traits::false_type {};
+
+        template<template<typename...> typename Packer, template<typename...> typename OtherPacker,
+            typename T, typename... Ts, typename U, typename... Us>
+            struct same<Packer<T, Ts...>, OtherPacker<U, Us...>> :
+            traits::false_type {};
+
+        template<template<typename...> typename Packer, template<typename...> typename OtherPacker,
+            typename T, typename... Ts, typename... Us>
+            struct same<Packer<T, Ts...>, OtherPacker<T, Us...>> :
+            same<Packer<Ts...>, OtherPacker<Us...>> {};
+
+        template<typename Packer, typename OtherPacker>
+        inline constexpr auto same_v = same<Packer, OtherPacker>::value;
+
+        // contains implementation.
+
+        template<typename T, typename U>
+        struct contains;
+
+        template<typename... Ts>
+        struct contains<packer<Ts...>, packer<>> :
+            traits::true_type {};
+
+        template<typename... Ts, typename U, typename... Us>
+        struct contains<packer<Ts...>, packer<U, Us...>> :
+            traits::bool_constant<traits::is_contained_in_v<U, Ts...> &&
+            contains<packer<Ts...>, packer<Us...>>::value> {};
+
+        template<typename T, typename U>
+        inline constexpr auto contains_v = contains<T, U>::value;
     }
 }

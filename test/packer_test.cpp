@@ -8,21 +8,6 @@ namespace test
     using cpputil::pck::packer;
     using cpputil::pck::empty_packer;
 
-    TEST(packer_test, test_contains_types)
-    {
-        using cpputil::pck::contains_types_v;
-
-        EXPECT_TRUE((contains_types_v<packer<T0, T1>, empty_packer>));
-        EXPECT_TRUE((contains_types_v<packer<T0, T1>, packer<T0>>));
-        EXPECT_TRUE((contains_types_v<packer<T0, T1>, packer<T1>>));
-        EXPECT_TRUE((contains_types_v<packer<T0, T1>, packer<T0, T1>>));
-
-        EXPECT_FALSE((contains_types_v<packer<T0, T1>, packer<T2>>));
-        EXPECT_FALSE((contains_types_v<packer<T0, T1>, packer<T0, T2>>));
-        EXPECT_FALSE((contains_types_v<packer<T0, T1>, packer<T2, T0>>));
-        EXPECT_FALSE((contains_types_v<packer<T0, T1>, packer<T0, T1, T2>>));
-    }
-
     TEST(packer_test, test_empty_packer)
     {
         EXPECT_TRUE((traits::is_same_v<packer<>, empty_packer>));
@@ -210,4 +195,37 @@ namespace test
 
         EXPECT_TRUE((traits::is_same_v<expected_packer_t_2, chained_packer_t_2>));
     }
+
+    TEST(packer_test, test_same)
+    {
+        using cpputil::pck::same_v;
+
+        EXPECT_TRUE((same_v<empty_packer, empty_packer>));
+
+        EXPECT_FALSE((same_v<packer<T0>, empty_packer>));
+        EXPECT_FALSE((same_v<empty_packer, packer<T0>>));
+
+        EXPECT_TRUE((same_v<packer<T0, T1>, packer<T0, T1>>));
+        EXPECT_FALSE((same_v<packer<T0, T1>, packer<T1, T0>>));
+        EXPECT_FALSE((same_v<packer<T0, T1>, packer<T0>>));
+        EXPECT_FALSE((same_v<packer<T0, T1>, packer<T1>>));
+        EXPECT_FALSE((same_v<packer<T0>, packer<T0, T1>>));
+        EXPECT_FALSE((same_v<packer<T1>, packer<T0, T1>>));
+    }
+
+    TEST(packer_test, test_contains)
+    {
+        using cpputil::pck::contains_v;
+
+        EXPECT_TRUE((contains_v<packer<T0, T1>, empty_packer>));
+        EXPECT_TRUE((contains_v<packer<T0, T1>, packer<T0>>));
+        EXPECT_TRUE((contains_v<packer<T0, T1>, packer<T1>>));
+        EXPECT_TRUE((contains_v<packer<T0, T1>, packer<T0, T1>>));
+
+        EXPECT_FALSE((contains_v<packer<T0, T1>, packer<T2>>));
+        EXPECT_FALSE((contains_v<packer<T0, T1>, packer<T0, T2>>));
+        EXPECT_FALSE((contains_v<packer<T0, T1>, packer<T2, T0>>));
+        EXPECT_FALSE((contains_v<packer<T0, T1>, packer<T0, T1, T2>>));
+    }
+
 }
