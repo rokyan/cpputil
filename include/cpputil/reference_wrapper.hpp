@@ -26,12 +26,12 @@ namespace cpputil
         std::invoke_result_t<T&, ArgTypes...> operator()(ArgTypes&&...) const;
 
     private:
-        T* ptr;
+        T* referenced;
     };
 
     template<typename T>
     reference_wrapper<T>::reference_wrapper(T& t) noexcept
-        : ptr(std::addressof(t))
+        : referenced(std::addressof(t))
     {}
 
     template<typename T>
@@ -43,7 +43,7 @@ namespace cpputil
     template<typename T>
     T& reference_wrapper<T>::get() const noexcept
     {
-        return *ptr;
+        return *referenced;
     }
 
     template<typename T>
@@ -68,7 +68,7 @@ namespace cpputil
     }
 
     template<typename T>
-    void ref(T&&) = delete;
+    void ref(const T&&) = delete;
 
     template<typename T>
     reference_wrapper<const T> cref(const T& t) noexcept
