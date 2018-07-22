@@ -30,11 +30,11 @@ namespace cpputil
     template<typename Callable>
     struct sequence_call<Callable> : Callable
     {
+        using Callable::operator();
+
         constexpr sequence_call(Callable callable)
             : Callable(callable)
         {}
-
-        using Callable::operator();
     };
 
     template<typename... Callables>
