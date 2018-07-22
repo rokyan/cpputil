@@ -1,5 +1,3 @@
-#pragma once
-
 #include "cpputil\apply.hpp"
 #include "cpputil\argument_count.hpp"
 #include "cpputil\as_const.hpp"

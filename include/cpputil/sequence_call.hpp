@@ -1,8 +1,8 @@
-#pragma once
-
 /**
  * Based on https://stackoverflow.com/a/38024297/5507349
  */
+
+#pragma once
 
 #include <forward.hpp>
 
