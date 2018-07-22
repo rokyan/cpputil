@@ -51,6 +51,7 @@
     <ClInclude Include="..\include\cpputil\reference_wrapper.hpp" />
     <ClInclude Include="..\include\cpputil\declval.hpp" />
     <ClInclude Include="..\include\cpputil\rename_type.hpp" />
+    <ClInclude Include="..\include\cpputil\sequence_call.hpp" />
     <ClInclude Include="..\include\cpputil\traits.hpp" />
     <ClInclude Include="..\include\cpputil\transform_type.hpp" />
     <ClCompile Include="argument_count_test_types.hpp" />
@@ -70,6 +71,7 @@
     <ClCompile Include="move_test.cpp" />
     <ClCompile Include="apply_test.cpp" />
     <ClCompile Include="rename_type_test.cpp" />
+    <ClCompile Include="sequence_call_test.cpp" />
     <ClCompile Include="traits_test.cpp" />
     <ClCompile Include="transform_type_test.cpp" />
   </ItemGroup>
