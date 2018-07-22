@@ -41,6 +41,7 @@ namespace cpputil
     constexpr auto make_sequence_call(Callables... callables)
         noexcept(noexcept(sequence_call<Callables...>(callables...)))
     {
+        static_assert(sizeof...(Callables) > 0, "At least one callable object must be specified");
         return sequence_call<Callables...>(callables...);
     }
 }
