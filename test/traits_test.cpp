@@ -23,6 +23,16 @@ namespace test
         EXPECT_EQ(static_cast<T>(integral_constant_t{}), T{});
     }
 
+    TEST(traits_test, test_void_t)
+    {
+        EXPECT_TRUE((traits::is_same_v<void, traits::void_t<T0>>));
+        EXPECT_TRUE((traits::is_same_v<void, traits::void_t<T0, T1>>));
+        EXPECT_TRUE((traits::is_same_v<void, traits::void_t<T0, T1, T2>>));
+        EXPECT_TRUE((traits::is_same_v<void, traits::void_t<T0, T1, T2, T3>>));
+
+        // And so on...
+    }
+
     TEST(traits_test, test_remove_const)
     {
         EXPECT_TRUE((traits::is_same_v<T0, traits::remove_const_t<T0>>));

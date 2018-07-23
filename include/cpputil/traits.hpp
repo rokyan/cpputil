@@ -38,6 +38,11 @@ namespace traits
     using false_type = bool_constant<false>;
     using true_type = bool_constant<true>;
 
+    // void_t implementation.
+
+    template<typename... Ts>
+    using void_t = void;
+
     // remove_const, remove_volatile, remove_cv traits implementation.
 
     template<typename T>
