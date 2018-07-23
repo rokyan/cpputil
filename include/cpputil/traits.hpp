@@ -93,6 +93,23 @@ namespace traits
     template<typename T>
     inline constexpr auto is_volatile_v = is_volatile<T>::value;
 
+    // remove_reference
+
+    template<typename T>
+    struct remove_reference :
+        identity<T> {};
+
+    template<typename T>
+    struct remove_reference<T&> :
+        identity<T> {};
+
+    template<typename T>
+    struct remove_reference<T&&> :
+        identity<T> {};
+
+    template<typename T>
+    using remove_reference_t = typename remove_reference<T>::type;
+
     // is_same implementation.
 
     template<typename T, typename U>
@@ -118,6 +135,8 @@ namespace traits
 
     template<bool Condition, typename T, typename U>
     using conditional_t = typename conditional<Condition, T, U>::type;
+
+    // decay implementation.
 
     // is_contained_in implementation.
 

@@ -65,6 +65,13 @@ namespace test
         EXPECT_TRUE(traits::is_volatile_v<const volatile T0>);
     }
 
+    TEST(traits_test, test_remove_reference)
+    {
+        EXPECT_TRUE((traits::is_same_v<T0, T0>));
+        EXPECT_TRUE((traits::is_same_v<traits::remove_reference_t<T0&>, T0>));
+        EXPECT_TRUE((traits::is_same_v<traits::remove_reference_t<T0&&>, T0>));
+    }
+
     TEST(traits_test, test_is_same)
     {
         EXPECT_TRUE((traits::is_same_v<T0, T0>));
