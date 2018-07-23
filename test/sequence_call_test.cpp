@@ -7,7 +7,7 @@ namespace test
 {
     TEST(sequence_call_test, test_arithmetic_sequence_call)
     {
-        auto value = 1;
+        int value = 1;
         
         value = cpputil::make_sequence_call(
             [](int& value) -> int& { value += 1; return value; },
