@@ -127,6 +127,23 @@ namespace traits
     template<typename T>
     inline constexpr auto is_array_v = is_array<T>::value;
 
+    // remove_extent implementation.
+
+    template<typename T>
+    struct remove_extent :
+        identity<T> {};
+
+    template<typename T, std::size_t N>
+    struct remove_extent<T[N]> :
+        identity<T> {};
+
+    template<typename T>
+    struct remove_extent<T[]> :
+        identity<T> {};
+
+    template<typename T>
+    using remove_extent_t = typename remove_extent<T>::type;
+
     // is_same implementation.
 
     template<typename T, typename U>
