@@ -72,6 +72,14 @@ namespace test
         EXPECT_TRUE((traits::is_same_v<traits::remove_reference_t<T0&&>, T0>));
     }
 
+    TEST(traits_test, test_is_array)
+    {
+        EXPECT_TRUE(traits::is_array_v<T0[]>);
+        EXPECT_TRUE(traits::is_array_v<T0[1]>);
+        EXPECT_TRUE(traits::is_array_v<T0[][1]>);
+        EXPECT_TRUE(traits::is_array_v<T0[1][1]>);
+    }
+
     TEST(traits_test, test_is_same)
     {
         EXPECT_TRUE((traits::is_same_v<T0, T0>));
