@@ -149,6 +149,23 @@ namespace traits
     template<typename T>
     using remove_extent_t = typename remove_extent<T>::type;
 
+    // is_referenceable implementation
+
+    template<typename T, typename = void>
+    struct is_referenceable_impl :
+        false_type {};
+
+    template<typename T>
+    struct is_referenceable_impl<T, void_t<T&>> :
+        true_type {};
+
+    template<typename T>
+    struct is_referenceable :
+        is_referenceable_impl<T> {};
+
+    template<typename T>
+    inline constexpr auto is_referenceable_v = is_referenceable<T>::value;
+
     // is_same implementation.
 
     template<typename T, typename U>
@@ -174,8 +191,6 @@ namespace traits
 
     template<bool Condition, typename T, typename U>
     using conditional_t = typename conditional<Condition, T, U>::type;
-
-    // decay implementation.
 
     // is_contained_in implementation.
 

@@ -100,6 +100,24 @@ namespace test
         EXPECT_TRUE((traits::is_same_v<T0[2], traits::remove_extent_t<T0[1][2]>>));
     }
 
+    TEST(traits_test, test_is_referenceable)
+    {
+        EXPECT_TRUE(traits::is_referenceable_v<int>);
+        EXPECT_TRUE(traits::is_referenceable_v<int&>);
+        EXPECT_TRUE(traits::is_referenceable_v<int&&>);
+        EXPECT_TRUE(traits::is_referenceable_v<int*>);
+        EXPECT_TRUE(traits::is_referenceable_v<int[]>);
+        EXPECT_TRUE(traits::is_referenceable_v<int(&)[]>);
+        EXPECT_TRUE(traits::is_referenceable_v<int(&&)[]>);
+        EXPECT_TRUE(traits::is_referenceable_v<int(*)[]>);
+        EXPECT_TRUE(traits::is_referenceable_v<int()>);
+        EXPECT_TRUE(traits::is_referenceable_v<int(&)()>);
+        EXPECT_TRUE(traits::is_referenceable_v<int(&&)()>);
+        EXPECT_TRUE(traits::is_referenceable_v<int(*)()>);
+
+        EXPECT_FALSE(traits::is_referenceable_v<void>);
+    }
+
     TEST(traits_test, test_is_same)
     {
         EXPECT_TRUE((traits::is_same_v<T0, T0>));
