@@ -2,18 +2,7 @@
 
 namespace traits
 {
-    // identity implementation.
-
-    template<typename T>
-    struct identity
-    {
-        using type = T;
-    };
-
-    template<typename T>
-    using identity_t = typename identity<T>::type;
-
-    // integral_constant implementation.
+    // helper class.
 
     template<typename T, T v>
     struct integral_constant
@@ -38,12 +27,66 @@ namespace traits
     using false_type = bool_constant<false>;
     using true_type = bool_constant<true>;
 
-    // void_t implementation.
+    // forward declaration of identity trait which is used by multiple traits.
 
-    template<typename... Ts>
-    using void_t = void;
+    template<typename>
+    struct identity;
 
-    // remove_const, remove_volatile, remove_cv traits implementation.
+    // primary type categories.
+
+    template<typename T>
+    struct is_array :
+        false_type {};
+
+    template<typename T, std::size_t N>
+    struct is_array<T[N]> :
+        true_type {};
+
+    template<typename T>
+    struct is_array<T[]> :
+        true_type {};
+
+    template<typename T>
+    inline constexpr auto is_array_v = is_array<T>::value;
+
+    // type properties.
+
+    template<typename T>
+    struct is_const :
+        false_type {};
+
+    template<typename T>
+    struct is_const<const T> :
+        true_type {};
+
+    template<typename T>
+    inline constexpr auto is_const_v = is_const<T>::value;
+
+    template<typename T>
+    struct is_volatile :
+        false_type {};
+
+    template<typename T>
+    struct is_volatile<volatile T> :
+        true_type {};
+
+    template<typename T>
+    inline constexpr auto is_volatile_v = is_volatile<T>::value;
+
+    // type relations.
+
+    template<typename T, typename U>
+    struct is_same :
+        false_type {};
+
+    template<typename T>
+    struct is_same<T, T> :
+        true_type {};
+
+    template<typename T, typename U>
+    inline constexpr auto is_same_v = is_same<T, U>::value;
+
+    // const-volatile modifications.
 
     template<typename T>
     struct remove_const :
@@ -74,31 +117,7 @@ namespace traits
     template<typename T>
     using remove_cv_t = typename remove_cv<T>::type;
 
-    // is_const, is_volatile traits implementation.
-
-    template<typename T>
-    struct is_const :
-        false_type {};
-
-    template<typename T>
-    struct is_const<const T> :
-        true_type {};
-
-    template<typename T>
-    inline constexpr auto is_const_v = is_const<T>::value;
-
-    template<typename T>
-    struct is_volatile :
-        false_type {};
-
-    template<typename T>
-    struct is_volatile<volatile T> :
-        true_type {};
-
-    template<typename T>
-    inline constexpr auto is_volatile_v = is_volatile<T>::value;
-
-    // remove_reference
+    // reference modifications.
 
     template<typename T>
     struct remove_reference :
@@ -115,24 +134,7 @@ namespace traits
     template<typename T>
     using remove_reference_t = typename remove_reference<T>::type;
 
-    // is_array implementation.
-
-    template<typename T>
-    struct is_array :
-        false_type {};
-
-    template<typename T, std::size_t N>
-    struct is_array<T[N]> :
-        true_type {};
-
-    template<typename T>
-    struct is_array<T[]> :
-        true_type {};
-
-    template<typename T>
-    inline constexpr auto is_array_v = is_array<T>::value;
-
-    // remove_extent implementation.
+    // array modifications.
 
     template<typename T>
     struct remove_extent :
@@ -149,7 +151,32 @@ namespace traits
     template<typename T>
     using remove_extent_t = typename remove_extent<T>::type;
 
-    // is_referenceable implementation
+    // other transformations.
+
+    template<bool Condition, typename T, typename U>
+    struct conditional :
+        identity<T> {};
+
+    template<typename T, typename U>
+    struct conditional<false, T, U> :
+        identity<U> {};
+
+    template<bool Condition, typename T, typename U>
+    using conditional_t = typename conditional<Condition, T, U>::type;
+
+    template<typename... Ts>
+    using void_t = void;
+
+    // helper traits and traits which are not specified in the standard.
+
+    template<typename T>
+    struct identity
+    {
+        using type = T;
+    };
+
+    template<typename T>
+    using identity_t = typename identity<T>::type;
 
     template<typename T, typename = void>
     struct is_referenceable_impl :
@@ -165,34 +192,6 @@ namespace traits
 
     template<typename T>
     inline constexpr auto is_referenceable_v = is_referenceable<T>::value;
-
-    // is_same implementation.
-
-    template<typename T, typename U>
-    struct is_same :
-        false_type {};
-
-    template<typename T>
-    struct is_same<T, T> :
-        true_type {};
-
-    template<typename T, typename U>
-    inline constexpr auto is_same_v = is_same<T, U>::value;
-
-    // conditional implementation.
-
-    template<bool Condition, typename T, typename U>
-    struct conditional :
-        identity<T> {};
-
-    template<typename T, typename U>
-    struct conditional<false, T, U> :
-        identity<U> {};
-
-    template<bool Condition, typename T, typename U>
-    using conditional_t = typename conditional<Condition, T, U>::type;
-
-    // is_contained_in implementation.
 
     template<typename, typename...>
     struct is_contained_in :
