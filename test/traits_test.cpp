@@ -105,6 +105,16 @@ namespace test
         EXPECT_TRUE((traits::is_same_v<T0[2], traits::remove_extent_t<T0[1][2]>>));
     }
 
+    // pointer modifications.
+
+    TEST(traits_test, test_remove_pointer)
+    {
+        EXPECT_TRUE((traits::is_same_v<T0, traits::remove_pointer_t<T0*>>));
+        EXPECT_TRUE((traits::is_same_v<T0, traits::remove_pointer_t<T0* const>>));
+        EXPECT_TRUE((traits::is_same_v<T0, traits::remove_pointer_t<T0* volatile>>));
+        EXPECT_TRUE((traits::is_same_v<T0, traits::remove_pointer_t<T0* const volatile>>));
+    }
+
     // other transformations.
 
     TEST(traits_test, test_void_t)

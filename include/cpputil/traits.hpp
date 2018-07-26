@@ -151,6 +151,23 @@ namespace traits
     template<typename T>
     using remove_extent_t = typename remove_extent<T>::type;
 
+    // pointer modifications.
+
+    template<typename T, typename U>
+    struct remove_pointer_impl :
+        identity<T> {};
+
+    template<typename T, typename U>
+    struct remove_pointer_impl<T, U*> :
+        identity<U> {};
+
+    template<typename T>
+    struct remove_pointer :
+        remove_pointer_impl<T, remove_cv_t<T>> {};
+
+    template<typename T>
+    using remove_pointer_t = typename remove_pointer<T>::type;
+
     // other transformations.
 
     template<bool Condition, typename T, typename U>
