@@ -2,6 +2,20 @@
 
 namespace traits
 {
+    // templates below are used by traits implementations.
+
+    template<typename T>
+    struct identity
+    {
+        using type = T;
+    };
+
+    template<typename T>
+    using identity_t = typename identity<T>::type;
+
+    template<typename... Ts>
+    using void_t = void;
+
     // helper class.
 
     template<typename T, T v>
@@ -26,11 +40,6 @@ namespace traits
 
     using false_type = bool_constant<false>;
     using true_type = bool_constant<true>;
-
-    // forward declaration of identity trait which is used by multiple traits.
-
-    template<typename>
-    struct identity;
 
     // primary type categories.
 
@@ -168,6 +177,17 @@ namespace traits
     template<typename T>
     using remove_pointer_t = typename remove_pointer<T>::type;
 
+    template<typename T, typename = void>
+    struct add_pointer :
+        identity<T> {};
+
+    template<typename T>
+    struct add_pointer<T, void_t<remove_reference_t<T>*>> :
+        identity<remove_reference_t<T>*> {};
+
+    template<typename T>
+    using add_pointer_t = typename add_pointer<T>::type;
+
     // other transformations.
 
     template<bool Condition, typename T, typename U>
@@ -181,19 +201,7 @@ namespace traits
     template<bool Condition, typename T, typename U>
     using conditional_t = typename conditional<Condition, T, U>::type;
 
-    template<typename... Ts>
-    using void_t = void;
-
     // helper traits and traits which are not specified in the standard.
-
-    template<typename T>
-    struct identity
-    {
-        using type = T;
-    };
-
-    template<typename T>
-    using identity_t = typename identity<T>::type;
 
     template<typename T, typename = void>
     struct is_referenceable_impl :
