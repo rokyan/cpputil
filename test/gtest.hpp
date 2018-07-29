@@ -1,5 +1,3 @@
-#pragma once
-
 /**
  * Wrapper for gtest\gtest.h
  */
