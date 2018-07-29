@@ -2,7 +2,7 @@
 
 namespace traits
 {
-    // templates below are used by traits implementations.
+    // templates below are used to implement other traits.
 
     template<typename T>
     struct identity
@@ -202,21 +202,6 @@ namespace traits
     using conditional_t = typename conditional<Condition, T, U>::type;
 
     // helper traits and traits which are not specified in the standard.
-
-    template<typename T, typename = void>
-    struct is_referenceable_impl :
-        false_type {};
-
-    template<typename T>
-    struct is_referenceable_impl<T, void_t<T&>> :
-        true_type {};
-
-    template<typename T>
-    struct is_referenceable :
-        is_referenceable_impl<T> {};
-
-    template<typename T>
-    inline constexpr auto is_referenceable_v = is_referenceable<T>::value;
 
     template<typename, typename...>
     struct is_contained_in :
