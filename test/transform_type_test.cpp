@@ -1,20 +1,23 @@
-#include <gtest\gtest.h>
+#include <gtest.hpp>
 #include <transform_type.hpp>
+#include <traits.hpp>
 #include <packer.hpp>
 #include <types.hpp>
-#include <type_traits>
 
 namespace test
 {
+    using cpputil::pck::packer;
+    using cpputil::transform_type_t;
+
     TEST(transform_type_test, test_transform_type)
     {
-        using packer_t = cpputil::pck::packer<T0, T1>;
-        using const_packer_t = cpputil::pck::packer<const T0, const T1>;
+        using packer_t = packer<T0, T1>;
+        using const_packer_t = packer<const T0, const T1>;
 
-        using transform_to_const_t = cpputil::transform_type_t<std::add_const_t, packer_t>;
-        using transform_to_non_const_t = cpputil::transform_type_t<std::remove_const_t, packer_t>;
+        using transform_to_const_t = transform_type_t<traits::add_const_t, packer_t>;
+        using transform_to_non_const_t = transform_type_t<traits::remove_const_t, packer_t>;
 
-        EXPECT_TRUE((std::is_same_v<transform_to_const_t, const_packer_t>));
-        EXPECT_TRUE((std::is_same_v<transform_to_non_const_t, packer_t>));
+        SAME_TYPES(transform_to_const_t, const_packer_t);
+        SAME_TYPES(transform_to_non_const_t, packer_t);
     }
 }

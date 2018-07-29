@@ -126,6 +126,27 @@ namespace traits
     template<typename T>
     using remove_cv_t = typename remove_cv<T>::type;
 
+    template<typename T>
+    struct add_const :
+        identity<const T> {};
+
+    template<typename T>
+    using add_const_t = typename add_const<T>::type;
+
+    template<typename T>
+    struct add_volatile :
+        identity<volatile T> {};
+
+    template<typename T>
+    using add_volatile_t = typename add_volatile<T>::type;
+
+    template<typename T>
+    struct add_cv :
+        identity<const volatile T> {};
+
+    template<typename T>
+    using add_cv_t = typename add_cv<T>::type;
+
     // reference modifications.
 
     template<typename T>

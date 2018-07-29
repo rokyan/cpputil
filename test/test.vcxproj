@@ -73,7 +73,10 @@
     <ClCompile Include="apply_test.cpp" />
     <ClCompile Include="rename_type_test.cpp" />
     <ClCompile Include="sequence_call_test.cpp" />
+    <ClCompile Include="traits_tests\add_const_test.cpp" />
+    <ClCompile Include="traits_tests\add_cv_test.cpp" />
     <ClCompile Include="traits_tests\add_pointer_test.cpp" />
+    <ClCompile Include="traits_tests\add_volatile_test.cpp" />
     <ClCompile Include="traits_tests\identity_test.cpp" />
     <ClCompile Include="traits_tests\integral_constant_test.cpp" />
     <ClCompile Include="traits_tests\is_array_test.cpp" />
@@ -83,9 +86,9 @@
     <ClCompile Include="traits_tests\is_volatile_test.cpp" />
     <ClCompile Include="traits_tests\remove_const_test.cpp" />
     <ClCompile Include="traits_tests\remove_cv_test.cpp" />
-    <ClCompile Include="traits_tests\remove_extent.cpp" />
+    <ClCompile Include="traits_tests\remove_extent_test.cpp" />
     <ClCompile Include="traits_tests\remove_pointer_test.cpp" />
-    <ClCompile Include="traits_tests\remove_reference.cpp" />
+    <ClCompile Include="traits_tests\remove_reference_test.cpp" />
     <ClCompile Include="traits_tests\remove_volatile_test.cpp" />
     <ClCompile Include="traits_tests\void_t_test.cpp" />
     <ClCompile Include="transform_type_test.cpp" />
