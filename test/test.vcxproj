@@ -82,6 +82,7 @@
     <ClCompile Include="traits_tests\is_array_test.cpp" />
     <ClCompile Include="traits_tests\is_const_test.cpp" />
     <ClCompile Include="traits_tests\is_contained_in_test.cpp" />
+    <ClCompile Include="traits_tests\is_function_test.cpp" />
     <ClCompile Include="traits_tests\is_same_test.cpp" />
     <ClCompile Include="traits_tests\is_volatile_test.cpp" />
     <ClCompile Include="traits_tests\remove_const_test.cpp" />
