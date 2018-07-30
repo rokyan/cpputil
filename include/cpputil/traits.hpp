@@ -26,13 +26,8 @@ namespace traits
         using value_type = T;
         using type = integral_constant<T, v>;
 
-        constexpr operator value_type() const noexcept {
-            return value;
-        }
-
-        constexpr T operator()() const noexcept {
-            return value;
-        }
+        constexpr operator value_type() const noexcept { return value; }
+        constexpr T operator()() const noexcept { return value; }
     };
 
     template<bool B>
@@ -359,6 +354,25 @@ namespace traits
 
     template<typename T>
     using add_pointer_t = typename add_pointer<T>::type;
+
+    template<typename T, bool = is_array_v<T>, bool = is_function_v<T>>
+    struct decay_impl :
+        identity<remove_cv_t<T>> {};
+
+    template<typename T>
+    struct decay_impl<T, true, false> :
+        identity<remove_extent_t<T>*> {};
+
+    template<typename T>
+    struct decay_impl<T, false, true> :
+        identity<add_pointer_t<T>> {};
+
+    template<typename T>
+    struct decay :
+        decay_impl<remove_reference_t<T>> {};
+
+    template<typename T>
+    using decay_t = typename decay<T>::type;
 
     // other transformations.
 
