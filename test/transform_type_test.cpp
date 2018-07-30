@@ -17,7 +17,7 @@ namespace test
         using transform_to_const_t = transform_type_t<traits::add_const_t, packer_t>;
         using transform_to_non_const_t = transform_type_t<traits::remove_const_t, packer_t>;
 
-        SAME_TYPES(transform_to_const_t, const_packer_t);
-        SAME_TYPES(transform_to_non_const_t, packer_t);
+        EXPECT_SAME_TYPES(transform_to_const_t, const_packer_t);
+        EXPECT_SAME_TYPES(transform_to_non_const_t, packer_t);
     }
 }

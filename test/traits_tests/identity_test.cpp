@@ -8,6 +8,6 @@ namespace test
 
     TEST(traits_test, test_identity)
     {
-        SAME_TYPES(T0, identity_t<T0>);
+        EXPECT_SAME_TYPES(T0, identity_t<T0>);
     }
 }

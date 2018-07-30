@@ -8,10 +8,10 @@ namespace test
 
     TEST(traits_test, test_remove_extent)
     {
-        SAME_TYPES(T0, remove_extent_t<T0[]>);
-        SAME_TYPES(T0, remove_extent_t<T0[1]>);
+        EXPECT_SAME_TYPES(T0, remove_extent_t<T0[]>);
+        EXPECT_SAME_TYPES(T0, remove_extent_t<T0[1]>);
 
-        SAME_TYPES(T0[2], remove_extent_t<T0[][2]>);
-        SAME_TYPES(T0[2], remove_extent_t<T0[1][2]>);
+        EXPECT_SAME_TYPES(T0[2], remove_extent_t<T0[][2]>);
+        EXPECT_SAME_TYPES(T0[2], remove_extent_t<T0[1][2]>);
     }
 }

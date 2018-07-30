@@ -8,8 +8,8 @@ namespace test
 
     TEST(traits_test, test_remove_reference)
     {
-        SAME_TYPES(remove_reference_t<T0>, T0);
-        SAME_TYPES(remove_reference_t<T0&>, T0);
-        SAME_TYPES(remove_reference_t<T0&&>, T0);
+        EXPECT_SAME_TYPES(remove_reference_t<T0>, T0);
+        EXPECT_SAME_TYPES(remove_reference_t<T0&>, T0);
+        EXPECT_SAME_TYPES(remove_reference_t<T0&&>, T0);
     }
 }
