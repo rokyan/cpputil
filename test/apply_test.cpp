@@ -1,4 +1,4 @@
-#include <gtest\gtest.h>
+#include <gtest.hpp>
 #include <apply.hpp>
 #include <move.hpp>
 

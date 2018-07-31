@@ -1,7 +1,7 @@
-#include <gtest\gtest.h>
+#include <gtest.hpp>
+#include <traits.hpp>
 #include <declval.hpp>
 #include <as_const.hpp>
-#include <type_traits>
 
 namespace test
 {
@@ -22,8 +22,8 @@ namespace test
 
     TYPED_TEST(as_const_typed_test, test_as_const_ret_value_type)
     {
-        EXPECT_TRUE((std::is_same_v<const value_type&, decltype(cpputil::as_const(cpputil::declval<value_type&>()))>));
-        EXPECT_TRUE((std::is_same_v<const value_type&, decltype(cpputil::as_const(cpputil::declval<const value_type&>()))>));
+        EXPECT_SAME_TYPES(const value_type&, decltype(cpputil::as_const(cpputil::declval<value_type&>())));
+        EXPECT_SAME_TYPES(const value_type&, decltype(cpputil::as_const(cpputil::declval<const value_type&>())));
     }
 
     TYPED_TEST(as_const_typed_test, test_as_const_noexcept)

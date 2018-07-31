@@ -1,4 +1,4 @@
-#include <gtest\gtest.h>
+#include <gtest.hpp>
 #include <argument_count.hpp>
 #include <argument_count_test_types.hpp>
 
