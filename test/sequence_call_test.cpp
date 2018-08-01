@@ -1,4 +1,4 @@
-#include <gtest\gtest.h>
+#include <gtest.hpp>
 #include <sequence_call.hpp>
 #include <algorithm>
 #include <string>
