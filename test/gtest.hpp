@@ -26,13 +26,16 @@ namespace detail
     {
         constexpr static auto value = true;
     };
+
+    template<typename T, typename U>
+    inline constexpr auto same_types_v = same_types<T, U>::value;
 }
 
 #define EXPECT_SAME_TYPES(TYPE_X, TYPE_Y) \
-    EXPECT_TRUE((detail::same_types<TYPE_X, TYPE_Y>::value))
+    EXPECT_TRUE((detail::same_types_v<TYPE_X, TYPE_Y>))
 #define EXPECT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
-    EXPECT_FALSE((detail::same_types<TYPE_X, TYPE_Y>::value))
+    EXPECT_FALSE((detail::same_types_v<TYPE_X, TYPE_Y>))
 #define ASSERT_SAME_TYPES(TYPE_X, TYPE_Y) \
-    ASSERT_TRUE((detail::same_types<TYPE_X, TYPE_Y>::value))
+    ASSERT_TRUE((detail::same_types_v<TYPE_X, TYPE_Y>))
 #define ASSERT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
-    ASSERT_FALSE((detail::same_types<TYPE_X, TYPE_Y::value>))
+    ASSERT_FALSE((detail::same_types_v<TYPE_X, TYPE_Y>))
