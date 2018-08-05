@@ -1,33 +1,11 @@
 #include <gtest.hpp>
 #include <apply.hpp>
 #include <move.hpp>
+#include <apply_test_helper.hpp>
 
 namespace test
 {
-    struct callable
-    {
-        int operator()(int x, int y) const &
-        {
-            return x + y;
-        }
-
-        int operator()(int x, int y) const &&
-        {
-            return x - y;
-        }
-    };
-
-    struct testable
-    {
-        int sum_of_two(int x, int y) const
-        {
-            return x + y;
-        }
-
-        int one = 1;
-    };
-
-    TEST(apply_test, test_basic_apply_scenario)
+    TEST(apply_test, test_apply_with_lambda)
     {
         const auto unary_callable =[](int x) {
             return x * x;
@@ -45,31 +23,31 @@ namespace test
         EXPECT_EQ(cpputil::apply(ternary_callable, std::make_tuple(2, 4, 8)), 84);
     }
 
-    TEST(apply_test, test_value_category_correctness)
-    {
-        callable c;
-
-        EXPECT_EQ(cpputil::apply(c, std::make_tuple(4, 2)), 6);
-        EXPECT_EQ(cpputil::apply(cpputil::move(c), std::make_tuple(4, 2)), 2);
-    }
-
-    TEST(apply_test, test_pointer_to_member_call)
-    {
-        testable t;
-
-        const auto one_ptr = &testable::one;
-        const auto sum_of_two_ptr = &testable::sum_of_two;
-
-        EXPECT_EQ(cpputil::apply(one_ptr, std::make_tuple(t)), 1);
-        EXPECT_EQ(cpputil::apply(sum_of_two_ptr, std::make_tuple(t, 4, 2)), 6);
-    }
-
-    TEST(apply_test, test_variadic)
+    TEST(apply_test, test_apply_with_generic_lambda)
     {
         const auto gen_sum = [](auto&&... es) {
             return (es + ...);
         };
 
         EXPECT_EQ(cpputil::apply(gen_sum, std::make_tuple(1, 2L, 3LL, 4.0f, 5.0)), 15.0);
+    }
+
+    TEST(apply_test, test_apply_with_member_pointer)
+    {
+        mem_pointer_testable t;
+
+        const auto mem_obj_ptr = &mem_pointer_testable::mem_obj;
+        const auto mem_fun_ptr = &mem_pointer_testable::mem_fun;
+
+        EXPECT_EQ(cpputil::apply(mem_obj_ptr, std::make_tuple(t)), 1);
+        EXPECT_EQ(cpputil::apply(mem_fun_ptr, std::make_tuple(t, 1)), 1);
+    }
+
+    TEST(apply_test, test_value_category_correctness)
+    {
+        ref_qualifiers_testable t;
+
+        EXPECT_EQ(cpputil::apply(t, std::make_tuple(1)), 1);
+        EXPECT_EQ(cpputil::apply(cpputil::move(t), std::make_tuple(1)), -1);
     }
 }
