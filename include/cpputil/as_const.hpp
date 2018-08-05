@@ -1,11 +1,11 @@
 #pragma once
 
-#include <type_traits>
+#include <traits.hpp>
 
 namespace cpputil
 {
     template<typename T>
-    constexpr std::add_const_t<T>& as_const(T& t) noexcept
+    constexpr traits::add_const_t<T>& as_const(T& t) noexcept
     {
         return t;
     }

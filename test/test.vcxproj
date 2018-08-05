@@ -54,7 +54,6 @@
     <ClInclude Include="..\include\cpputil\sequence_call.hpp" />
     <ClInclude Include="..\include\cpputil\traits.hpp" />
     <ClInclude Include="..\include\cpputil\transform_type.hpp" />
-    <ClCompile Include="argument_count_test_types.hpp" />
     <ClInclude Include="apply_test_helper.hpp" />
     <ClInclude Include="gtest.hpp" />
     <ClInclude Include="types.hpp" />

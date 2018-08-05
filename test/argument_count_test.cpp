@@ -1,6 +1,6 @@
 #include <gtest.hpp>
 #include <argument_count.hpp>
-#include <argument_count_test_types.hpp>
+#include <argument_count_test_helper.hpp>
 
 namespace test
 {

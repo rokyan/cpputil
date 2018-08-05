@@ -1,24 +1,16 @@
 #include <gtest.hpp>
+#include <as_const.hpp>
 #include <traits.hpp>
 #include <declval.hpp>
-#include <as_const.hpp>
 
 namespace test
 {
-    // Setup typed tests
-
     template<typename T>
-    class as_const_typed_test : public testing::Test
-    {
-    public:
-        using value_type = T;
-    };
+    class as_const_typed_test : public test_base<T> {};
 
-    using test_types = testing::Types<int>;
+    using test_types = make_types<int>;
 
     TYPED_TEST_CASE(as_const_typed_test, test_types);
-
-    // Tests
 
     TYPED_TEST(as_const_typed_test, test_as_const_ret_value_type)
     {

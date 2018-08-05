@@ -2,10 +2,16 @@
  * Wrapper for gtest\gtest.h
  */
 
+#pragma once
+
 #include <gtest\gtest.h>
 
 template<typename T>
-class test_base : public testing::Test {};
+class test_base : public testing::Test
+{
+public:
+    using value_type = T;
+};
 
 template<typename... Ts>
 using make_types = testing::Types<Ts...>;
