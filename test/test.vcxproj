@@ -38,7 +38,6 @@
   <ItemGroup>
     <ClInclude Include="..\include\cpputil.hpp" />
     <ClInclude Include="..\include\cpputil\apply.hpp" />
-    <ClInclude Include="..\include\cpputil\argument_count.hpp" />
     <ClInclude Include="..\include\cpputil\as_const.hpp" />
     <ClInclude Include="..\include\cpputil\exchange.hpp" />
     <ClInclude Include="..\include\cpputil\foreach_argument.hpp" />
@@ -59,7 +58,6 @@
     <ClInclude Include="types.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="argument_count_test.cpp" />
     <ClCompile Include="as_const_test.cpp" />
     <ClCompile Include="exchange_test.cpp" />
     <ClCompile Include="foreach_argument_test.cpp" />
