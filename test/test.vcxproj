@@ -49,10 +49,8 @@
     <ClInclude Include="..\include\cpputil\packer.hpp" />
     <ClInclude Include="..\include\cpputil\reference_wrapper.hpp" />
     <ClInclude Include="..\include\cpputil\declval.hpp" />
-    <ClInclude Include="..\include\cpputil\rename_type.hpp" />
     <ClInclude Include="..\include\cpputil\sequence_call.hpp" />
     <ClInclude Include="..\include\cpputil\traits.hpp" />
-    <ClInclude Include="..\include\cpputil\transform_type.hpp" />
     <ClInclude Include="apply_test_helper.hpp" />
     <ClInclude Include="gtest.hpp" />
     <ClInclude Include="types.hpp" />
@@ -69,7 +67,6 @@
     <ClCompile Include="reference_wrapper_test.cpp" />
     <ClCompile Include="move_test.cpp" />
     <ClCompile Include="apply_test.cpp" />
-    <ClCompile Include="rename_type_test.cpp" />
     <ClCompile Include="sequence_call_test.cpp" />
     <ClCompile Include="traits_tests\add_const_test.cpp" />
     <ClCompile Include="traits_tests\add_cv_test.cpp" />
@@ -91,7 +88,6 @@
     <ClCompile Include="traits_tests\remove_reference_test.cpp" />
     <ClCompile Include="traits_tests\remove_volatile_test.cpp" />
     <ClCompile Include="traits_tests\void_t_test.cpp" />
-    <ClCompile Include="transform_type_test.cpp" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
