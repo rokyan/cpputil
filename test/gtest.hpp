@@ -1,5 +1,5 @@
 /**
- * Wrapper for gtest\gtest.h
+ * Wrapper for Google Test gtest.h
  */
 
 #pragma once
@@ -22,26 +22,26 @@ using make_types = testing::Types<Ts...>;
 namespace detail
 {
     template<typename, typename>
-    struct same_types
+    struct is_same_type
     {
         constexpr static auto value = false;
     };
 
     template<typename T>
-    struct same_types<T, T>
+    struct is_same_type<T, T>
     {
         constexpr static auto value = true;
     };
 
     template<typename T, typename U>
-    inline constexpr auto same_types_v = same_types<T, U>::value;
+    inline constexpr auto is_same_type_v = is_same_type<T, U>::value;
 }
 
 #define EXPECT_SAME_TYPES(TYPE_X, TYPE_Y) \
-    EXPECT_TRUE((detail::same_types_v<TYPE_X, TYPE_Y>))
+    EXPECT_TRUE((detail::is_same_type_v<TYPE_X, TYPE_Y>))
 #define EXPECT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
-    EXPECT_FALSE((detail::same_types_v<TYPE_X, TYPE_Y>))
+    EXPECT_FALSE((detail::is_same_type_v<TYPE_X, TYPE_Y>))
 #define ASSERT_SAME_TYPES(TYPE_X, TYPE_Y) \
-    ASSERT_TRUE((detail::same_types_v<TYPE_X, TYPE_Y>))
+    ASSERT_TRUE((detail::is_same_type_v<TYPE_X, TYPE_Y>))
 #define ASSERT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
-    ASSERT_FALSE((detail::same_types_v<TYPE_X, TYPE_Y>))
+    ASSERT_FALSE((detail::is_same_type_v<TYPE_X, TYPE_Y>))

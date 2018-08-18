@@ -5,7 +5,7 @@
 
 namespace cpputil
 {
-    template<typename T, typename U>
+    template<typename T, typename U = T>
     constexpr T exchange(T& value, U&& new_value)
     {
         T old_value(cpputil::move(value));
