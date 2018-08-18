@@ -1,6 +1,5 @@
 #include <gtest.hpp>
 #include <traits.hpp>
-#include <types.hpp>
 
 namespace test
 {
