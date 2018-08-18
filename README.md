@@ -1,3 +1,3 @@
 # cpputil
 
-**cpputil** is a collection of random library components written with modern (or, sometimes, not very modern) *C++* 🍍
+**cpputil** is a collection of code snippets stolen from various sources or written by me at my spare time.
