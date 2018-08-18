@@ -9,7 +9,9 @@ namespace test
     class reference_wrapper_typed_test :
         public test_base<T> {};
 
-    TYPED_TEST_CASE(reference_wrapper_typed_test, make_types<int>);
+    using test_types = make_test_types<int, double>;
+
+    TYPED_TEST_CASE(reference_wrapper_typed_test, test_types);
 
     // Tests
 

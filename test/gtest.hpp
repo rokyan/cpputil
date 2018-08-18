@@ -14,7 +14,7 @@ public:
 };
 
 template<typename... Ts>
-using make_types = testing::Types<Ts...>;
+using make_test_types = testing::Types<Ts...>;
 
 // implement basic is_same type trait to avoid
 // dependencies on any type trait headers.

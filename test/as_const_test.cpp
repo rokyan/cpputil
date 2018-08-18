@@ -8,7 +8,7 @@ namespace test
     template<typename T>
     class as_const_typed_test : public test_base<T> {};
 
-    using test_types = make_types<int>;
+    using test_types = make_test_types<int, double>;
 
     TYPED_TEST_CASE(as_const_typed_test, test_types);
 
