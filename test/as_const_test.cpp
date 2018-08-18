@@ -1,21 +1,25 @@
 #include <gtest.hpp>
-#include <as_const.hpp>
 #include <traits.hpp>
 #include <declval.hpp>
+#include <as_const.hpp>
 
 namespace test
 {
     template<typename T>
-    class as_const_typed_test : public test_base<T> {};
+    class as_const_typed_test :
+        public test_base<T> {};
 
-    using test_types = make_test_types<int, const int>;
+    using test_types =
+        make_test_types<T0, const T0, volatile T0, const volatile T0>;
 
     TYPED_TEST_CASE(as_const_typed_test, test_types);
 
     TYPED_TEST(as_const_typed_test, test_as_const_ret_value_type)
     {
-        EXPECT_SAME_TYPES(const value_type&, decltype(cpputil::as_const(cpputil::declval<value_type&>())));
-        EXPECT_SAME_TYPES(const value_type&, decltype(cpputil::as_const(cpputil::declval<const value_type&>())));
+        EXPECT_SAME_TYPES(const value_type&,
+            decltype(cpputil::as_const(cpputil::declval<value_type&>())));
+        EXPECT_SAME_TYPES(const value_type&,
+            decltype(cpputil::as_const(cpputil::declval<const value_type&>())));
     }
 
     TYPED_TEST(as_const_typed_test, test_as_const_noexcept)
