@@ -46,7 +46,6 @@
     <ClInclude Include="..\include\cpputil\forward.hpp" />
     <ClInclude Include="..\include\cpputil\move.hpp" />
     <ClInclude Include="..\include\cpputil\not_fn.hpp" />
-    <ClInclude Include="..\include\cpputil\packer.hpp" />
     <ClInclude Include="..\include\cpputil\reference_wrapper.hpp" />
     <ClInclude Include="..\include\cpputil\declval.hpp" />
     <ClInclude Include="..\include\cpputil\sequence_call.hpp" />
@@ -62,7 +61,6 @@
     <ClCompile Include="operator_functors_test.cpp" />
     <ClCompile Include="forward_test.cpp" />
     <ClCompile Include="not_fn_test.cpp" />
-    <ClCompile Include="packer_test.cpp" />
     <ClCompile Include="reference_wrapper_test.cpp" />
     <ClCompile Include="move_test.cpp" />
     <ClCompile Include="apply_test.cpp" />

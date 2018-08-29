@@ -8,6 +8,5 @@
 #include "cpputil\move.hpp"
 #include "cpputil\not_fn.hpp"
 #include "cpputil\operator_functors.hpp"
-#include "cpputil\packer.hpp"
 #include "cpputil\reference_wrapper.hpp"
 #include "cpputil\sequence_call.hpp"
