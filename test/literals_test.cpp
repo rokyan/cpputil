@@ -1,5 +1,4 @@
 #include <gtest.hpp>
-#include <traits.hpp>
 #include <literals.hpp>
 
 namespace test
