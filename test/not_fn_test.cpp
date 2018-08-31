@@ -71,7 +71,7 @@ namespace test
         EXPECT_EQ(noexcept(cpputil::declval<not_fn_wrapper_type&>()()), 
             noexcept(!std::invoke(cpputil::declval<value_type&>()))) <<
             "Incorrect result for not_fn_wrapper call operator noexcept check";
-        EXPECT_TRUE((std::is_same_v<std::invoke_result_t<not_fn_wrapper_type&>, ret_type_lvalue_case>)) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type&>, ret_type_lvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<const not_fn_wrapper_type&>) <<
@@ -79,7 +79,7 @@ namespace test
         EXPECT_EQ(noexcept(cpputil::declval<const not_fn_wrapper_type&>()()),
             noexcept(!std::invoke(cpputil::declval<value_type&>()))) <<
             "Incorrect result for not_fn_wrapper call operator noexcept check";;
-        EXPECT_TRUE((std::is_same_v<std::invoke_result_t<const not_fn_wrapper_type&>, ret_type_const_lvalue_case>)) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type&>, ret_type_const_lvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<not_fn_wrapper_type>) <<
@@ -87,7 +87,7 @@ namespace test
         EXPECT_EQ(noexcept(cpputil::declval<not_fn_wrapper_type>()()),
             noexcept(!std::invoke(cpputil::declval<value_type>()))) <<
             "Incorrect result for not_fn_wrapper call operator noexcept check";;
-        EXPECT_TRUE((std::is_same_v<std::invoke_result_t<not_fn_wrapper_type>, ret_type_rvalue_case>)) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type>, ret_type_rvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<const not_fn_wrapper_type>) <<
@@ -95,7 +95,7 @@ namespace test
         EXPECT_EQ(noexcept(cpputil::declval<const not_fn_wrapper_type>()()),
             noexcept(!std::invoke(cpputil::declval<value_type>()))) <<
             "Incorrect result for not_fn_wrapper call operator noexcept check";;
-        EXPECT_TRUE((std::is_same_v<std::invoke_result_t<const not_fn_wrapper_type>, ret_type_const_rvalue_case>)) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type>, ret_type_const_rvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
     }
 
@@ -103,11 +103,9 @@ namespace test
 
     TYPED_TEST(not_fn_typed_test, test_not_fn_ret_value)
     {
-        EXPECT_TRUE((std::is_same_v<not_fn_wrapper_type,
-            decltype(cpputil::not_fn(cpputil::declval<value_type&>()))>)) <<
+        EXPECT_SAME_TYPES(not_fn_wrapper_type, decltype(cpputil::not_fn(cpputil::declval<value_type&>()))) <<
             "not_fn return value is incorrect";
-        EXPECT_TRUE((std::is_same_v<not_fn_wrapper_type,
-            decltype(cpputil::not_fn(cpputil::declval<value_type>()))>)) <<
+        EXPECT_SAME_TYPES(not_fn_wrapper_type, decltype(cpputil::not_fn(cpputil::declval<value_type>()))) <<
             "not_fn return value is incorrect";
     }
 
