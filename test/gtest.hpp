@@ -6,36 +6,38 @@
 
 #include <gtest\gtest.h>
 
-template<typename T>
-class test_base : public testing::Test
+namespace test
 {
-public:
-    using value_type = T;
-};
-
-template<typename... Ts>
-using make_test_types = testing::Types<Ts...>;
-
-// implement basic is_same type trait to avoid
-// dependencies on any type trait headers.
-
-namespace detail
-{
-    template<typename, typename>
-    struct is_same_type
-    {
-        constexpr static auto value = false;
-    };
-
     template<typename T>
-    struct is_same_type<T, T>
+    class test_base : public testing::Test
     {
-        constexpr static auto value = true;
+    public:
+        using value_type = T;
     };
 
-    template<typename T, typename U>
-    inline constexpr auto is_same_type_v = is_same_type<T, U>::value;
-}
+    template<typename... Ts>
+    using make_test_types = testing::Types<Ts...>;
+
+    // implement basic is_same type trait to avoid
+    // dependencies on any type trait headers.
+
+    namespace detail
+    {
+        template<typename, typename>
+        struct is_same_type
+        {
+            constexpr static auto value = false;
+        };
+
+        template<typename T>
+        struct is_same_type<T, T>
+        {
+            constexpr static auto value = true;
+        };
+
+        template<typename T, typename U>
+        inline constexpr auto is_same_type_v = is_same_type<T, U>::value;
+    }
 
 #define EXPECT_SAME_TYPES(TYPE_X, TYPE_Y) \
     EXPECT_TRUE((detail::is_same_type_v<TYPE_X, TYPE_Y>))
@@ -48,11 +50,12 @@ namespace detail
 
 #define DECLARE_TEST_TYPE(TYPE_NAME) struct TYPE_NAME {};
 
-DECLARE_TEST_TYPE(T0)
-DECLARE_TEST_TYPE(T1)
-DECLARE_TEST_TYPE(T2)
-DECLARE_TEST_TYPE(T3)
-DECLARE_TEST_TYPE(T4)
-DECLARE_TEST_TYPE(T5)
-DECLARE_TEST_TYPE(T6)
-DECLARE_TEST_TYPE(T7)
+    DECLARE_TEST_TYPE(T0)
+    DECLARE_TEST_TYPE(T1)
+    DECLARE_TEST_TYPE(T2)
+    DECLARE_TEST_TYPE(T3)
+    DECLARE_TEST_TYPE(T4)
+    DECLARE_TEST_TYPE(T5)
+    DECLARE_TEST_TYPE(T6)
+    DECLARE_TEST_TYPE(T7)
+}

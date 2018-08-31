@@ -52,6 +52,7 @@
     <ClInclude Include="..\include\cpputil\traits.hpp" />
     <ClInclude Include="apply_test_helper.hpp" />
     <ClInclude Include="gtest.hpp" />
+    <ClInclude Include="not_fn_test_helper.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="as_const_test.cpp" />
