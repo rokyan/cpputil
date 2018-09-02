@@ -8,6 +8,8 @@
 
 namespace test
 {
+    // Wrappers for Google test classes.
+
     template<typename T>
     class test_base : public testing::Test
     {
@@ -18,10 +20,10 @@ namespace test
     template<typename... Ts>
     using make_test_types = testing::Types<Ts...>;
 
-    // implement basic is_same type trait to avoid
+    // Implement is_same type trait to avoid
     // dependencies on any type trait headers.
 
-    namespace detail
+    namespace test_internal
     {
         template<typename, typename>
         struct is_same_type
@@ -39,16 +41,21 @@ namespace test
         inline constexpr auto is_same_type_v = is_same_type<T, U>::value;
     }
 
-#define EXPECT_SAME_TYPES(TYPE_X, TYPE_Y) \
-    EXPECT_TRUE((detail::is_same_type_v<TYPE_X, TYPE_Y>))
-#define EXPECT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
-    EXPECT_FALSE((detail::is_same_type_v<TYPE_X, TYPE_Y>))
-#define ASSERT_SAME_TYPES(TYPE_X, TYPE_Y) \
-    ASSERT_TRUE((detail::is_same_type_v<TYPE_X, TYPE_Y>))
-#define ASSERT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
-    ASSERT_FALSE((detail::is_same_type_v<TYPE_X, TYPE_Y>))
+    // Additional testing macros.
 
-#define DECLARE_TEST_TYPE(TYPE_NAME) struct TYPE_NAME {};
+#define EXPECT_SAME_TYPES(TYPE_X, TYPE_Y) \
+    EXPECT_TRUE((test_internal::is_same_type_v<TYPE_X, TYPE_Y>))
+#define EXPECT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
+    EXPECT_FALSE((test_internal::is_same_type_v<TYPE_X, TYPE_Y>))
+#define ASSERT_SAME_TYPES(TYPE_X, TYPE_Y) \
+    ASSERT_TRUE((test_internal::is_same_type_v<TYPE_X, TYPE_Y>))
+#define ASSERT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
+    ASSERT_FALSE((test_internal::is_same_type_v<TYPE_X, TYPE_Y>))
+
+    // Test types.
+
+#define DECLARE_TEST_TYPE(TYPE_NAME) \
+    struct TYPE_NAME {};
 
     DECLARE_TEST_TYPE(T0)
     DECLARE_TEST_TYPE(T1)
@@ -58,4 +65,6 @@ namespace test
     DECLARE_TEST_TYPE(T5)
     DECLARE_TEST_TYPE(T6)
     DECLARE_TEST_TYPE(T7)
+    DECLARE_TEST_TYPE(T8)
+    DECLARE_TEST_TYPE(T9)
 }
