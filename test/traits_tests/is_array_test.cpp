@@ -5,7 +5,7 @@ namespace test
 {
     using traits::is_array_v;
 
-    TEST(traits_test, test_is_array)
+    TEST(TraitsTest, TestIsArray)
     {
         EXPECT_TRUE(is_array_v<T0[]>);
         EXPECT_TRUE(is_array_v<T0[1]>);

@@ -50,9 +50,15 @@
     <ClInclude Include="..\include\cpputil\declval.hpp" />
     <ClInclude Include="..\include\cpputil\sequence_call.hpp" />
     <ClInclude Include="..\include\cpputil\traits.hpp" />
-    <ClInclude Include="apply_test_helper.hpp" />
+    <ClInclude Include="apply_test_types.hpp" />
+    <ClInclude Include="exchange_test_types.hpp" />
+    <ClInclude Include="foreach_argument_test_types.hpp" />
     <ClInclude Include="gtest.hpp" />
+    <ClInclude Include="is_writable_to_stream_types.hpp" />
     <ClInclude Include="not_fn_test_helper.hpp" />
+    <ClInclude Include="traits_tests\is_readable_from_stream_test_types.hpp" />
+    <ClInclude Include="traits_tests\is_writable_to_stream_test_types.hpp" />
+    <ClInclude Include="traits_tests\move_test_helper.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="as_const_test.cpp" />
@@ -77,8 +83,10 @@
     <ClCompile Include="traits_tests\is_const_test.cpp" />
     <ClCompile Include="traits_tests\is_contained_in_test.cpp" />
     <ClCompile Include="traits_tests\is_function_test.cpp" />
+    <ClCompile Include="traits_tests\is_readable_from_stream_test.cpp" />
     <ClCompile Include="traits_tests\is_same_test.cpp" />
     <ClCompile Include="traits_tests\is_volatile_test.cpp" />
+    <ClCompile Include="traits_tests\is_writable_to_stream_test.cpp" />
     <ClCompile Include="traits_tests\remove_const_test.cpp" />
     <ClCompile Include="traits_tests\remove_cv_test.cpp" />
     <ClCompile Include="traits_tests\remove_extent_test.cpp" />
@@ -102,8 +110,9 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -120,8 +129,9 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -136,8 +146,9 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -154,8 +165,9 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

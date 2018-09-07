@@ -1,36 +1,30 @@
-#include <gtest\gtest.h>
+#include <gtest.hpp>
 #include <declval.hpp>
 #include <forward.hpp>
 #include <type_traits>
 
 namespace test
 {
-    // Setup typed tests
+    using test_types = make_test_types<int, double>;
 
-    template<typename T>
-    class forward_typed_test : public testing::Test
-    {
-    public:
-        using value_type = T;
-    };
+    DECLARE_TYPED_TEST_NAME(ForwardTypedTest);
+    TYPED_TEST_CASE(ForwardTypedTest, test_types);
 
-    TYPED_TEST_CASE(forward_typed_test, testing::Types<int>);
-
-    // Tests
-
-    TYPED_TEST(forward_typed_test, test_forward_ret_value_type)
+    TYPED_TEST(ForwardTypedTest, TestForwardReturnValueType)
     {
         // Test lvalue case. Emulate type deduction for forwarding references.
-        EXPECT_TRUE((std::is_same_v<value_type&, decltype(cpputil::forward<value_type&>(cpputil::declval<value_type&>()))>));
+        EXPECT_SAME_TYPES(TypeParam&,
+            decltype(cpputil::forward<TypeParam&>(cpputil::declval<TypeParam&>())));
         // Test rvalue case. Emulate type deduction for forwarding references.
-        EXPECT_TRUE((std::is_same_v<value_type&&, decltype(cpputil::forward<value_type>(cpputil::declval<value_type>()))>));
+        EXPECT_SAME_TYPES(TypeParam&&,
+            decltype(cpputil::forward<TypeParam>(cpputil::declval<TypeParam>())));
     }
 
-    TYPED_TEST(forward_typed_test, test_forward_noexcept)
+    TYPED_TEST(ForwardTypedTest, TestForwardNoexcept)
     {
         // Test lvalue case. Emulate type deduction for forwarding references.
-        EXPECT_TRUE(noexcept(cpputil::forward<value_type&>(cpputil::declval<value_type&>())));
+        EXPECT_TRUE(noexcept(cpputil::forward<TypeParam&>(cpputil::declval<TypeParam&>())));
         // Test rvalue case. Emulate type deduction for forwarding references.
-        EXPECT_TRUE(noexcept(cpputil::forward<value_type>(cpputil::declval<value_type>())));
+        EXPECT_TRUE(noexcept(cpputil::forward<TypeParam>(cpputil::declval<TypeParam>())));
     }
 }

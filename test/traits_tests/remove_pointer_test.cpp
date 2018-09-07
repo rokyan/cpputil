@@ -5,7 +5,7 @@ namespace test
 {
     using traits::remove_pointer_t;
 
-    TEST(traits_test, test_remove_pointer)
+    TEST(TraitsTest, TestRemovePointer)
     {
         EXPECT_SAME_TYPES(T0, remove_pointer_t<T0*>);
         EXPECT_SAME_TYPES(T0, remove_pointer_t<T0* const>);

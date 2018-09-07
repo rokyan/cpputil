@@ -5,7 +5,7 @@ namespace test
 {
     using traits::remove_const_t;
 
-    TEST(traits_test, test_remove_const)
+    TEST(TraitsTest, TestRemoveConst)
     {
         EXPECT_SAME_TYPES(T0, remove_const_t<T0>);
         EXPECT_SAME_TYPES(T0, remove_const_t<const T0>);

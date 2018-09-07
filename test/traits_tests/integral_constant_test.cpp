@@ -6,7 +6,7 @@ namespace test
     using traits::integral_constant;
     using traits::bool_constant;
 
-    TEST(traits_test, test_integral_constant)
+    TEST(TraitsTest, TestIntegralConstant)
     {
         using T = int;
         using integral_constant_t = integral_constant<T, T{}>;
@@ -20,7 +20,7 @@ namespace test
         EXPECT_EQ(static_cast<T>(integral_constant_t{}), T{});
     }
 
-    TEST(traits_test, test_bool_constant)
+    TEST(TraitsTest, TestBoolConstant)
     {
         using integral_constant_false_t = integral_constant<bool, false>;
         EXPECT_SAME_TYPES(integral_constant_false_t, bool_constant<false>);

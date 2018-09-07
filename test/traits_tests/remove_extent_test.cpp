@@ -5,7 +5,7 @@ namespace test
 {
     using traits::remove_extent_t;
 
-    TEST(traits_test, test_remove_extent)
+    TEST(TraitsTest, TestRemoveExtent)
     {
         EXPECT_SAME_TYPES(T0, remove_extent_t<T0[]>);
         EXPECT_SAME_TYPES(T0, remove_extent_t<T0[1]>);

@@ -5,7 +5,7 @@ namespace test
 {
     using traits::identity_t;
 
-    TEST(traits_test, test_identity)
+    TEST(TraitsTest, TestIdentity)
     {
         EXPECT_SAME_TYPES(T0, identity_t<T0>);
     }

@@ -5,7 +5,7 @@ namespace test
 {
     using traits::add_pointer_t;
 
-    TEST(traits_test, test_add_pointer)
+    TEST(TraitsTest, TestAddPointer)
     {
         EXPECT_SAME_TYPES(T0*, add_pointer_t<T0>);
         EXPECT_SAME_TYPES(const T0*, add_pointer_t<const T0>);

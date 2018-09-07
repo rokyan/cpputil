@@ -5,7 +5,7 @@ namespace test
 {
     using traits::remove_volatile_t;
 
-    TEST(traits_test, test_remove_volatile)
+    TEST(TraitsTest, TestRemoveVolatile)
     {
         EXPECT_SAME_TYPES(T0, remove_volatile_t<T0>);
         EXPECT_SAME_TYPES(T0, remove_volatile_t<volatile T0>);

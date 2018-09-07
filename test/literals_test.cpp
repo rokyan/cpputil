@@ -3,7 +3,7 @@
 
 namespace test
 {
-    TEST(literals_test, test_zu_literal)
+    TEST(LiteralsTest, TestZULiteral)
     {
         using namespace cpputil::literals;
 

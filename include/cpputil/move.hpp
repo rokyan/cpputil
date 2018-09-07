@@ -1,13 +1,15 @@
 #pragma once
 
+#include <traits.hpp>
+// TODO: remove <type_traits> once all required traits are implemented in traits.hpp
 #include <type_traits>
 
 namespace cpputil
 {
     template<typename T>
-    constexpr std::remove_reference_t<T>&& move(T&& t) noexcept
+    constexpr traits::remove_reference_t<T>&& move(T&& t) noexcept
     {
-        return static_cast<std::remove_reference_t<T>&&>(t);
+        return static_cast<traits::remove_reference_t<T>&&>(t);
     }
 
     namespace detail
@@ -18,8 +20,8 @@ namespace cpputil
     }
 
     template<typename T>
-    constexpr std::conditional_t<detail::move_if_noexcept_condition_v<T>, const T&, T&&> move_if_noexcept(T& t) noexcept
+    constexpr traits::conditional_t<detail::move_if_noexcept_condition_v<T>, const T&, T&&> move_if_noexcept(T& t) noexcept
     {
-        return move(t);
+        return cpputil::move(t);
     }
 }

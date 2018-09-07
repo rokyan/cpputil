@@ -5,7 +5,7 @@ namespace test
 {
     using traits::is_function_v;
 
-    TEST(traits_test, test_is_function)
+    TEST(TraitsTest, TestIsFunction)
     {
         ASSERT_TRUE(is_function_v<void()>);
         ASSERT_TRUE(is_function_v<void(int)>);
@@ -17,7 +17,7 @@ namespace test
         ASSERT_TRUE(is_function_v<void(int) const volatile>);
     }
 
-    TEST(traits_test, test_is_function_ref_qualified)
+    TEST(TraitsTest, TestIsFunctionRefQualified)
     {
         ASSERT_TRUE(is_function_v<void() &>);
         ASSERT_TRUE(is_function_v<void(int) &>);
@@ -38,7 +38,7 @@ namespace test
         ASSERT_TRUE(is_function_v<void(int) const volatile &&>);
     }
 
-    TEST(traits_test, test_is_function_noexcept)
+    TEST(TraitsTest, TestIsFunctionNoexcept)
     {
         ASSERT_TRUE(is_function_v<void() noexcept>);
         ASSERT_TRUE(is_function_v<void(int) noexcept>);
@@ -50,7 +50,7 @@ namespace test
         ASSERT_TRUE(is_function_v<void(int) const volatile noexcept>);
     }
 
-    TEST(traits_test, test_is_function_ref_qualified_noexcept)
+    TEST(TraitsTest, TestIsFunctionRefQualifiedNoexcept)
     {
         ASSERT_TRUE(is_function_v<void() & noexcept>);
         ASSERT_TRUE(is_function_v<void(int) & noexcept>);
@@ -71,7 +71,7 @@ namespace test
         ASSERT_TRUE(is_function_v<void(int) const volatile && noexcept>);
     }
 
-    TEST(traits_test, test_is_function_variadic)
+    TEST(TraitsTest, TestIsFunctionVariadic)
     {
         ASSERT_TRUE(is_function_v<void(...)>);
         ASSERT_TRUE(is_function_v<void(int, ...)>);
@@ -83,7 +83,7 @@ namespace test
         ASSERT_TRUE(is_function_v<void(int, ...) const volatile>);
     }
 
-    TEST(traits_test, test_is_function_variadic_ref_qualified)
+    TEST(TraitsTest, TestIsFunctionVariadicRefQualified)
     {
         ASSERT_TRUE(is_function_v<void(...) &>);
         ASSERT_TRUE(is_function_v<void(int, ...) &>);
@@ -104,7 +104,7 @@ namespace test
         ASSERT_TRUE(is_function_v<void(int, ...) const volatile &&>);
     }
 
-    TEST(traits_test, test_is_function_variadic_noexcept)
+    TEST(TraitsTest, TestIsFunctionVariadicNoexcept)
     {
         ASSERT_TRUE(is_function_v<void(...) noexcept>);
         ASSERT_TRUE(is_function_v<void(int, ...) noexcept>);
@@ -116,7 +116,7 @@ namespace test
         ASSERT_TRUE(is_function_v<void(int, ...) const volatile noexcept>);
     }
 
-    TEST(traits_test, test_is_function_variadic_ref_qualified_noexcept)
+    TEST(TraitsTest, TestIsFunctionVariadicRefQualifiedNoexcept)
     {
         ASSERT_TRUE(is_function_v<void(...) & noexcept>);
         ASSERT_TRUE(is_function_v<void(int, ...) & noexcept>);

@@ -5,14 +5,14 @@ namespace test
 {
     using traits::decay_t;
 
-    TEST(traits_test, test_reference_decay)
+    TEST(TraitsTest, TestReferenceDecay)
     {
         EXPECT_SAME_TYPES(T0, decay_t<T0>);
         EXPECT_SAME_TYPES(T0, decay_t<T0&>);
         EXPECT_SAME_TYPES(T0, decay_t<T0&&>);
     }
 
-    TEST(traits_test, test_cv_decay)
+    TEST(TraitsTest, TestCVDecay)
     {
         EXPECT_SAME_TYPES(T0, decay_t<T0>);
         EXPECT_SAME_TYPES(T0, decay_t<const T0>);
@@ -20,7 +20,7 @@ namespace test
         EXPECT_SAME_TYPES(T0, decay_t<const volatile T0>);
     }
 
-    TEST(traits_test, test_cv_reference_decay)
+    TEST(TraitsTest, TestCVReferenceDecay)
     {
         EXPECT_SAME_TYPES(T0, decay_t<T0&>);
         EXPECT_SAME_TYPES(T0, decay_t<const T0&>);
@@ -33,13 +33,13 @@ namespace test
         EXPECT_SAME_TYPES(T0, decay_t<const volatile T0&&>);
     }
 
-    TEST(traits_test, test_function_decay)
+    TEST(TraitsTest, TestFunctionDecay)
     {
         EXPECT_SAME_TYPES(T0(*)(), decay_t<T0()>);
         EXPECT_SAME_TYPES(T0(*)(T1), decay_t<T0(T1)>);
     }
 
-    TEST(traits_test, test_array_decay)
+    TEST(TraitsTest, TestArrayDecay)
     {
         EXPECT_SAME_TYPES(T0*, decay_t<T0[]>);
         EXPECT_SAME_TYPES(T0*, decay_t<T0[1]>);

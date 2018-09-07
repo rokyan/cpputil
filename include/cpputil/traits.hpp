@@ -1,5 +1,8 @@
 #pragma once
 
+#include "declval.hpp"
+#include <iosfwd>
+
 namespace traits
 {
     // templates below are used to implement other traits.
@@ -403,4 +406,34 @@ namespace traits
 
     template<typename T, typename... Ts>
     inline constexpr auto is_contained_in_v = is_contained_in<T, Ts...>::value;
+
+    template<typename, typename = void>
+    struct is_readable_from_stream_impl
+        : false_type {};
+
+    template<typename T>
+    struct is_readable_from_stream_impl<T, void_t<decltype(cpputil::declval<std::istream&>() >> cpputil::declval<T>())>>
+        : true_type {};
+
+    template<typename T>
+    struct is_readable_from_stream :
+        is_readable_from_stream_impl<T> {};
+
+    template<typename T>
+    inline constexpr auto is_readable_from_stream_v = is_readable_from_stream<T>::value;
+
+    template<typename, typename = void>
+    struct is_writable_to_stream_impl
+        : false_type {};
+
+    template<typename T>
+    struct is_writable_to_stream_impl<T, void_t<decltype(cpputil::declval<std::ostream&>() << cpputil::declval<T>())>>
+        : true_type {};
+
+    template<typename T>
+    struct is_writable_to_stream :
+        is_writable_to_stream_impl<T> {};
+
+    template<typename T>
+    inline constexpr auto is_writable_to_stream_v = is_writable_to_stream<T>::value;
 }

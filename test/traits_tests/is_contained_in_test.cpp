@@ -5,7 +5,7 @@ namespace test
 {
     using traits::is_contained_in_v;
 
-    TEST(traits_test, test_is_contained_in)
+    TEST(TraitsTest, TestIsContainedIn)
     {
         EXPECT_TRUE((traits::is_contained_in_v<T0, T0>));
         EXPECT_TRUE((traits::is_contained_in_v<T0, T0, T1>));

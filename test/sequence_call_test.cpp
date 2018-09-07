@@ -5,7 +5,7 @@
 
 namespace test
 {
-    TEST(sequence_call_test, test_arithmetic_sequence_call)
+    TEST(SequenceCallTest, TestArithmeticSequenceCall)
     {
         int value = 1;
         
@@ -19,7 +19,7 @@ namespace test
         EXPECT_EQ(16, value);
     }
 
-    TEST(sequence_call_test, test_string_operations_sequence_call)
+    TEST(SequenceCallTest, TestStringOperationsSequenceCall)
     {
         std::string text{ " a b c d e " };
 

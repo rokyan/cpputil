@@ -1,61 +1,22 @@
 #include <gtest.hpp>
 #include <declval.hpp>
 #include <exchange.hpp>
+#include <exchange_test_types.hpp>
 
 namespace test
 {
-    // Helpers
-
-    template<typename T>
-    struct move_only
-    {
-        move_only(move_only&&) = default;
-        move_only& operator=(move_only&&) = default;
-
-        T data;
-    };
-
-    template<typename T>
-    struct convertible_to
-    {
-        convertible_to& operator=(T&& other_data)
-        {
-            data = cpputil::move(other_data);
-            return *this;
-        }
-
-        operator T() const { return data; }
-
-        T data;
-    };
-
-    namespace
-    {
-        void overloaded(int) {}
-        void overloaded(double) {}
-    }
-
-    // Setup typed tests
-
-    template<typename T>
-    class exchange_typed_test :
-        public test_base<T> {};
-
     using test_types = make_test_types<int, double>;
 
-    TYPED_TEST_CASE(exchange_typed_test, test_types);
+    DECLARE_TYPED_TEST_NAME(ExchangeTypedTest);
+    TYPED_TEST_CASE(ExchangeTypedTest, test_types);
 
-    // Typed tests
-
-    TYPED_TEST(exchange_typed_test, test_exchange_return_type)
+    TYPED_TEST(ExchangeTypedTest, TestExchangeReturnType)
     {
-        EXPECT_TRUE((std::is_same_v<value_type,
-            decltype(cpputil::exchange(cpputil::declval<value_type&>(), cpputil::declval<value_type>()))>));
+        EXPECT_TRUE((std::is_same_v<TypeParam,
+            decltype(cpputil::exchange(cpputil::declval<TypeParam&>(), cpputil::declval<TypeParam>()))>));
     }
 
-    // Tests
-
-    TEST(exchange_test, exchange_lvalue_case)
+    TEST(ExchangeTypedTest, TestLvalueParamCase)
     {
         auto value = 0;
         const auto new_value = 1;
@@ -67,7 +28,7 @@ namespace test
             "Incorrect value is returned by exchange function";
     }
 
-    TEST(exchange_test, exchange_rvalue_case)
+    TEST(ExchangeTypedTest, TestRvalueParamCase)
     {
         auto value = 0;
         const auto old_value = cpputil::exchange(value, 1);
@@ -78,7 +39,7 @@ namespace test
             "Incorrect value is returned by exchange function";
     }
 
-    TEST(exchange_test, test_move_only)
+    TEST(ExchangeTypedTest, TestMoveOnlyParamCase)
     {
         using move_only_t = move_only<int>;
 
@@ -91,7 +52,7 @@ namespace test
             "Incorrect value is returned by exchange function";
     }
 
-    TEST(exchange_test, test_convertible_to)
+    TEST(ExchangeTypedTest, TestConvertibleToParamCase)
     {
         using convertible_to_t = convertible_to<int>;
 
@@ -112,19 +73,12 @@ namespace test
             "Incorrect value is returned by exchange function";
     }
 
-    TEST(exchange_test, test_default_template_param)
+    TEST(ExchangeTypedTest, TestExchangeDefaultTemplateParam)
     {
         auto value = 1;
         cpputil::exchange(value, {});
 
         EXPECT_EQ(value, 0) <<
-            "Incorrect value is assigned by exchange function";
-
-        void (*ptr_to_overloaded)(int) = nullptr;
-        cpputil::exchange(ptr_to_overloaded, &overloaded);
-
-        EXPECT_EQ(static_cast<void*>(ptr_to_overloaded),
-            static_cast<void*>(static_cast<void(*)(int)>(overloaded))) <<
             "Incorrect value is assigned by exchange function";
     }
 }

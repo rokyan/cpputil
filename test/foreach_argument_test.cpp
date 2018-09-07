@@ -1,27 +1,12 @@
-#include <gtest\gtest.h>
+#include <gtest.hpp>
 #include <foreach_argument.hpp>
+#include <foreach_argument_test_types.hpp>
 #include <move.hpp>
 #include <string>
 
 namespace test
 {
-    template<typename T>
-    struct testable
-    {
-        void operator()(T t) &
-        {
-            value += t;
-        }
-
-        void operator()(T t) &&
-        {
-            value -= t;
-        }
-
-        T value{};
-    };
-
-    TEST(foreach_argument_test, test_foreach_argument)
+    TEST(ForeachArgumentTest, TestGeneralUseCase)
     {
         auto sum = 0LL;
         auto get_sum = [&sum](auto x) {
@@ -33,7 +18,7 @@ namespace test
         EXPECT_EQ(sum, 6LL);
     }
 
-    TEST(foreach_argument_test, test_foreach_argument_value_category)
+    TEST(ForeachArgumentTest, TestArgumentValueCategory)
     {
         testable<long long> ltb;
         testable<long long> rtb;
@@ -45,7 +30,7 @@ namespace test
         EXPECT_EQ(rtb.value, -6LL);
     }
 
-    TEST(foreach_argument_test, test_foreach_tuple_argument)
+    TEST(ForeachArgumentTest, TestTupleArgument)
     {
         auto sum = 0LL;
         auto get_sum = [&sum](auto x) {
@@ -57,7 +42,7 @@ namespace test
         EXPECT_EQ(sum, 6LL);
     }
 
-    TEST(foreach_argument_test, test_foreach_tuple_argument_value_category)
+    TEST(ForeachArgumentTest, TestTupleArgumentValueCategory)
     {
         testable<long long> ltb;
         testable<long long> rtb;

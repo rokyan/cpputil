@@ -5,7 +5,7 @@ namespace test
 {
     using traits::void_t;
 
-    TEST(traits_test, test_void_t)
+    TEST(TraitsTest, TestVoidT)
     {
         using zero_types_t = void_t<>;
         EXPECT_SAME_TYPES(void, zero_types_t);

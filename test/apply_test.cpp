@@ -1,11 +1,11 @@
 #include <gtest.hpp>
 #include <apply.hpp>
 #include <move.hpp>
-#include <apply_test_helper.hpp>
+#include <apply_test_types.hpp>
 
 namespace test
 {
-    TEST(apply_test, test_apply_with_lambda)
+    TEST(ApplyTest, TestApplyWithLambda)
     {
         const auto unary_callable =[](int x) {
             return x * x;
@@ -23,7 +23,7 @@ namespace test
         EXPECT_EQ(cpputil::apply(ternary_callable, std::make_tuple(2, 4, 8)), 84);
     }
 
-    TEST(apply_test, test_apply_with_generic_lambda)
+    TEST(ApplyTest, TestApplyWithGenericLambda)
     {
         const auto gen_sum = [](auto&&... es) {
             return (es + ...);
@@ -32,7 +32,7 @@ namespace test
         EXPECT_EQ(cpputil::apply(gen_sum, std::make_tuple(1, 2L, 3LL, 4.0f, 5.0)), 15.0);
     }
 
-    TEST(apply_test, test_apply_with_member_pointer)
+    TEST(ApplyTest, TestApplyWithMemberPointer)
     {
         mem_pointer_testable t;
 
@@ -43,7 +43,7 @@ namespace test
         EXPECT_EQ(cpputil::apply(mem_fun_ptr, std::make_tuple(t, 1)), 1);
     }
 
-    TEST(apply_test, test_value_category_correctness)
+    TEST(ApplyTest, TestValueCategoryCorrectness)
     {
         ref_qualifiers_testable t;
 

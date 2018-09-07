@@ -5,7 +5,7 @@ namespace test
 {
     using traits::add_volatile_t;
 
-    TEST(traits_test, test_add_volatile)
+    TEST(TraitsTest, TestAddVolatile)
     {
         EXPECT_SAME_TYPES(volatile T0, add_volatile_t<T0>);
         EXPECT_SAME_TYPES(volatile T0, add_volatile_t<volatile T0>);

@@ -5,7 +5,7 @@ namespace test
 {
     using traits::is_const_v;
 
-    TEST(traits_test, test_is_const)
+    TEST(TraitsTest, TestIsConst)
     {
         EXPECT_FALSE(is_const_v<T0>);
         EXPECT_FALSE(is_const_v<volatile T0>);
