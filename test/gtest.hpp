@@ -38,9 +38,6 @@ namespace test
     template<typename> \
     class NAME : public testing::Test {};
 
-#define MAKE_TEST_TYPES(...) \
-    (testing::Types<__VA_ARGS__>)
-
 #define EXPECT_SAME_TYPES(TYPE_X, TYPE_Y) \
     EXPECT_TRUE((internal::is_same_type_v<TYPE_X, TYPE_Y>))
 #define EXPECT_DIFFERENT_TYPES(TYPE_X, TYPE_Y) \
