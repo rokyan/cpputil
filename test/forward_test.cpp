@@ -1,7 +1,6 @@
 #include <gtest.hpp>
 #include <declval.hpp>
 #include <forward.hpp>
-#include <type_traits>
 
 namespace test
 {

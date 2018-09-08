@@ -18,16 +18,15 @@ namespace test
             decltype(cpputil::as_const(cpputil::declval<const TypeParam&>())));
     }
 
+    TYPED_TEST(AsConstTypedTest, TestAsConstRetValue)
+    {
+        TypeParam value{};
+        EXPECT_EQ(std::addressof(value), std::addressof(cpputil::as_const(value)));
+    }
+
     TYPED_TEST(AsConstTypedTest, TestAsConstNoexcept)
     {
         EXPECT_TRUE(noexcept(cpputil::as_const(cpputil::declval<TypeParam&>())));
         EXPECT_TRUE(noexcept(cpputil::as_const(cpputil::declval<const TypeParam&>())));
-    }
-
-    TYPED_TEST(AsConstTypedTest, TestAsConstRetValue)
-    {
-        TypeParam value{};
-
-        EXPECT_EQ(std::addressof(value), std::addressof(cpputil::as_const(value)));
     }
 }

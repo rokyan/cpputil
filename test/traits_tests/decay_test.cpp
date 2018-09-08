@@ -12,7 +12,7 @@ namespace test
         EXPECT_SAME_TYPES(T0, decay_t<T0&&>);
     }
 
-    TEST(TraitsTest, TestCVDecay)
+    TEST(TraitsTest, TestConstVolatileDecay)
     {
         EXPECT_SAME_TYPES(T0, decay_t<T0>);
         EXPECT_SAME_TYPES(T0, decay_t<const T0>);
@@ -20,7 +20,7 @@ namespace test
         EXPECT_SAME_TYPES(T0, decay_t<const volatile T0>);
     }
 
-    TEST(TraitsTest, TestCVReferenceDecay)
+    TEST(TraitsTest, TestConstVolatileReferenceDecay)
     {
         EXPECT_SAME_TYPES(T0, decay_t<T0&>);
         EXPECT_SAME_TYPES(T0, decay_t<const T0&>);

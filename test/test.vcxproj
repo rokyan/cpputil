@@ -54,11 +54,9 @@
     <ClInclude Include="exchange_test_types.hpp" />
     <ClInclude Include="foreach_argument_test_types.hpp" />
     <ClInclude Include="gtest.hpp" />
-    <ClInclude Include="is_writable_to_stream_types.hpp" />
     <ClInclude Include="not_fn_test_helper.hpp" />
     <ClInclude Include="traits_tests\is_readable_from_stream_test_types.hpp" />
     <ClInclude Include="traits_tests\is_writable_to_stream_test_types.hpp" />
-    <ClInclude Include="traits_tests\move_test_helper.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="as_const_test.cpp" />

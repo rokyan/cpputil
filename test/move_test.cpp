@@ -18,8 +18,6 @@ namespace test
     DECLARE_TYPED_TEST_NAME(MoveIfNoexceptTypedTest);
     TYPED_TEST_CASE(MoveIfNoexceptTypedTest, move_if_noexcept_test_types);
 
-    // Tests.
-
     TEST(MoveTest, TestMoveRetValueType)
     {
         EXPECT_TRUE((std::is_same_v<T0&&, decltype(cpputil::move(cpputil::declval<T0&>()))>));

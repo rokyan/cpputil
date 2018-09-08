@@ -5,7 +5,7 @@ namespace test
 {
     using traits::add_cv_t;
 
-    TEST(TraitsTest, TestAddCV)
+    TEST(TraitsTest, TestAddConstVolatile)
     {
         EXPECT_SAME_TYPES(const volatile T0, add_cv_t<T0>);
         EXPECT_SAME_TYPES(const volatile T0, add_cv_t<const T0>);
