@@ -108,7 +108,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil\utility;$(SolutionDir)\include\cpputil\traits;$(SolutionDir)\include\cpputil\functional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <ConformanceMode>true</ConformanceMode>
@@ -128,7 +128,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level4</WarningLevel>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil\utility;$(SolutionDir)\include\cpputil\traits;$(SolutionDir)\include\cpputil\functional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <ConformanceMode>true</ConformanceMode>
@@ -146,7 +146,7 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil\utility;$(SolutionDir)\include\cpputil\traits;$(SolutionDir)\include\cpputil\functional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <ConformanceMode>true</ConformanceMode>
@@ -166,7 +166,7 @@
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\test;$(SolutionDir)\test\traits_tests;$(SolutionDir)\include\cpputil\utility;$(SolutionDir)\include\cpputil\traits;$(SolutionDir)\include\cpputil\functional;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile />
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
       <ConformanceMode>true</ConformanceMode>
