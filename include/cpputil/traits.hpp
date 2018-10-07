@@ -1,6 +1,5 @@
 #pragma once
 
-#include "declval.hpp"
 #include <iosfwd>
 
 namespace traits
@@ -313,6 +312,36 @@ namespace traits
     template<typename T>
     using remove_reference_t = typename remove_reference<T>::type;
 
+    template<typename T, typename = void>
+    struct add_lvalue_reference_impl :
+        identity<T> {};
+
+    template<typename T>
+    struct add_lvalue_reference_impl<T, void_t<T&>> :
+        identity<T&> {};
+
+    template<typename T>
+    struct add_lvalue_reference :
+        add_lvalue_reference_impl<T> {};
+
+    template<typename T>
+    using add_lvalue_reference_t = typename add_lvalue_reference<T>::type;
+
+    template<typename T, typename = void>
+    struct add_rvalue_reference_impl :
+        identity<T> {};
+
+    template<typename T>
+    struct add_rvalue_reference_impl<T, void_t<T&&>> :
+        identity<T&&> {};
+
+    template<typename T>
+    struct add_rvalue_reference :
+        add_rvalue_reference_impl<T> {};
+
+    template<typename T>
+    using add_rvalue_reference_t = typename add_rvalue_reference<T>::type;
+
     // array modifications.
 
     template<typename T>
@@ -407,12 +436,32 @@ namespace traits
     template<typename T, typename... Ts>
     inline constexpr auto is_contained_in_v = is_contained_in<T, Ts...>::value;
 
+    namespace detail
+    {
+        template<typename T>
+        struct declval_protector
+        {
+            static constexpr auto always_false = false;
+            static add_rvalue_reference_t<T> delegate();
+        };
+    }
+
+    template<typename T>
+    add_rvalue_reference_t<T> declval() noexcept
+    {
+        static_assert(detail::declval_protector<T>::always_false, "declval() must not be called!");
+        return detail::declval_protector<T>::delegate();
+    }
+
+    template<typename T>
+    using is_readable_check_expr_type = decltype(declval<std::istream&>() >> declval<T&>());
+
     template<typename, typename = void>
     struct is_readable_from_stream_impl
         : false_type {};
 
     template<typename T>
-    struct is_readable_from_stream_impl<T, void_t<decltype(cpputil::declval<std::istream&>() >> cpputil::declval<T>())>>
+    struct is_readable_from_stream_impl<T, void_t<is_readable_check_expr_type<T>>>
         : true_type {};
 
     template<typename T>
@@ -422,12 +471,15 @@ namespace traits
     template<typename T>
     inline constexpr auto is_readable_from_stream_v = is_readable_from_stream<T>::value;
 
+    template<typename T>
+    using is_writable_check_expr_type = decltype(declval<std::ostream&>() << declval<T&>());
+
     template<typename, typename = void>
     struct is_writable_to_stream_impl
         : false_type {};
 
     template<typename T>
-    struct is_writable_to_stream_impl<T, void_t<decltype(cpputil::declval<std::ostream&>() << cpputil::declval<T>())>>
+    struct is_writable_to_stream_impl<T, void_t<is_writable_check_expr_type<T>>>
         : true_type {};
 
     template<typename T>

@@ -22,7 +22,6 @@ namespace cpputil
 
         template<typename... Args>
         auto operator()(Args&&... args) &
-            noexcept(noexcept(!std::invoke(cpputil::forward<FD&>(fn), cpputil::forward<Args>(args)...)))
             -> decltype(!cpputil::declval<std::invoke_result_t<FD&, Args...>>())
         {
             return !std::invoke(cpputil::forward<FD&>(fn), cpputil::forward<Args>(args)...);
@@ -30,7 +29,6 @@ namespace cpputil
 
         template<typename... Args>
         auto operator()(Args&&... args) const &
-            noexcept(noexcept(!std::invoke(cpputil::forward<const FD&>(fn), cpputil::forward<Args>(args)...)))
             -> decltype(!cpputil::declval<std::invoke_result_t<const FD&, Args...>>())
         {
             return !std::invoke(cpputil::forward<const FD&>(fn), cpputil::forward<Args>(args)...);
@@ -38,7 +36,6 @@ namespace cpputil
 
         template<typename... Args>
         auto operator()(Args&&... args) &&
-            noexcept(noexcept(!std::invoke(cpputil::forward<FD>(fn), cpputil::forward<Args>(args)...)))
             -> decltype(!cpputil::declval<std::invoke_result_t<FD, Args...>>())
         {
             return !std::invoke(cpputil::forward<FD>(fn), cpputil::forward<Args>(args)...);
@@ -46,7 +43,6 @@ namespace cpputil
 
         template<typename... Args>
         auto operator()(Args&&... args) const &&
-            noexcept(noexcept(!std::invoke(cpputil::forward<const FD>(fn), cpputil::forward<Args>(args)...)))
             -> decltype(!cpputil::declval<std::invoke_result_t<const FD, Args...>>())
         {
             return !std::invoke(cpputil::forward<const FD>(fn), cpputil::forward<Args>(args)...);

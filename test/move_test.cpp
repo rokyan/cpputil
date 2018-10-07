@@ -1,7 +1,6 @@
 #include <gtest.hpp>
 #include <move.hpp>
 #include <traits.hpp>
-#include <declval.hpp>
 #include <move_test_types.hpp>
 
 namespace test
@@ -20,26 +19,26 @@ namespace test
 
     TEST(MoveTest, TestMoveRetValueType)
     {
-        EXPECT_TRUE((std::is_same_v<T0&&, decltype(cpputil::move(cpputil::declval<T0&>()))>));
-        EXPECT_TRUE((std::is_same_v<T0&&, decltype(cpputil::move(cpputil::declval<T0>()))>));
+        EXPECT_TRUE((std::is_same_v<T0&&, decltype(cpputil::move(traits::declval<T0&>()))>));
+        EXPECT_TRUE((std::is_same_v<T0&&, decltype(cpputil::move(traits::declval<T0>()))>));
     }
 
     TEST(MoveIfNoexceptTypedTest, TestMoveNoexcept)
     {
-        EXPECT_TRUE(noexcept(cpputil::move(cpputil::declval<T0&>())));
-        EXPECT_TRUE(noexcept(cpputil::move(cpputil::declval<T0>())));
+        EXPECT_TRUE(noexcept(cpputil::move(traits::declval<T0&>())));
+        EXPECT_TRUE(noexcept(cpputil::move(traits::declval<T0>())));
     }
 
     TYPED_TEST(MoveIfNoexceptTypedTest, TestMoveIfNoexceptRetValueType)
     {
         using expected_type = traits::conditional_t<cpputil::detail::move_if_noexcept_condition_v<TypeParam>, const TypeParam&, TypeParam&&>;
-        using actual_type = decltype(cpputil::move_if_noexcept(cpputil::declval<TypeParam&>()));
+        using actual_type = decltype(cpputil::move_if_noexcept(traits::declval<TypeParam&>()));
 
         EXPECT_SAME_TYPES(expected_type, actual_type);
     }
 
     TYPED_TEST(MoveIfNoexceptTypedTest, TestMoveIfNoexceptNoexcept)
     {
-        EXPECT_TRUE(noexcept(cpputil::move_if_noexcept(cpputil::declval<TypeParam&>())));
+        EXPECT_TRUE(noexcept(cpputil::move_if_noexcept(traits::declval<TypeParam&>())));
     }
 }

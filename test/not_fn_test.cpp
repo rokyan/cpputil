@@ -1,8 +1,7 @@
 #include <gtest.hpp>
-#include <declval.hpp>
 #include <not_fn.hpp>
-#include <not_fn_test_helper.hpp>
-#include <type_traits>
+#include <not_fn_test_types.hpp>
+#include <traits.hpp>
 
 namespace test
 {
@@ -18,8 +17,7 @@ namespace test
     TYPED_TEST_CASE(NotFnTypedTest, not_fn_typed_test_types);
 
     using not_fn_call_operator_typed_test_types = make_test_types<
-        callable,
-        callable_noexcept
+        callable
     >;
 
     DECLARE_TYPED_TEST_NAME(NotFnCallOperatorTypedTest);
@@ -29,7 +27,7 @@ namespace test
 
     TYPED_TEST(NotFnTypedTest, TestNotFnWrapperConstructibility)
     {
-        using not_fn_wrapper_type = cpputil::not_fn_wrapper<std::decay_t<TypeParam>>;
+        using not_fn_wrapper_type = cpputil::not_fn_wrapper<traits::decay_t<TypeParam>>;
 
         // Test not_fn_wrapper constructibility both from lvalue and rvalue callable objects.
 
@@ -48,7 +46,7 @@ namespace test
 
     TYPED_TEST(NotFnTypedTest, TestNotFnWrapperAssignability)
     {
-        using not_fn_wrapper_type = cpputil::not_fn_wrapper<std::decay_t<TypeParam>>;
+        using not_fn_wrapper_type = cpputil::not_fn_wrapper<traits::decay_t<TypeParam>>;
 
         // Test implicitly deleted copy and move assignment operators.
 
@@ -60,38 +58,26 @@ namespace test
 
     TYPED_TEST(NotFnCallOperatorTypedTest, TestNotFnWrapperFunctionCallOperator)
     {
-        using not_fn_wrapper_type = cpputil::not_fn_wrapper<std::decay_t<TypeParam>>;
+        using not_fn_wrapper_type = cpputil::not_fn_wrapper<traits::decay_t<TypeParam>>;
 
         EXPECT_TRUE(std::is_invocable_v<not_fn_wrapper_type&>) <<
             "not_fn_wrapper must be invocable as lvalue";
-        EXPECT_EQ(noexcept(cpputil::declval<not_fn_wrapper_type&>()()), 
-            noexcept(!std::invoke(cpputil::declval<TypeParam&>()))) <<
-            "Incorrect result for not_fn_wrapper call operator noexcept check";
-        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type&>, ret_type_lvalue_case) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type&()>, ret_type_lvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<const not_fn_wrapper_type&>) <<
             "not_fn_wrapper must be invocable as const lvalue";
-        EXPECT_EQ(noexcept(cpputil::declval<const not_fn_wrapper_type&>()()),
-            noexcept(!std::invoke(cpputil::declval<TypeParam&>()))) <<
-            "Incorrect result for not_fn_wrapper call operator noexcept check";;
-        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type&>, ret_type_const_lvalue_case) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type&()>, ret_type_const_lvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<not_fn_wrapper_type>) <<
             "not_fn_wrapper must be invocable as rvalue";
-        EXPECT_EQ(noexcept(cpputil::declval<not_fn_wrapper_type>()()),
-            noexcept(!std::invoke(cpputil::declval<TypeParam>()))) <<
-            "Incorrect result for not_fn_wrapper call operator noexcept check";;
-        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type>, ret_type_rvalue_case) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type()>, ret_type_rvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<const not_fn_wrapper_type>) <<
             "not_fn_wrapper must be invocable as const rvalue";
-        EXPECT_EQ(noexcept(cpputil::declval<const not_fn_wrapper_type>()()),
-            noexcept(!std::invoke(cpputil::declval<TypeParam>()))) <<
-            "Incorrect result for not_fn_wrapper call operator noexcept check";;
-        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type>, ret_type_const_rvalue_case) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type()>, ret_type_const_rvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
     }
 
@@ -99,23 +85,23 @@ namespace test
 
     TYPED_TEST(NotFnTypedTest, TestNotFnRetValue)
     {
-        using not_fn_wrapper_type = cpputil::not_fn_wrapper<std::decay_t<TypeParam>>;
+        using not_fn_wrapper_type = cpputil::not_fn_wrapper<traits::decay_t<TypeParam>>;
 
-        EXPECT_SAME_TYPES(not_fn_wrapper_type, decltype(cpputil::not_fn(cpputil::declval<TypeParam&>()))) <<
+        EXPECT_SAME_TYPES(not_fn_wrapper_type, decltype(cpputil::not_fn(traits::declval<TypeParam&>()))) <<
             "not_fn return value is incorrect";
-        EXPECT_SAME_TYPES(not_fn_wrapper_type, decltype(cpputil::not_fn(cpputil::declval<TypeParam>()))) <<
+        EXPECT_SAME_TYPES(not_fn_wrapper_type, decltype(cpputil::not_fn(traits::declval<TypeParam>()))) <<
             "not_fn return value is incorrect";
     }
 
     TYPED_TEST(NotFnTypedTest, TestNotFnNoexcept)
     {
-        using not_fn_wrapper_type = cpputil::not_fn_wrapper<std::decay_t<TypeParam>>;
+        using not_fn_wrapper_type = cpputil::not_fn_wrapper<traits::decay_t<TypeParam>>;
 
-        EXPECT_EQ((std::is_nothrow_constructible_v<std::decay_t<TypeParam&>, TypeParam&>),
-            noexcept(cpputil::not_fn(cpputil::declval<TypeParam&>()))) <<
+        EXPECT_EQ((std::is_nothrow_constructible_v<traits::decay_t<TypeParam&>, TypeParam&>),
+            noexcept(cpputil::not_fn(traits::declval<TypeParam&>()))) <<
             "not_fn invalid noexcept";
-        EXPECT_EQ((std::is_nothrow_constructible_v<std::decay_t<TypeParam>, TypeParam>),
-            noexcept(cpputil::not_fn(cpputil::declval<TypeParam>()))) <<
+        EXPECT_EQ((std::is_nothrow_constructible_v<traits::decay_t<TypeParam>, TypeParam>),
+            noexcept(cpputil::not_fn(traits::declval<TypeParam>()))) <<
             "not_fn invalid noexcept";
     }
 }

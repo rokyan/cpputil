@@ -1,6 +1,5 @@
 #include <gtest.hpp>
 #include <traits.hpp>
-#include <declval.hpp>
 #include <as_const.hpp>
 
 namespace test
@@ -13,9 +12,9 @@ namespace test
     TYPED_TEST(AsConstTypedTest, TestAsConstRetValueType)
     {
         EXPECT_SAME_TYPES(const TypeParam&,
-            decltype(cpputil::as_const(cpputil::declval<TypeParam&>())));
+            decltype(cpputil::as_const(traits::declval<TypeParam&>())));
         EXPECT_SAME_TYPES(const TypeParam&,
-            decltype(cpputil::as_const(cpputil::declval<const TypeParam&>())));
+            decltype(cpputil::as_const(traits::declval<const TypeParam&>())));
     }
 
     TYPED_TEST(AsConstTypedTest, TestAsConstRetValue)
@@ -26,7 +25,7 @@ namespace test
 
     TYPED_TEST(AsConstTypedTest, TestAsConstNoexcept)
     {
-        EXPECT_TRUE(noexcept(cpputil::as_const(cpputil::declval<TypeParam&>())));
-        EXPECT_TRUE(noexcept(cpputil::as_const(cpputil::declval<const TypeParam&>())));
+        EXPECT_TRUE(noexcept(cpputil::as_const(traits::declval<TypeParam&>())));
+        EXPECT_TRUE(noexcept(cpputil::as_const(traits::declval<const TypeParam&>())));
     }
 }

@@ -1,5 +1,5 @@
 #include <gtest.hpp>
-#include <declval.hpp>
+#include <traits.hpp>
 #include <exchange.hpp>
 #include <exchange_test_types.hpp>
 
@@ -13,7 +13,7 @@ namespace test
     TYPED_TEST(ExchangeTypedTest, TestExchangeReturnType)
     {
         EXPECT_TRUE((std::is_same_v<TypeParam,
-            decltype(cpputil::exchange(cpputil::declval<TypeParam&>(), cpputil::declval<TypeParam>()))>));
+            decltype(cpputil::exchange(traits::declval<TypeParam&>(), traits::declval<TypeParam>()))>));
     }
 
     TEST(ExchangeTypedTest, TestLvalueParamCase)

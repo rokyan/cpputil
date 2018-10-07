@@ -1,6 +1,6 @@
 #include "cpputil\apply.hpp"
 #include "cpputil\as_const.hpp"
-#include "cpputil\declval.hpp"
+#include "cpputil\traits.hpp"
 #include "cpputil\exchange.hpp"
 #include "cpputil\foreach_argument.hpp"
 #include "cpputil\forward.hpp"
