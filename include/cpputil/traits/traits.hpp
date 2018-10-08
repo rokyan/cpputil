@@ -453,15 +453,13 @@ namespace traits
         return detail::declval_protector<T>::delegate();
     }
 
-    template<typename T>
-    using is_readable_check_expr_type = decltype(declval<std::istream&>() >> declval<T&>());
-
     template<typename, typename = void>
     struct is_readable_from_stream_impl
         : false_type {};
 
     template<typename T>
-    struct is_readable_from_stream_impl<T, void_t<is_readable_check_expr_type<T>>>
+    struct is_readable_from_stream_impl<T,
+        void_t<decltype(traits::declval<std::istream&>() >> traits::declval<T>())>>
         : true_type {};
 
     template<typename T>
@@ -471,15 +469,12 @@ namespace traits
     template<typename T>
     inline constexpr auto is_readable_from_stream_v = is_readable_from_stream<T>::value;
 
-    template<typename T>
-    using is_writable_check_expr_type = decltype(declval<std::ostream&>() << declval<T&>());
-
     template<typename, typename = void>
     struct is_writable_to_stream_impl
         : false_type {};
 
     template<typename T>
-    struct is_writable_to_stream_impl<T, void_t<is_writable_check_expr_type<T>>>
+    struct is_writable_to_stream_impl<T, void_t<decltype(declval<std::ostream&>() << declval<T>())>>
         : true_type {};
 
     template<typename T>
