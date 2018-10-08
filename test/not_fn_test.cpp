@@ -1,7 +1,6 @@
 #include <gtest.hpp>
 #include <not_fn.hpp>
 #include <not_fn_test_types.hpp>
-#include <traits.hpp>
 
 namespace test
 {
@@ -62,22 +61,22 @@ namespace test
 
         EXPECT_TRUE(std::is_invocable_v<not_fn_wrapper_type&>) <<
             "not_fn_wrapper must be invocable as lvalue";
-        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type&()>, ret_type_lvalue_case) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type&>, ret_type_lvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<const not_fn_wrapper_type&>) <<
             "not_fn_wrapper must be invocable as const lvalue";
-        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type&()>, ret_type_const_lvalue_case) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type&>, ret_type_const_lvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<not_fn_wrapper_type>) <<
             "not_fn_wrapper must be invocable as rvalue";
-        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type()>, ret_type_rvalue_case) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type>, ret_type_rvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<const not_fn_wrapper_type>) <<
             "not_fn_wrapper must be invocable as const rvalue";
-        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type()>, ret_type_const_rvalue_case) <<
+        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type>, ret_type_const_rvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
     }
 

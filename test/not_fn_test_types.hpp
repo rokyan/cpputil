@@ -17,16 +17,11 @@ namespace test
     DEFINE_RET_TYPE_STRUCT(ret_type_rvalue_case)
     DEFINE_RET_TYPE_STRUCT(ret_type_const_rvalue_case)
 
-#define DEFINE_CALLABLE_STRUCT(STRUCT_NAME, RV1, RV2, RV3, RV4) \
-    struct STRUCT_NAME \
-    { \
-        auto operator()() & -> RV1; \
-        auto operator()() const & -> RV2; \
-        auto operator()() && -> RV3; \
-        auto operator()() const && -> RV4; \
+    struct callable
+    {
+        auto operator()() & -> ret_type_lvalue_case;
+        auto operator()() const & ->ret_type_const_lvalue_case;
+        auto operator()() && ->ret_type_rvalue_case;
+        auto operator()() const && ->ret_type_const_rvalue_case;
     };
-
-    DEFINE_CALLABLE_STRUCT(callable,
-        ret_type_lvalue_case, ret_type_const_lvalue_case,
-        ret_type_rvalue_case, ret_type_const_rvalue_case)
 }
