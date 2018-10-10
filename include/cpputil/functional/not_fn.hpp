@@ -20,37 +20,19 @@ namespace cpputil
         not_fn_wrapper(const not_fn_wrapper&) = default;
         not_fn_wrapper(not_fn_wrapper&&) = default;
 
-        template<typename... Args>
-        auto operator()(Args&&... args) &
-            noexcept(std::is_nothrow_invocable_v<FD&, Args...> && noexcept(!traits::declval<std::invoke_result_t<FD&, Args...>>()))
-            -> decltype(!traits::declval<std::invoke_result_t<FD&, Args...>>())
-        {
-            return !std::invoke(cpputil::forward<FD&>(fn), cpputil::forward<Args>(args)...);
+#define NOT_FN_WRAP_FUNCTION_CALL_OP(QUALIFIERS) \
+        template<typename... Args> \
+        auto operator()(Args&&... args) QUALIFIERS \
+            noexcept(std::is_nothrow_invocable_v<FD QUALIFIERS, Args...> && noexcept(!traits::declval<std::invoke_result_t<FD QUALIFIERS, Args...>>())) \
+            -> decltype(!traits::declval<std::invoke_result_t<FD QUALIFIERS, Args...>>()) \
+        { \
+            return !std::invoke(cpputil::forward<FD QUALIFIERS>(fn), cpputil::forward<Args>(args)...); \
         }
 
-        template<typename... Args>
-        auto operator()(Args&&... args) const &
-            noexcept(std::is_nothrow_invocable_v<const FD&, Args...> && noexcept(!traits::declval<std::invoke_result_t<const FD&, Args...>>()))
-            -> decltype(!traits::declval<std::invoke_result_t<const FD&, Args...>>())
-        {
-            return !std::invoke(cpputil::forward<const FD&>(fn), cpputil::forward<Args>(args)...);
-        }
-
-        template<typename... Args>
-        auto operator()(Args&&... args) &&
-            noexcept(std::is_nothrow_invocable_v<FD, Args...> && noexcept(!traits::declval<std::invoke_result_t<FD, Args...>>()))
-            -> decltype(!traits::declval<std::invoke_result_t<FD, Args...>>())
-        {
-            return !std::invoke(cpputil::forward<FD>(fn), cpputil::forward<Args>(args)...);
-        }
-
-        template<typename... Args>
-        auto operator()(Args&&... args) const &&
-            noexcept(std::is_nothrow_invocable_v<const FD, Args...> && noexcept(!traits::declval<std::invoke_result_t<const FD, Args...>>()))
-            -> decltype(!traits::declval<std::invoke_result_t<const FD, Args...>>())
-        {
-            return !std::invoke(cpputil::forward<const FD>(fn), cpputil::forward<Args>(args)...);
-        }
+        NOT_FN_WRAP_FUNCTION_CALL_OP(&)
+        NOT_FN_WRAP_FUNCTION_CALL_OP(const &)
+        NOT_FN_WRAP_FUNCTION_CALL_OP(&&)
+        NOT_FN_WRAP_FUNCTION_CALL_OP(const &&)
 
     private:
         FD fn;
