@@ -1,9 +1,8 @@
 #pragma once
 
-#include <type_traits>
-#include <functional>
 #include <forward.hpp>
 #include <traits.hpp>
+#include <type_traits> // TODO: remove a dependecy on type_traits in the future
 
 namespace cpputil
 {
@@ -23,6 +22,7 @@ namespace cpputil
 
         template<typename... Args>
         auto operator()(Args&&... args) &
+            noexcept(std::is_nothrow_invocable_v<FD&, Args...> && noexcept(!traits::declval<std::invoke_result_t<FD&, Args...>>()))
             -> decltype(!traits::declval<std::invoke_result_t<FD&, Args...>>())
         {
             return !std::invoke(cpputil::forward<FD&>(fn), cpputil::forward<Args>(args)...);
@@ -30,6 +30,7 @@ namespace cpputil
 
         template<typename... Args>
         auto operator()(Args&&... args) const &
+            noexcept(std::is_nothrow_invocable_v<const FD&, Args...> && noexcept(!traits::declval<std::invoke_result_t<const FD&, Args...>>()))
             -> decltype(!traits::declval<std::invoke_result_t<const FD&, Args...>>())
         {
             return !std::invoke(cpputil::forward<const FD&>(fn), cpputil::forward<Args>(args)...);
@@ -37,6 +38,7 @@ namespace cpputil
 
         template<typename... Args>
         auto operator()(Args&&... args) &&
+            noexcept(std::is_nothrow_invocable_v<FD, Args...> && noexcept(!traits::declval<std::invoke_result_t<FD, Args...>>()))
             -> decltype(!traits::declval<std::invoke_result_t<FD, Args...>>())
         {
             return !std::invoke(cpputil::forward<FD>(fn), cpputil::forward<Args>(args)...);
@@ -44,6 +46,7 @@ namespace cpputil
 
         template<typename... Args>
         auto operator()(Args&&... args) const &&
+            noexcept(std::is_nothrow_invocable_v<const FD, Args...> && noexcept(!traits::declval<std::invoke_result_t<const FD, Args...>>()))
             -> decltype(!traits::declval<std::invoke_result_t<const FD, Args...>>())
         {
             return !std::invoke(cpputil::forward<const FD>(fn), cpputil::forward<Args>(args)...);

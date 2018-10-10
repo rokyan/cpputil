@@ -16,7 +16,10 @@ namespace test
     TYPED_TEST_CASE(NotFnTypedTest, not_fn_typed_test_types);
 
     using not_fn_call_operator_typed_test_types = make_test_types<
-        callable
+        callable_invocation_may_throw,
+        callable_negation_may_throw,
+        callable_all_may_throw,
+        callable_noexcept
     >;
 
     DECLARE_TYPED_TEST_NAME(NotFnCallOperatorTypedTest);
@@ -32,6 +35,9 @@ namespace test
 
         EXPECT_TRUE((std::is_constructible_v<not_fn_wrapper_type, TypeParam&, cpputil::not_fn_tag>)) <<
             "not_fn_wrapper must be constructible from callable lvalue";
+        EXPECT_EQ(noexcept(traits::declval<not_fn_wrapper_type&>()()),
+            noexcept(!std::invoke(traits::declval<TypeParam&>()))) <<
+            "Incorrect result for not_fn_wrapper call operator noexcept check";
         EXPECT_TRUE((std::is_constructible_v<not_fn_wrapper_type, TypeParam, cpputil::not_fn_tag>)) <<
             "not_fn_wrapper must be constructible from callable rvalue";
 
@@ -59,24 +65,35 @@ namespace test
     {
         using not_fn_wrapper_type = cpputil::not_fn_wrapper<traits::decay_t<TypeParam>>;
 
+        constexpr auto ret_type_noexcept =
+            traits::is_contained_in_v<TypeParam, callable_invocation_may_throw, callable_noexcept>;
+
         EXPECT_TRUE(std::is_invocable_v<not_fn_wrapper_type&>) <<
             "not_fn_wrapper must be invocable as lvalue";
-        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type&>, ret_type_lvalue_case) <<
+        using invoke_result_lvalue_case = traits::conditional_t<ret_type_noexcept,
+            ret_type_lvalue_case_noexcept, ret_type_lvalue_case>;
+        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type&>, invoke_result_lvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<const not_fn_wrapper_type&>) <<
             "not_fn_wrapper must be invocable as const lvalue";
-        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type&>, ret_type_const_lvalue_case) <<
+        using invoke_result_const_lvalue_case = traits::conditional_t<ret_type_noexcept,
+            ret_type_const_lvalue_case_noexcept, ret_type_const_lvalue_case>;
+        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type&>, invoke_result_const_lvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<not_fn_wrapper_type>) <<
             "not_fn_wrapper must be invocable as rvalue";
-        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type>, ret_type_rvalue_case) <<
+        using invoke_result_rvalue_case = traits::conditional_t<ret_type_noexcept,
+            ret_type_rvalue_case_noexcept, ret_type_rvalue_case>;
+        EXPECT_SAME_TYPES(std::invoke_result_t<not_fn_wrapper_type>, invoke_result_rvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
 
         EXPECT_TRUE(std::is_invocable_v<const not_fn_wrapper_type>) <<
             "not_fn_wrapper must be invocable as const rvalue";
-        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type>, ret_type_const_rvalue_case) <<
+        using invoke_result_const_rvalue_case = traits::conditional_t<ret_type_noexcept,
+            ret_type_const_rvalue_case_noexcept, ret_type_const_rvalue_case>;
+        EXPECT_SAME_TYPES(std::invoke_result_t<const not_fn_wrapper_type>, invoke_result_const_rvalue_case) <<
             "Incorrect return value from not_fn_wrapper call";
     }
 
