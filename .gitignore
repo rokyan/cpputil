@@ -36,3 +36,6 @@ Debug/
 Release/
 packages/
 .vs/
+
+# build folder
+build/
