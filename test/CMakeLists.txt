@@ -24,10 +24,14 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
                  ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
                  EXCLUDE_FROM_ALL)
 
+set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
+set(CPPUTIL_INCLUDE_DIR "${INCLUDE_DIR}/cpputil")
+
 include_directories(
-    ${CMAKE_SOURCE_DIR}/include/cpputil/functional
-    ${CMAKE_SOURCE_DIR}/include/cpputil/traits
-    ${CMAKE_SOURCE_DIR}/include/cpputil/utility
+    ${CPPUTIL_INCLUDE_DIR}/functional
+    ${CPPUTIL_INCLUDE_DIR}/traits
+    ${CPPUTIL_INCLUDE_DIR}/thread
+    ${CPPUTIL_INCLUDE_DIR}/utility
     ${CMAKE_SOURCE_DIR}/test
 )
 
