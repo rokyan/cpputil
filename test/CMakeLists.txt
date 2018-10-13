@@ -32,14 +32,18 @@ include_directories(
     ${CPPUTIL_INCLUDE_DIR}/traits
     ${CPPUTIL_INCLUDE_DIR}/thread
     ${CPPUTIL_INCLUDE_DIR}/utility
+    ${CMAKE_SOURCE_DIR}/test/functional
+    ${CMAKE_SOURCE_DIR}/test/traits
+    ${CMAKE_SOURCE_DIR}/test/thread
+    ${CMAKE_SOURCE_DIR}/test/utility
     ${CMAKE_SOURCE_DIR}/test
 )
 
 # Include all cpputil library header files
 file(GLOB_RECURSE CPPUTIL_HEADERS "${CMAKE_SOURCE_DIR}/include/*.hpp")
 # Include all header and source files for cpputil-test project
-file(GLOB TEST_HEADERS "*.hpp")
-file(GLOB TEST_SOURCES "*.cpp")
+file(GLOB_RECURSE TEST_HEADERS "*.hpp")
+file(GLOB_RECURSE TEST_SOURCES "*.cpp")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /Za /permissive-")
 
