@@ -1,8 +1,8 @@
 #pragma once
 
 #include "integral_constant.hpp"
-#include "void_t.hpp"
 #include "declval.hpp"
+#include "void_t.hpp"
 #include <iosfwd>
 
 namespace traits

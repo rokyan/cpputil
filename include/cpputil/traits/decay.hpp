@@ -3,10 +3,10 @@
 #include "identity.hpp"
 #include "is_array.hpp"
 #include "is_function.hpp"
+#include "add_pointer.hpp"
 #include "remove_cv.hpp"
 #include "remove_extent.hpp"
 #include "remove_reference.hpp"
-#include "add_pointer.hpp"
 
 namespace traits
 {
