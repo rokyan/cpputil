@@ -33,7 +33,7 @@ include_directories(
 
 # Include all cpputil library header files
 file(GLOB_RECURSE CPPUTIL_HEADERS "${CMAKE_SOURCE_DIR}/include/*.hpp")
-# Include all header and sources files for the cpputil-test project
+# Include all header and source files for cpputil-test project
 file(GLOB TEST_HEADERS "*.hpp")
 file(GLOB TEST_SOURCES "*.cpp")
 
