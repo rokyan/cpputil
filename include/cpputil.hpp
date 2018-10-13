@@ -3,6 +3,7 @@
 #include "cpputil\functional\reference_wrapper.hpp"
 #include "cpputil\functional\sequence_call.hpp"
 #include "cpputil\traits\traits.hpp"
+#include "cpputil\thread\scoped_tread.hpp"
 #include "cpputil\utility\apply.hpp"
 #include "cpputil\utility\as_const.hpp"
 #include "cpputil\utility\exchange.hpp"
