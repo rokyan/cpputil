@@ -31,11 +31,15 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/test
 )
 
+# Include all cpputil library header files
+file(GLOB_RECURSE CPPUTIL_HEADERS "${CMAKE_SOURCE_DIR}/include/*.hpp")
+# Include all header and sources files for the cpputil-test project
+file(GLOB TEST_HEADERS "*.hpp")
 file(GLOB TEST_SOURCES "*.cpp")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /Za /permissive-")
 
-add_executable(cpputil-test ${TEST_SOURCES})
+add_executable(cpputil-test ${TEST_SOURCES} ${TEST_HEADERS} ${CPPUTIL_HEADERS})
 
 set_property(TARGET cpputil-test PROPERTY CXX_STANDARD 17)
 
