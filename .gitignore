@@ -37,5 +37,5 @@ Release/
 packages/
 .vs/
 
-# build folder
+# CMake build folder
 build/
