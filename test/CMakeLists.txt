@@ -30,11 +30,13 @@ set(CPPUTIL_INCLUDE_DIR "${INCLUDE_DIR}/cpputil")
 include_directories(
     ${CPPUTIL_INCLUDE_DIR}/algorithm
     ${CPPUTIL_INCLUDE_DIR}/functional
+    ${CPPUTIL_INCLUDE_DIR}/iterator
     ${CPPUTIL_INCLUDE_DIR}/traits
     ${CPPUTIL_INCLUDE_DIR}/thread
     ${CPPUTIL_INCLUDE_DIR}/utility
     ${CMAKE_SOURCE_DIR}/test/algorithm
     ${CMAKE_SOURCE_DIR}/test/functional
+    ${CMAKE_SOURCE_DIR}/test/iterator
     ${CMAKE_SOURCE_DIR}/test/traits
     ${CMAKE_SOURCE_DIR}/test/thread
     ${CMAKE_SOURCE_DIR}/test/utility
