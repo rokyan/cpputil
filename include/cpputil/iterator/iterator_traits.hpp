@@ -33,7 +33,7 @@ namespace cpputil
     template<typename T>
     struct iterator_traits<T*>
     {
-        using iterator_category = std::random_access_iterator_tag;
+        using iterator_category = random_access_iterator_tag;
         using value_type = T;
         using difference_type = std::ptrdiff_t;
         using pointer = T*;
@@ -43,7 +43,7 @@ namespace cpputil
     template<typename T>
     struct iterator_traits<const T*>
     {
-        using iterator_category = std::random_access_iterator_tag;
+        using iterator_category = random_access_iterator_tag;
         using value_type = T;
         using difference_type = std::ptrdiff_t;
         using pointer = const T*;
