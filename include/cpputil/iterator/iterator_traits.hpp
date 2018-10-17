@@ -9,9 +9,7 @@ namespace cpputil
     {
 
     template<typename Iterator, typename = traits::void_t<>>
-    struct iterator_traits_impl {
-        using type = void;
-    };
+    struct iterator_traits_impl {};
 
     template<typename Iterator>
     struct iterator_traits_impl<Iterator, traits::void_t<
