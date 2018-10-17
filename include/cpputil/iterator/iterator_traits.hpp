@@ -34,7 +34,7 @@ namespace cpputil
     struct iterator_traits<T*>
     {
         using iterator_category = std::random_access_iterator_tag;
-        using value_type = traits::remove_const_t<T>;
+        using value_type = T;
         using difference_type = std::ptrdiff_t;
         using pointer = T*;
         using reference = T&;
