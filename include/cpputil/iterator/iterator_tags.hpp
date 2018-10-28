@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_ITERATOR_TAGS
+#define CPPUTIL_ITERATOR_TAGS
 
 #include <iterator>
 
@@ -10,3 +11,5 @@ namespace cpputil
     using bidirectional_iterator_tag = std::bidirectional_iterator_tag;
     using random_access_iterator_tag = std::random_access_iterator_tag;
 }
+
+#endif // CPPUTIL_ITERATOR_TAGS
