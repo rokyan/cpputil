@@ -49,4 +49,19 @@ namespace cpputil
         using pointer = const T*;
         using reference = const T&;
     };
+
+    template<typename T>
+    using iterator_category_t = typename iterator_traits<T>::iterator_category;
+
+    template<typename T>
+    using value_type_t = typename iterator_traits<T>::value_type;
+
+    template<typename T>
+    using difference_type_t = typename iterator_traits<T>::difference_type;
+
+    template<typename T>
+    using pointer_t = typename iterator_traits<T>::pointer;
+
+    template<typename T>
+    using reference_t = typename iterator_traits<T>::reference;
 }
