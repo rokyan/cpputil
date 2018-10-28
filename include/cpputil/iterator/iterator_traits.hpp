@@ -1,34 +1,32 @@
-#pragma once
+#ifndef CPPUTIL_ITERATOR_TRAITS
+#define CPPUTIL_ITERATOR_TRAITS
 
 #include "iterator_tags.hpp"
 #include "..\traits\traits.hpp"
 
 namespace cpputil
 {
-    namespace impl
-    {
-        template<typename Iterator, typename = traits::void_t<>>
-        struct iterator_traits_impl {};
+    template<typename Iterator, typename = traits::void_t<>>
+    struct iterator_traits_base {};
 
-        template<typename Iterator>
-        struct iterator_traits_impl<Iterator, traits::void_t<
-            typename Iterator::iterator_category,
-            typename Iterator::value_type,
-            typename Iterator::difference_type,
-            typename Iterator::pointer,
-            typename Iterator::reference>>
-        {
-            using iterator_category = typename Iterator::iterator_category;
-            using value_type = typename Iterator::value_type;
-            using difference_type = typename Iterator::difference_type;
-            using pointer = typename Iterator::pointer;
-            using reference = typename Iterator::reference;
-        };
-    }
+    template<typename Iterator>
+    struct iterator_traits_base<Iterator, traits::void_t<
+        typename Iterator::iterator_category,
+        typename Iterator::value_type,
+        typename Iterator::difference_type,
+        typename Iterator::pointer,
+        typename Iterator::reference>>
+    {
+        using iterator_category = typename Iterator::iterator_category;
+        using value_type = typename Iterator::value_type;
+        using difference_type = typename Iterator::difference_type;
+        using pointer = typename Iterator::pointer;
+        using reference = typename Iterator::reference;
+    };
 
     template<typename Iterator>
     struct iterator_traits :
-        impl::iterator_traits_impl<Iterator> {};
+        iterator_traits_base<Iterator> {};
 
     template<typename T>
     struct iterator_traits<T*>
@@ -65,3 +63,5 @@ namespace cpputil
     template<typename T>
     using reference_t = typename iterator_traits<T>::reference;
 }
+
+#endif // CPPUTIL_ITERATOR_TRAITS

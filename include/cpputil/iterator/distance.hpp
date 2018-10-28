@@ -1,39 +1,39 @@
-#pragma once
+#ifndef CPPUTIL_DISTANCE
+#define CPPUTIL_DISTANCE
 
 #include "iterator_tags.hpp"
 #include "iterator_traits.hpp"
 
 namespace cpputil
 {
-    namespace impl
+    template<typename InputIterator>
+    constexpr auto distance_impl(InputIterator first, InputIterator last, input_iterator_tag) ->
+        difference_type_t<InputIterator>
     {
-        template<typename InputIterator>
-        auto distance_impl(InputIterator first, InputIterator last, input_iterator_tag) ->
-            typename iterator_traits<InputIterator>::difference_type
+        difference_type_t<InputIterator> difference = 0;
+
+        while (first != last)
         {
-            typename iterator_traits<InputIterator>::difference_type difference = 0;
-
-            while (first != last)
-            {
-                ++difference;
-                ++first;
-            }
-
-            return difference;
+            ++difference;
+            ++first;
         }
 
-        template<typename InputIterator>
-        auto distance_impl(InputIterator first, InputIterator last, random_access_iterator_tag) ->
-            typename iterator_traits<InputIterator>::difference_type
-        {
-            return last - first;
-        }
+        return difference;
     }
 
     template<typename InputIterator>
-    auto distance(InputIterator first, InputIterator last) ->
-        typename iterator_traits<InputIterator>::difference_type
+    constexpr auto distance_impl(InputIterator first, InputIterator last, random_access_iterator_tag) ->
+        difference_type_t<InputIterator>
     {
-        return impl::distance_impl(first, last, iterator_category_t<InputIterator>{});
+        return last - first;
+    }
+
+    template<typename InputIterator>
+    constexpr auto distance(InputIterator first, InputIterator last) ->
+        difference_type_t<InputIterator>
+    {
+        return distance_impl(first, last, iterator_category_t<InputIterator>{});
     }
 }
+
+#endif // CPPUTIL_DISTANCE
