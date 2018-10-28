@@ -34,7 +34,6 @@ namespace cpputil
     auto distance(InputIterator first, InputIterator last) ->
         typename iterator_traits<InputIterator>::difference_type
     {
-        using iterator_category = typename iterator_traits<InputIterator>::iterator_category;
-        return impl::distance_impl(first, last, iterator_category{});
+        return impl::distance_impl(first, last, iterator_category_t<InputIterator>{});
     }
 }

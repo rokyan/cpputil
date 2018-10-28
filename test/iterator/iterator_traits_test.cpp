@@ -62,4 +62,22 @@ namespace test
         using actual_reference = typename cpputil::iterator_traits<TypeParam>::reference;
         EXPECT_SAME_TYPES(actual_reference, traits::add_lvalue_reference_t<traits::remove_pointer_t<TypeParam>>);
     }
+
+    TEST(IteratorTraitsTest, TestHelperTraits)
+    {
+        EXPECT_SAME_TYPES(cpputil::iterator_traits<iterator_mock>::iterator_category,
+            cpputil::iterator_category_t<iterator_mock>);
+
+        EXPECT_SAME_TYPES(cpputil::iterator_traits<iterator_mock>::value_type,
+            cpputil::value_type_t<iterator_mock>);
+
+        EXPECT_SAME_TYPES(cpputil::iterator_traits<iterator_mock>::difference_type,
+            cpputil::difference_type_t<iterator_mock>);
+
+        EXPECT_SAME_TYPES(cpputil::iterator_traits<iterator_mock>::pointer,
+            cpputil::pointer_t<iterator_mock>);
+
+        EXPECT_SAME_TYPES(cpputil::iterator_traits<iterator_mock>::reference,
+            cpputil::reference_t<iterator_mock>);
+    }
 }
