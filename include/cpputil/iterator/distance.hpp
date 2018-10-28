@@ -23,7 +23,7 @@ namespace cpputil
         }
 
         template<typename InputIterator>
-        auto distance_impl(InputIterator first, InputIterator last, bidirectional_iterator_tag) ->
+        auto distance_impl(InputIterator first, InputIterator last, random_access_iterator_tag) ->
             typename iterator_traits<InputIterator>::difference_type
         {
             return last - first;
@@ -34,6 +34,7 @@ namespace cpputil
     auto distance(InputIterator first, InputIterator last) ->
         typename iterator_traits<InputIterator>::difference_type
     {
-        return impl::distance_impl(first, last, typename iterator_traits<InputIterator>::iterator_category{});
+        using iterator_category = typename iterator_traits<InputIterator>::iterator_category;
+        return impl::distance_impl(first, last, iterator_category{});
     }
 }

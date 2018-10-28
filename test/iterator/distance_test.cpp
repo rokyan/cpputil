@@ -52,7 +52,7 @@ namespace test
     }
 
     using input_iterator_mock = iterator_mock<cpputil::input_iterator_tag>;
-    using bidirectional_iterator_mock = iterator_mock<cpputil::bidirectional_iterator_tag>;
+    using random_access_iterator_mock = iterator_mock<cpputil::random_access_iterator_tag>;
 
     TEST(DistanceTest, TestInputIterator)
     {
@@ -71,16 +71,16 @@ namespace test
             "First iterator has been incremented wrong number of times";
     }
 
-    TEST(DistanceTest, TestBidirectionalIterator)
+    TEST(DistanceTest, TestRandomAccessterator)
     {
         std::size_t increment_counter = 0;
         auto callback = [&cnt = increment_counter]() { ++cnt; };
         auto noop = [] {};
 
-        bidirectional_iterator_mock first_bidirectional_it{ 0, callback };
-        bidirectional_iterator_mock last_bidirectional_it{ 4, noop };
+        random_access_iterator_mock first_ra_it{ 0, callback };
+        random_access_iterator_mock last_ra_it{ 4, noop };
 
-        std::size_t distance = cpputil::distance(first_bidirectional_it, last_bidirectional_it);
+        std::size_t distance = cpputil::distance(first_ra_it, last_ra_it);
 
         EXPECT_EQ(distance, 4) <<
             "Wrong distance is calculated";
