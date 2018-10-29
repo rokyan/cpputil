@@ -79,9 +79,12 @@ namespace test
         increment_callback_type increment_callback = [] {};
         decrement_callback_type decrement_callback = [] {};
 
-        friend auto operator- <IteratorCategory>(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> int;
-        friend auto operator== <IteratorCategory>(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> bool;
-        friend auto operator!= <IteratorCategory>(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> bool;
+        friend auto operator-<IteratorCategory>(const iterator_mock<IteratorCategory>&,
+            const iterator_mock<IteratorCategory>&) -> int;
+        friend auto operator==<IteratorCategory>(const iterator_mock<IteratorCategory>&,
+            const iterator_mock<IteratorCategory>&) -> bool;
+        friend auto operator!=<IteratorCategory>(const iterator_mock<IteratorCategory>&,
+            const iterator_mock<IteratorCategory>&) -> bool;
 
     };
 
