@@ -1,7 +1,7 @@
 #include <gtest.hpp>
 #include <distance.hpp>
-#include <functional>
 #include "iterator_mocks.hpp"
+#include <functional>
 
 namespace test
 {

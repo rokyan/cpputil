@@ -1,5 +1,5 @@
-#ifndef CPPUTIL_DISTANCE
-#define CPPUTIL_DISTANCE
+#ifndef CPPUTIL_DISTANCE_H
+#define CPPUTIL_DISTANCE_H
 
 #include "iterator_tags.hpp"
 #include "iterator_traits.hpp"
@@ -36,4 +36,4 @@ namespace cpputil
     }
 }
 
-#endif // CPPUTIL_DISTANCE
+#endif // CPPUTIL_DISTANCE_H
