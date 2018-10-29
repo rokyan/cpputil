@@ -1,5 +1,5 @@
-#ifndef CPPUTIL_ITERATOR_TRAITS
-#define CPPUTIL_ITERATOR_TRAITS
+#ifndef CPPUTIL_ITERATOR_TRAITS_H
+#define CPPUTIL_ITERATOR_TRAITS_H
 
 #include "iterator_tags.hpp"
 #include "..\traits\traits.hpp"
@@ -64,4 +64,4 @@ namespace cpputil
     using reference_t = typename iterator_traits<T>::reference;
 }
 
-#endif // CPPUTIL_ITERATOR_TRAITS
+#endif // CPPUTIL_ITERATOR_TRAITS_H

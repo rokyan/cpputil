@@ -1,5 +1,5 @@
-#ifndef CPPUTIL_ITERATOR_MOCKS
-#define CPPUTIL_ITERATOR_MOCKS
+#ifndef CPPUTIL_ITERATOR_MOCKS_H
+#define CPPUTIL_ITERATOR_MOCKS_H
 
 #include <iterator_tags.hpp>
 
@@ -9,14 +9,11 @@ namespace test
     class iterator_mock;
 
     template<typename IteratorCategory>
-    auto operator-(const iterator_mock<IteratorCategory>&,
-        const iterator_mock<IteratorCategory>&) -> std::size_t;
+    auto operator-(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> int;
     template<typename IteratorCategory>
-    auto operator==(const iterator_mock<IteratorCategory>&,
-        const iterator_mock<IteratorCategory>&) -> bool;
+    auto operator==(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> bool;
     template<typename IteratorCategory>
-    auto operator!=(const iterator_mock<IteratorCategory>&,
-        const iterator_mock<IteratorCategory>&) -> bool;
+    auto operator!=(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> bool;
 
     template<typename IteratorCategory>
     class iterator_mock
@@ -24,7 +21,7 @@ namespace test
     public:
         // value_type, pointer and reference actual values are insufficient for tests.
         using iterator_category = IteratorCategory;
-        using difference_type = std::size_t;
+        using difference_type = int;
         using value_type = void;
         using pointer = void;
         using reference = void;
@@ -34,23 +31,35 @@ namespace test
         using decrement_callback_type = std::function<void()>;
 
     public:
-        iterator_mock(std::size_t value)
+        iterator_mock(int value)
             : value{ value }
         {}
 
         auto operator++() -> iterator_mock&
         {
-            increment_callback();
             ++value;
-
+            increment_callback();
             return *this;
         }
 
         auto operator--() -> iterator_mock&
         {
-            decrement_callback();
             --value;
+            decrement_callback();
+            return *this;
+        }
 
+        auto operator+=(int n) -> iterator_mock&
+        {
+            value += n;
+            increment_callback();
+            return *this;
+        }
+
+        auto operator-=(int n) -> iterator_mock&
+        {
+            value -= n;
+            decrement_callback();
             return *this;
         }
 
@@ -65,43 +74,38 @@ namespace test
         }
 
     private:
-        std::size_t value;
+        int value;
 
         increment_callback_type increment_callback = [] {};
         decrement_callback_type decrement_callback = [] {};
 
-        friend auto operator- <IteratorCategory>(const iterator_mock<IteratorCategory>&,
-            const iterator_mock<IteratorCategory>&) -> std::size_t;
-        friend auto operator== <IteratorCategory>(const iterator_mock<IteratorCategory>&,
-            const iterator_mock<IteratorCategory>&) -> bool;
-        friend auto operator!= <IteratorCategory>(const iterator_mock<IteratorCategory>&,
-            const iterator_mock<IteratorCategory>&) -> bool;
+        friend auto operator- <IteratorCategory>(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> int;
+        friend auto operator== <IteratorCategory>(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> bool;
+        friend auto operator!= <IteratorCategory>(const iterator_mock<IteratorCategory>&, const iterator_mock<IteratorCategory>&) -> bool;
 
     };
 
     template<typename IteratorCategory>
-    auto operator-(const iterator_mock<IteratorCategory>& left,
-        const iterator_mock<IteratorCategory>& right) -> std::size_t
+    auto operator-(const iterator_mock<IteratorCategory>& left, const iterator_mock<IteratorCategory>& right) -> int
     {
         return left.value - right.value;
     }
 
     template<typename IteratorCategory>
-    auto operator==(const iterator_mock<IteratorCategory>& left,
-        const iterator_mock<IteratorCategory>& right) -> bool
+    auto operator==(const iterator_mock<IteratorCategory>& left, const iterator_mock<IteratorCategory>& right) -> bool
     {
         return left.value == right.value;
     }
 
     template<typename IteratorCategory>
-    auto operator!=(const iterator_mock<IteratorCategory>& left,
-        const iterator_mock<IteratorCategory>& right) -> bool
+    auto operator!=(const iterator_mock<IteratorCategory>& left, const iterator_mock<IteratorCategory>& right) -> bool
     {
         return left.value != right.value;
     }
 
     using input_iterator_mock = iterator_mock<cpputil::input_iterator_tag>;
+    using bidirectional_iterator_mock = iterator_mock<cpputil::bidirectional_iterator_tag>;
     using random_access_iterator_mock = iterator_mock<cpputil::random_access_iterator_tag>;
 }
 
-#endif // CPPUTIL_ITERATOR_MOCKS
+#endif // CPPUTIL_ITERATOR_MOCKS_H

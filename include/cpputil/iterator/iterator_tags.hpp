@@ -1,5 +1,5 @@
-#ifndef CPPUTIL_ITERATOR_TAGS
-#define CPPUTIL_ITERATOR_TAGS
+#ifndef CPPUTIL_ITERATOR_TAGS_H
+#define CPPUTIL_ITERATOR_TAGS_H
 
 #include <iterator>
 
@@ -12,4 +12,4 @@ namespace cpputil
     using random_access_iterator_tag = std::random_access_iterator_tag;
 }
 
-#endif // CPPUTIL_ITERATOR_TAGS
+#endif // CPPUTIL_ITERATOR_TAGS_H
