@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_INTERGRAL_CONSTANT_HPP
+#define CPPUTIL_INTERGRAL_CONSTANT_HPP
 
 namespace traits
 {
@@ -20,3 +21,5 @@ namespace traits
     using false_type = bool_constant<false>;
     using true_type = bool_constant<true>;
 }
+
+#endif // CPPUTIL_INTERGRAL_CONSTANT_HPP

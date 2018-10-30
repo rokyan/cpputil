@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_IS_FUNCTION_HPP
+#define CPPUTIL_IS_FUNCTION_HPP
 
 #include "integral_constant.hpp"
 
@@ -155,3 +156,5 @@ namespace traits
     template<typename T>
     inline constexpr auto is_function_v = is_function<T>::value;
 }
+
+#endif // CPPUTIL_IS_FUNCTION_HPP

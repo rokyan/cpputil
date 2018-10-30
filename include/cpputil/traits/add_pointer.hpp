@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_ADD_POINTER_HPP
+#define CPPUTIL_ADD_POINTER_HPP
 
 #include "identity.hpp"
 #include "void_t.hpp"
@@ -17,3 +18,5 @@ namespace traits
     template<typename T>
     using add_pointer_t = typename add_pointer<T>::type;
 }
+
+#endif // CPPUTIL_ADD_POINTER_HPP

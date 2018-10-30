@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_IS_SAME_HPP
+#define CPPUTIL_IS_SAME_HPP
 
 #include "integral_constant.hpp"
 
@@ -15,3 +16,5 @@ namespace traits
     template<typename T, typename U>
     inline constexpr auto is_same_v = is_same<T, U>::value;
 }
+
+#endif // CPPUTIL_IS_SAME_HPP
