@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_IS_WRITABLE_TO_STREAM_HPP
+#define CPPUTIL_IS_WRITABLE_TO_STREAM_HPP
 
 #include "integral_constant.hpp"
 #include "declval.hpp"
@@ -22,3 +23,5 @@ namespace traits
     template<typename T>
     inline constexpr auto is_writable_to_stream_v = is_writable_to_stream<T>::value;
 }
+
+#endif // CPPUTIL_IS_WRITABLE_TO_STREAM_HPP

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_ADD_CV_HPP
+#define CPPUTIL_ADD_CV_HPP
 
 #include "identity.hpp"
 
@@ -11,3 +12,5 @@ namespace traits
     template<typename T>
     using add_cv_t = typename add_cv<T>::type;
 }
+
+#endif // CPPUTIL_ADD_CV_HPP

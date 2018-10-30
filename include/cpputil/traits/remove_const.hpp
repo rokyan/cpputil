@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_REMOVE_CONST_HPP
+#define CPPUTIL_REMOVE_CONST_HPP
 
 #include "integral_constant.hpp"
 #include "identity.hpp"
@@ -16,3 +17,5 @@ namespace traits
     template<typename T>
     using remove_const_t = typename remove_const<T>::type;
 }
+
+#endif // CPPUTIL_REMOVE_CONST_HPP

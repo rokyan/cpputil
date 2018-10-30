@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_DECAY_HPP
+#define CPPUTIL_DECAY_HPP
 
 #include "identity.hpp"
 #include "is_array.hpp"
@@ -29,3 +30,5 @@ namespace traits
     template<typename T>
     using decay_t = typename decay<T>::type;
 }
+
+#endif // CPPUTIL_DECAY_HPP

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_IS_READABLE_FROM_STREAM_HPP
+#define CPPUTIL_IS_READABLE_FROM_STREAM_HPP
 
 #include "integral_constant.hpp"
 #include "declval.hpp"
@@ -23,3 +24,5 @@ namespace traits
     template<typename T>
     inline constexpr auto is_readable_from_stream_v = is_readable_from_stream<T>::value;
 }
+
+#endif // CPPUTIL_IS_READABLE_FROM_STREAM_HPP

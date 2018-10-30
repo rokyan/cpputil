@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_IDENTITY_HPP
+#define CPPUTIL_IDENTITY_HPP
 
 namespace traits
 {
@@ -11,3 +12,5 @@ namespace traits
     template<typename T>
     using identity_t = typename identity<T>::type;
 }
+
+#endif // CPPUTIL_IDENTITY_HPP
