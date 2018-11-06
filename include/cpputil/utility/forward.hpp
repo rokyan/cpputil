@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_FORWARD_HPP
+#define CPPUTIL_FORWARD_HPP
 
 #include <type_traits>
 
@@ -16,3 +17,5 @@ namespace cpputil
         return static_cast<T&&>(t);
     }
 }
+
+#endif // CPPUTIL_FORWARD_HPP
