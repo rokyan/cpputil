@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_REFERENCE_WRAPPER_HPP
+#define CPPUTIL_REFERENCE_WRAPPER_HPP
 
 #include <type_traits>
 #include "forward.hpp"
@@ -85,3 +86,5 @@ namespace cpputil
     template<typename T>
     void cref(const T&&) = delete;
 }
+
+#endif // CPPUTIL_REFERENCE_WRAPPER_HPP
