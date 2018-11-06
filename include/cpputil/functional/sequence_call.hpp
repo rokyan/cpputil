@@ -2,7 +2,8 @@
  * Based on https://stackoverflow.com/a/38024297/5507349
  */
 
-#pragma once
+#ifndef CPPUTIL_SEQUENCE_CALL_HPP
+#define CPPUTIL_SEQUENCE_CALL_HPP
 
 #include <forward.hpp>
 
@@ -47,3 +48,5 @@ namespace cpputil
         return detail::sequence_call<Callables...>(callables...);
     }
 }
+
+#endif // CPPUTIL_SEQUENCE_CALL_HPP

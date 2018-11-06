@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_NOT_FN_HPP
+#define CPPUTIL_NOT_FN_HPP
 
 #include <forward.hpp>
 #include <traits.hpp>
@@ -45,3 +46,5 @@ namespace cpputil
         return not_fn_wrapper<traits::decay_t<F>>(cpputil::forward<F>(fn), not_fn_tag{});
     }
 }
+
+#endif // CPPUTIL_NOT_FN_HPP

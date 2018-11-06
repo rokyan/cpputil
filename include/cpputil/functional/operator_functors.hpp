@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_OPERATOR_FUNCTORS_HPP
+#define CPPUTIL_OPERATOR_FUNCTORS_HPP
 
 #include "forward.hpp"
 
@@ -349,3 +350,5 @@ namespace cpputil
             TRANSPARENT_FUNCTOR_FCO_IMPL(~cpputil::forward<T>(x))
     };
 }
+
+#endif // CPPUTIL_OPERATOR_FUNCTORS_HPP
