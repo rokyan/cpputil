@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_SCOPED_THREAD_HPP
+#define CPPUTIL_SCOPED_THREAD_HPP
 
 #include <thread>
 #include <move.hpp>
@@ -32,3 +33,5 @@ namespace cpputil
         std::thread thread;
     };
 }
+
+#endif // CPPUTIL_SCOPED_THREAD_HPP
