@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_APPLY_HPP
+#define CPPUTIL_APPLY_HPP
 
 #include <utility> // for std::tuple and std::index_sequence.
 #include <forward.hpp>
@@ -22,3 +23,5 @@ namespace cpputil
         return detail::apply(cpputil::forward<Func>(f), cpputil::forward<Tuple>(t), index_sequence_type{});
     }
 }
+
+#endif // CPPUTIL_APPLY_HPP

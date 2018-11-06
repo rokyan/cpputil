@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_EXCHANGE_HPP
+#define CPPUTIL_EXCHANGE_HPP
 
 #include "move.hpp"
 #include "forward.hpp"
@@ -13,3 +14,5 @@ namespace cpputil
         return old_value;
     }
 }
+
+#endif // CPPUTIL_EXCHANGE_HPP

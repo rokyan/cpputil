@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_LITERALS_HPP
+#define CPPUTIL_LITERALS_HPP
 
 #include <cstddef> // for std::size_t
 
@@ -21,3 +22,5 @@ namespace cpputil
         }
     }
 }
+
+#endif //CPPUTIL_LITERALS_HPP

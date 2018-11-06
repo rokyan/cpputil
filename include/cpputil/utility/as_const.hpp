@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_AS_CONST_HPP
+#define CPPUTIL_AS_CONST_HPP
 
 #include <traits.hpp>
 
@@ -13,3 +14,5 @@ namespace cpputil
     template<typename T>
     void as_const(const T&&) = delete;
 }
+
+#endif // CPPUTIL_AS_CONST_HPP

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_MOVE_HPP
+#define CPPUTIL_MOVE_HPP
 
 #include <traits.hpp>
 // TODO: remove <type_traits> once all required traits are implemented in traits.hpp
@@ -25,3 +26,5 @@ namespace cpputil
         return cpputil::move(t);
     }
 }
+
+#endif // CPPUTIL_MOVE_HPP

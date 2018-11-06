@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_FOREACH_ARGUMENT_HPP
+#define CPPUTIL_FOREACH_ARGUMENT_HPP
 
 #include <type_traits>
 #include <utility>
@@ -38,3 +39,5 @@ namespace cpputil
         detail::foreach_tuple_argument_impl(cpputil::forward<Func>(f), cpputil::forward<Tuple>(t), index_sequence_type{});
     }
 }
+
+#endif // CPPUTIL_FOREACH_ARGUMENT_HPP
