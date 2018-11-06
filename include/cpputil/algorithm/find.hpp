@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CPPUTIL_FIND_HPP
+#define CPPUTIL_FIND_HPP
 
 namespace cpputil
 {
@@ -44,3 +45,5 @@ namespace cpputil
         return first;
     }
 }
+
+#endif // CPPUTIL_FIND_HPP
