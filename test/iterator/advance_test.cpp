@@ -52,11 +52,13 @@ namespace test
         it.set_decrement_callback(decrement_callback);
 
         cpputil::advance(it, 4);
-        cpputil::advance(it, -4);
 
         EXPECT_EQ(increment_counter, 1) <<
             "Iterator has been incremented wrong number of times";
-        EXPECT_EQ(decrement_counter, 1) <<
-            "Iterator has been decremented wrong number of times";
+
+        cpputil::advance(it, -4);
+
+        EXPECT_EQ(increment_counter, 2) <<
+            "Iterator has been incremented wrong number of times";
     }
 }
