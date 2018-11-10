@@ -10,9 +10,9 @@ namespace cpputil
     {
     public:
         scoped_thread(std::thread thread)
-            : thread(cpputil::move(thread))
+            : wrapped_thread(cpputil::move(thread))
         {
-            if (!thread.joinable())
+            if (!wrapped_thread.joinable())
             {
                 throw std::logic_error("thread is not joinable");
             }
@@ -20,7 +20,7 @@ namespace cpputil
 
         ~scoped_thread()
         {
-            thread.join();
+            wrapped_thread.join();
         }
 
         scoped_thread(const scoped_thread&) = delete;
@@ -30,7 +30,7 @@ namespace cpputil
         scoped_thread& operator=(scoped_thread&&) = default;
 
     private:
-        std::thread thread;
+        std::thread wrapped_thread;
     };
 }
 
