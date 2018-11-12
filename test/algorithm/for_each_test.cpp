@@ -1,5 +1,5 @@
 #include <gtest.hpp>
-#include <for_each.hpp>
+#include <algorithm.hpp>
 #include <vector>
 
 namespace test
