@@ -7,8 +7,7 @@ namespace cpputil
 {
 
 template<typename InputIterator, typename T>
-constexpr auto count(InputIterator first, InputIterator last, const T& value) ->
-    difference_type_t<InputIterator>
+constexpr auto count(InputIterator first, InputIterator last, const T& value) -> difference_type_t<InputIterator>
 {
     difference_type_t<InputIterator> counter = 0;
 
@@ -21,8 +20,7 @@ constexpr auto count(InputIterator first, InputIterator last, const T& value) ->
 }
 
 template<typename InputIterator, typename Pred>
-constexpr auto count_if(InputIterator first, InputIterator last, Pred predicate) ->
-    difference_type_t<InputIterator>
+constexpr auto count_if(InputIterator first, InputIterator last, Pred predicate) -> difference_type_t<InputIterator>
 {
     difference_type_t<InputIterator> counter = 0;
 

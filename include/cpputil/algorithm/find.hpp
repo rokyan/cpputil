@@ -5,8 +5,7 @@ namespace cpputil
 {
 
 template<typename InputIterator, typename T>
-constexpr auto find(InputIterator first, InputIterator last, const T& value) ->
-    InputIterator
+constexpr auto find(InputIterator first, InputIterator last, const T& value) -> InputIterator
 {
     for (; first != last; ++first)
     {
@@ -20,8 +19,7 @@ constexpr auto find(InputIterator first, InputIterator last, const T& value) ->
 }
 
 template<typename InputIterator, typename UnaryPredicate>
-constexpr auto find_if(InputIterator first, InputIterator last, UnaryPredicate predicate) ->
-    InputIterator
+constexpr auto find_if(InputIterator first, InputIterator last, UnaryPredicate predicate) -> InputIterator
 {
     for (; first != last; ++first)
     {
@@ -35,8 +33,7 @@ constexpr auto find_if(InputIterator first, InputIterator last, UnaryPredicate p
 }
 
 template<typename InputIterator, typename UnaryPredicate>
-constexpr auto find_if_not(InputIterator first, InputIterator last, UnaryPredicate predicate) ->
-    InputIterator
+constexpr auto find_if_not(InputIterator first, InputIterator last, UnaryPredicate predicate) -> InputIterator
 {
     for (; first != last; ++first)
     {
@@ -75,7 +72,7 @@ constexpr auto find_first_of(InputIterator first1, InputIterator last1,
     {
         for (ForwardIterator iter = first2; iter != last2; ++iter)
         {
-            if (predicate(*iter ,*first1))
+            if (predicate(*iter, *first1))
             {
                 return first1;
             }
