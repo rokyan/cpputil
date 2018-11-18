@@ -6,16 +6,18 @@
 
 namespace traits
 {
-    template<typename T>
-    struct remove_volatile :
-        identity<T> {};
 
-    template<typename T>
-    struct remove_volatile<volatile T> :
-        identity<T> {};
+template<typename T>
+struct remove_volatile :
+    identity<T> {};
 
-    template<typename T>
-    using remove_volatile_t = typename remove_volatile<T>::type;
-}
+template<typename T>
+struct remove_volatile<volatile T> :
+    identity<T> {};
+
+template<typename T>
+using remove_volatile_t = typename remove_volatile<T>::type;
+
+} // namespace traits
 
 #endif // CPPUTIL_REMOVE_VOLATILE_HPP
