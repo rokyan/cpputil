@@ -5,8 +5,7 @@ namespace cpputil
 {
 
 template<typename InputIterator, typename Function>
-constexpr auto for_each(InputIterator first, InputIterator last, Function func)
-    -> Function
+constexpr auto for_each(InputIterator first, InputIterator last, Function func) -> Function
 {
     for (; first < last; ++first)
     {
@@ -17,8 +16,7 @@ constexpr auto for_each(InputIterator first, InputIterator last, Function func)
 }
 
 template<typename InputIterator, typename T, typename Function>
-constexpr auto for_each_n(InputIterator first, T n, Function func)
-    -> Function
+constexpr auto for_each_n(InputIterator first, T n, Function func) -> Function
 {
     for (T i = 0; i < n; ++first, static_cast<void>(++i))
     {
