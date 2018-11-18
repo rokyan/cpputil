@@ -6,32 +6,34 @@
 
 namespace cpputil
 {
-    class scoped_thread
+
+class scoped_thread
+{
+public:
+    scoped_thread(std::thread thread)
+        : wrapped_thread(cpputil::move(thread))
     {
-    public:
-        scoped_thread(std::thread thread)
-            : wrapped_thread(cpputil::move(thread))
+        if (!wrapped_thread.joinable())
         {
-            if (!wrapped_thread.joinable())
-            {
-                throw std::logic_error("thread is not joinable");
-            }
+            throw std::logic_error("thread is not joinable");
         }
+    }
 
-        ~scoped_thread()
-        {
-            wrapped_thread.join();
-        }
+    ~scoped_thread()
+    {
+        wrapped_thread.join();
+    }
 
-        scoped_thread(const scoped_thread&) = delete;
-        scoped_thread& operator=(const scoped_thread&) = delete;
+    scoped_thread(const scoped_thread&) = delete;
+    scoped_thread& operator=(const scoped_thread&) = delete;
 
-        scoped_thread(scoped_thread&&) = default;
-        scoped_thread& operator=(scoped_thread&&) = default;
+    scoped_thread(scoped_thread&&) = default;
+    scoped_thread& operator=(scoped_thread&&) = default;
 
-    private:
-        std::thread wrapped_thread;
-    };
-}
+private:
+    std::thread wrapped_thread;
+};
 
-#endif // CPPUTIL_SCOPED_THREAD_HPP
+} // namespace cpputil
+
+#endif // CPPUTIL_SCOPED_THREAD_HP
