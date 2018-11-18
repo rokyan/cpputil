@@ -3,8 +3,10 @@
 
 namespace traits
 {
-    template<typename... Ts>
-    using void_t = void;
-} 
+
+template<typename... Ts>
+using void_t = void;
+
+} // namespace traits
 
 #endif // CPPUTIL_VOID_T_HPP

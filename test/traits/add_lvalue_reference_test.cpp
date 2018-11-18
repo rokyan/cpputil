@@ -3,15 +3,17 @@
 
 namespace test
 {
-    using traits::add_lvalue_reference_t;
 
-    TEST(TraitsTest, TestGeneralCase)
-    {
-        EXPECT_SAME_TYPES(T0&, add_lvalue_reference_t<T0>);
-    }
+using traits::add_lvalue_reference_t;
 
-    TEST(TraitsTest, TestNonReferenceable)
-    {
-        EXPECT_SAME_TYPES(void, add_lvalue_reference_t<void>);
-    }
+TEST(TraitsTest, TestGeneralCase)
+{
+    EXPECT_SAME_TYPES(T0&, add_lvalue_reference_t<T0>);
 }
+
+TEST(TraitsTest, TestNonReferenceable)
+{
+    EXPECT_SAME_TYPES(void, add_lvalue_reference_t<void>);
+}
+
+} // namespace test
