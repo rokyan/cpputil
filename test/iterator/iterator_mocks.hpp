@@ -1,5 +1,5 @@
-#ifndef CPPUTIL_ITERATOR_MOCKS_H
-#define CPPUTIL_ITERATOR_MOCKS_H
+#ifndef CPPUTIL_ITERATOR_MOCKS_HPP
+#define CPPUTIL_ITERATOR_MOCKS_HPP
 
 #include <iterator_tags.hpp>
 
@@ -125,4 +125,4 @@ using random_access_iterator_mock =
 
 } // namespace test
 
-#endif // CPPUTIL_ITERATOR_MOCKS_H
+#endif // CPPUTIL_ITERATOR_MOCKS_HPP
