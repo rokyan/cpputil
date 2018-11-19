@@ -67,4 +67,3 @@ using reference_t = typename iterator_traits<T>::reference;
 } // namespace cpputil
 
 #endif // CPPUTIL_ITERATOR_TRAITS_HPP
-
