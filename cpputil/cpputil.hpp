@@ -1,13 +1,11 @@
-#include "cpputil\functional\not_fn.hpp"
-#include "cpputil\functional\operator_functors.hpp"
-#include "cpputil\functional\reference_wrapper.hpp"
-#include "cpputil\functional\sequence_call.hpp"
+#ifndef CPPUTIL_HPP
+#define CPPUTIL_HPP
+
+#include "cpputil\algorithm\algorithm.hpp"
+#include "cpputil\functional\functional.hpp"
+#include "cpputil\iterator\iterator.hpp"
+#include "cpputil\thread\thread.hpp"
 #include "cpputil\traits\traits.hpp"
-#include "cpputil\thread\scoped_tread.hpp"
-#include "cpputil\utility\apply.hpp"
-#include "cpputil\utility\as_const.hpp"
-#include "cpputil\utility\exchange.hpp"
-#include "cpputil\utility\foreach_argument.hpp"
-#include "cpputil\utility\forward.hpp"
-#include "cpputil\utility\literals.hpp"
-#include "cpputil\utility\move.hpp"
+#include "cpputil\utility\utility.hpp"
+
+#endif // CPPUTIL_HPP

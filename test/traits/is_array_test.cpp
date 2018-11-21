@@ -3,14 +3,16 @@
 
 namespace test
 {
-    using traits::is_array_v;
 
-    TEST(TraitsTest, TestIsArray)
-    {
-        EXPECT_TRUE(is_array_v<T0[]>);
-        EXPECT_TRUE(is_array_v<T0[1]>);
+using traits::is_array_v;
 
-        EXPECT_TRUE(is_array_v<T0[][1]>);
-        EXPECT_TRUE(is_array_v<T0[1][1]>);
-    }
+TEST(TraitsTest, TestIsArray)
+{
+    EXPECT_TRUE(is_array_v<T0[]>);
+    EXPECT_TRUE(is_array_v<T0[1]>);
+
+    EXPECT_TRUE(is_array_v<T0[][1]>);
+    EXPECT_TRUE(is_array_v<T0[1][1]>);
 }
+
+} // namespace test
