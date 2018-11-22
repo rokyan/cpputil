@@ -9,8 +9,8 @@ include_directories(
     ${CPPUTIL_SRC_DIR}/algorithm
     ${CPPUTIL_SRC_DIR}/functional
     ${CPPUTIL_SRC_DIR}/iterator
-    ${CPPUTIL_SRC_DIR}/traits
     ${CPPUTIL_SRC_DIR}/thread
+    ${CPPUTIL_SRC_DIR}/traits
     ${CPPUTIL_SRC_DIR}/utility
 )
 
