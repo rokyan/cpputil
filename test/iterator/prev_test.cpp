@@ -34,13 +34,13 @@ TEST(PrevTest, TestSubtraction)
 
     const bidirectional_iterator_mock ret_it_2 = cpputil::prev(it, 2);
 
-    EXPECT_EQ(decrement_counter, -3);
-    EXPECT_EQ(ret_it_1.get_value(), -3);
+    EXPECT_EQ(decrement_counter, 3);
+    EXPECT_EQ(ret_it_2.get_value(), -3);
 
     const bidirectional_iterator_mock ret_it_3 = cpputil::prev(it, 3);
 
     EXPECT_EQ(decrement_counter, 6);
-    EXPECT_EQ(ret_it_1.get_value(), 6);
+    EXPECT_EQ(ret_it_3.get_value(), 6);
 }
 
 } // namespace test

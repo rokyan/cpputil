@@ -35,12 +35,12 @@ TEST(NextTest, TestAddition)
     const input_iterator_mock ret_it_2 = cpputil::next(it, 2);
 
     EXPECT_EQ(increment_counter, 3);
-    EXPECT_EQ(ret_it_1.get_value(), 3);
+    EXPECT_EQ(ret_it_2.get_value(), 3);
 
     const input_iterator_mock ret_it_3 = cpputil::next(it, 3);
 
     EXPECT_EQ(increment_counter, 6);
-    EXPECT_EQ(ret_it_1.get_value(), 6);
+    EXPECT_EQ(ret_it_3.get_value(), 6);
 }
 
 } // namespace test
