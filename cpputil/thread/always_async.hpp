@@ -14,6 +14,6 @@ auto always_async(Func&& func, Args&&... args)
         cpputil::forward<Func>(func), cpputil::forward<Args>(args)...);
 }
 
-}
+} // namespace cpputil
 
 #endif // CPPUTIL_ALWAYS_ASYNC_HPP
