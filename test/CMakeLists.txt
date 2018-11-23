@@ -29,15 +29,14 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
 # Project Setup
 
 set(CPPUTIL_DIR "${CMAKE_SOURCE_DIR}/cpputil")
-set(CPPUTIL_SRC_DIR "${CPPUTIL_DIR}/src")
 
 include_directories(
-    ${CPPUTIL_SRC_DIR}/algorithm
-    ${CPPUTIL_SRC_DIR}/functional
-    ${CPPUTIL_SRC_DIR}/iterator
-    ${CPPUTIL_SRC_DIR}/traits
-    ${CPPUTIL_SRC_DIR}/thread
-    ${CPPUTIL_SRC_DIR}/utility
+    ${CPPUTIL_DIR}/algorithm
+    ${CPPUTIL_DIR}/functional
+    ${CPPUTIL_DIR}/iterator
+    ${CPPUTIL_DIR}/traits
+    ${CPPUTIL_DIR}/thread
+    ${CPPUTIL_DIR}/utility
     ${CMAKE_SOURCE_DIR}/test/algorithm
     ${CMAKE_SOURCE_DIR}/test/functional
     ${CMAKE_SOURCE_DIR}/test/iterator
