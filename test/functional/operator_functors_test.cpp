@@ -1,5 +1,5 @@
 #include <gtest.hpp>
-#include <operator_functors.hpp>
+#include <functional.hpp>
 #include <traits.hpp>
 
 namespace test

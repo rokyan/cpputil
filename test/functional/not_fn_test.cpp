@@ -1,5 +1,5 @@
 #include <gtest.hpp>
-#include <not_fn.hpp>
+#include <functional.hpp>
 #include <not_fn_test_types.hpp>
 
 namespace test

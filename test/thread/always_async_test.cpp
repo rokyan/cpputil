@@ -1,5 +1,5 @@
 #include <gtest.hpp>
-#include <always_async.hpp>
+#include <thread.hpp>
 
 namespace test
 {

@@ -1,5 +1,5 @@
 #include <gtest.hpp>
-#include <scoped_thread.hpp>
+#include <thread.hpp>
 #include <move.hpp>
 #include <type_traits>
 
@@ -36,4 +36,3 @@ TEST(ScopedThreadTest, TestThrowingConstructor)
 }
 
 } // namespace test
-

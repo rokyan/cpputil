@@ -1,5 +1,5 @@
 #include <gtest.hpp>
-#include <hierarchical_mutex.hpp>
+#include <thread.hpp>
 #include <type_traits>
 
 namespace test

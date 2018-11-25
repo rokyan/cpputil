@@ -1,5 +1,5 @@
 #include <gtest.hpp>
-#include <reference_wrapper.hpp>
+#include <functional.hpp>
 
 namespace test
 {
