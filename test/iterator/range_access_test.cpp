@@ -53,6 +53,11 @@ TEST(RangeAccessTest, TestBeginForArrays)
     EXPECT_SAME_TYPES(decltype(cbegin(carr)), const int*) <<
         "Wrong type produced by cbegin function";
 
+    EXPECT_TRUE(noexcept(begin(arr))) <<
+        "Wrong noexcept result: begin is non-throwing for arrays";
+    EXPECT_TRUE(noexcept(cbegin(arr))) <<
+        "Wrong noexcept result: cbegin is non-throwing for arrays";
+
     EXPECT_EQ(begin(arr), arr) <<
         "Wrong value produced by begin function";
     EXPECT_EQ(begin(carr), carr) <<
@@ -100,6 +105,11 @@ TEST(RangeAccessTest, TestReverseBeginForArrays)
         "Wrong type produced by crbegin function";
     EXPECT_SAME_TYPES(decltype(crbegin(carr)), std::reverse_iterator<const int*>) <<
         "Wrong type produced by crbegin function";
+
+    EXPECT_TRUE(noexcept(rbegin(arr))) <<
+        "Wrong noexcept result: rbegin is non-throwing for arrays";
+    EXPECT_TRUE(noexcept(crbegin(arr))) <<
+        "Wrong noexcept result: crbegin is non-throwing for arrays";
 }
 
 TEST(RangeAccessTest, TestEnd)
@@ -141,6 +151,11 @@ TEST(RangeAccessTest, TestEndForArrays)
         "Wrong type produced by cend function";
     EXPECT_SAME_TYPES(decltype(cend(carr)), const int*) <<
         "Wrong type produced by cend function";
+
+    EXPECT_TRUE(noexcept(end(arr))) <<
+        "Wrong noexcept result: end is non-throwing for arrays";
+    EXPECT_TRUE(noexcept(cend(arr))) <<
+        "Wrong noexcept result: cend is non-throwing for arrays";
 
     EXPECT_EQ(end(arr), arr + arr_size) <<
         "Wrong value produced by end function";
@@ -189,6 +204,11 @@ TEST(RangeAccessTest, TestReverseEndForArrays)
         "Wrong type produced by crend function";
     EXPECT_SAME_TYPES(decltype(crend(carr)), std::reverse_iterator<const int*>) <<
         "Wrong type produced by crend function";
+
+    EXPECT_TRUE(noexcept(rend(arr))) <<
+        "Wrong noexcept result: rend is non-throwing for arrays";
+    EXPECT_TRUE(noexcept(crend(arr))) <<
+        "Wrong noexcept result: crend is non-throwing for arrays";
 }
 
 } // namespace test
