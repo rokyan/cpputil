@@ -1,6 +1,6 @@
 #include <gtest.hpp>
-#include <next.hpp>
-#include "iterator_mocks.hpp"
+#include <iterator_operations.hpp>
+#include <iterator_mocks.hpp>
 
 namespace test
 {
