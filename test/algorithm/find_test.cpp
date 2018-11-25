@@ -1,7 +1,7 @@
 #include <gtest.hpp>
 #include <algorithm.hpp>
 #include <range_access.hpp>
-#include <next.hpp>
+#include <iterator_operations.hpp>
 #include <vector>
 
 namespace test
