@@ -1,5 +1,6 @@
 #include <gtest.hpp>
 #include <sequence_call.hpp>
+#include <range_access.hpp>
 #include <algorithm>
 #include <string>
 
@@ -25,14 +26,14 @@ namespace test
 
         text = cpputil::make_sequence_call(
             [](std::string& text) -> std::string& {
-                text.erase(std::remove_if(std::begin(text), std::end(text), ::isspace),
-                    std::cend(text));
+                text.erase(std::remove_if(cpputil::begin(text), cpputil::end(text), ::isspace),
+                    cpputil::cend(text));
 
                 return text;
             },
             [](std::string& text) -> std::string& {
-                std::transform(std::begin(text), std::end(text),
-                    std::begin(text), ::toupper);
+                std::transform(cpputil::begin(text), cpputil::end(text),
+                    cpputil::begin(text), ::toupper);
 
                 return text;
             }
