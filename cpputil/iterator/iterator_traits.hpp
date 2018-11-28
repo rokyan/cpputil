@@ -2,7 +2,7 @@
 #define CPPUTIL_ITERATOR_TRAITS_HPP
 
 #include "iterator_tags.hpp"
-#include "..\traits\traits.hpp"
+#include <traits.hpp>
 
 namespace cpputil
 {
