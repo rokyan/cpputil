@@ -23,7 +23,7 @@ struct sequence_call : Callable, sequence_call<Callables...>
         noexcept(noexcept(sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...))))
         -> decltype(sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...)))
     {
-        return sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...));
+        return this->sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...));
     }
 };
 
