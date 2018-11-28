@@ -49,7 +49,9 @@ include_directories(
 file(GLOB_RECURSE TEST_HEADERS "*.hpp")
 file(GLOB_RECURSE TEST_SOURCES "*.cpp")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /Za /permissive-")
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /Za /permissive-")
+endif()
 
 add_executable(cpputil-test ${TEST_SOURCES} ${TEST_HEADERS})
 target_link_libraries(cpputil-test cpputil gtest_main)
