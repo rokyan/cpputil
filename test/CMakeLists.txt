@@ -26,9 +26,6 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
                  ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
                  EXCLUDE_FROM_ALL)
 
-# Ubuntu doesn't implicitly support gtest headers inclusion
-include_directories(${gtest_SOURCE_DIR}/include)
-
 # Project Setup
 
 set(CPPUTIL_DIR "${CMAKE_SOURCE_DIR}/cpputil")
