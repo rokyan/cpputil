@@ -20,10 +20,11 @@ struct sequence_call : Callable, sequence_call<Callables...>
 
     template<typename... Args>
     constexpr auto operator()(Args&&... args) const
-        noexcept(noexcept(sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...))))
+        // Temporarily disable noexcept as gcc complains about it (works with MSVC and Clang)
+        // noexcept(noexcept(sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...))))
         -> decltype(sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...)))
     {
-        return this->sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...));
+        return sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...));
     }
 };
 
