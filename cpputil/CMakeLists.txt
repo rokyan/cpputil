@@ -24,4 +24,4 @@ endif()
 
 add_library(cpputil STATIC ${CPPUTIL_HEADERS} ${CPPUTIL_SOURCES})
 
-set_property(TARGET cpputil-test PROPERTY CXX_STANDARD 17)
+set_property(TARGET cpputil PROPERTY CXX_STANDARD 17)
