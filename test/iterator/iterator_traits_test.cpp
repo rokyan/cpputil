@@ -5,19 +5,19 @@ namespace test
 {
     // Test utilities.
 
-    struct iterator_category {};
-    struct value_type {};
-    struct difference_type {};
-    struct pointer {};
-    struct reference {};
+    struct iterator_category_mock {};
+    struct value_type_mock {};
+    struct difference_type_mock {};
+    struct pointer_mock {};
+    struct reference_mock {};
 
     struct iterator_mock
     {
-        using iterator_category = iterator_category;
-        using value_type = value_type;
-        using difference_type = difference_type;
-        using pointer = pointer;
-        using reference = reference;
+        using iterator_category = iterator_category_mock;
+        using value_type = value_type_mock;
+        using difference_type = difference_type_mock;
+        using pointer = pointer_mock;
+        using reference = reference_mock;
     };
 
     // Tests.
