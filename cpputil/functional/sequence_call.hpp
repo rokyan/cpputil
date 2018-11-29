@@ -19,10 +19,7 @@ struct sequence_call : Callable, sequence_call<Callables...>
     {}
 
     template<typename... Args>
-    constexpr auto operator()(Args&&... args) const
-        // Temporarily disable noexcept as gcc complains about it (works with MSVC and Clang)
-        // noexcept(noexcept(sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...))))
-        -> decltype(sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...)))
+    constexpr decltype(auto) operator()(Args&&... args)
     {
         return sequence_call<Callables...>::operator()(Callable::operator()(cpputil::forward<Args>(args)...));
     }
@@ -40,8 +37,6 @@ struct sequence_call<Callable> : Callable
 
 template<typename... Callables>
 constexpr auto make_sequence_call(Callables... callables)
-    noexcept(noexcept(sequence_call<Callables...>(callables...)))
-    -> decltype(sequence_call<Callables...>(callables...))
 {
     static_assert(sizeof...(Callables) > 0, "At least one callable object must be specified");
     return sequence_call<Callables...>(callables...);
