@@ -5,19 +5,19 @@ namespace test
 {
     // Test utilities.
 
-    struct iterator_category_mock {};
-    struct value_type_mock {};
-    struct difference_type_mock {};
-    struct pointer_mock {};
-    struct reference_mock {};
+    struct iterator_category_type {};
+    struct value_type_type {};
+    struct difference_type_type {};
+    struct pointer_type {};
+    struct reference_type {};
 
     struct iterator_mock
     {
-        using iterator_category = iterator_category_mock;
-        using value_type = value_type_mock;
-        using difference_type = difference_type_mock;
-        using pointer = pointer_mock;
-        using reference = reference_mock;
+        using iterator_category = iterator_category_type;
+        using value_type = value_type_type;
+        using difference_type = difference_type_type;
+        using pointer = pointer_type;
+        using reference = reference_type;
     };
 
     // Tests.
@@ -25,19 +25,19 @@ namespace test
     TEST(IteratorTraitsTest, TestIteratorType)
     {
         using actual_iterator_category = cpputil::iterator_traits<iterator_mock>::iterator_category;
-        EXPECT_SAME_TYPES(actual_iterator_category, iterator_category);
+        EXPECT_SAME_TYPES(actual_iterator_category, iterator_category_type);
 
         using actual_value_type = cpputil::iterator_traits<iterator_mock>::value_type;
-        EXPECT_SAME_TYPES(actual_value_type, value_type);
+        EXPECT_SAME_TYPES(actual_value_type, value_type_type);
 
         using actual_difference_type = cpputil::iterator_traits<iterator_mock>::difference_type;
-        EXPECT_SAME_TYPES(actual_difference_type, difference_type);
+        EXPECT_SAME_TYPES(actual_difference_type, difference_type_type);
 
         using actual_pointer = cpputil::iterator_traits<iterator_mock>::pointer;
-        EXPECT_SAME_TYPES(actual_pointer, pointer);
+        EXPECT_SAME_TYPES(actual_pointer, pointer_type);
 
         using actual_reference = cpputil::iterator_traits<iterator_mock>::reference;
-        EXPECT_SAME_TYPES(actual_reference, reference);
+        EXPECT_SAME_TYPES(actual_reference, reference_type);
     }
 
     using test_types = make_test_types<T0*, const T0*, volatile T0*, const volatile T0*>;
