@@ -28,7 +28,7 @@ TEST(SequenceCallTest, TestStringOperationsSequenceCall)
     text = cpputil::make_sequence_call(
         [](std::string& text) -> std::string& {
             text.erase(std::remove_if(cpputil::begin(text), cpputil::end(text), ::isspace),
-                cpputil::cend(text));
+                cpputil::end(text));
 
             return text;
         },

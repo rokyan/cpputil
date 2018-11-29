@@ -13,7 +13,7 @@ using cpputil::reference_wrapper;
 
 TYPED_TEST(ReferenceWrapperTypedTest, TestTypeAlias)
 {
-    EXPECT_SAME_TYPES(reference_wrapper<TypeParam>::type, TypeParam);
+    EXPECT_SAME_TYPES(typename reference_wrapper<TypeParam>::type, TypeParam);
 }
 
 TYPED_TEST(ReferenceWrapperTypedTest, TestConstructors)
