@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.1)
 
 project(cpputil-test)
 
@@ -49,10 +49,10 @@ include_directories(
 file(GLOB_RECURSE TEST_HEADERS "*.hpp")
 file(GLOB_RECURSE TEST_SOURCES "*.cpp")
 
-if(MSVC)
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4 /Za /permissive-")
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
+else("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wshadow")
 endif()
 
 add_executable(cpputil-test ${TEST_SOURCES} ${TEST_HEADERS})
