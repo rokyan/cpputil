@@ -1,5 +1,5 @@
-#ifndef CPPUTIL_OP_OF_HPP
-#define CPPUTIL_OP_OF_HPP
+#ifndef CPPUTIL_RANGE_CHECK_HPP
+#define CPPUTIL_RANGE_CHECK_HPP
 
 #include "find.hpp"
 
@@ -26,4 +26,4 @@ namespace cpputil
 
 } // namespace cpputil
 
-#endif // CPPUTIL_OP_OF_HPP
+#endif // CPPUTIL_RANGE_CHECK_HPP
