@@ -9,27 +9,27 @@ namespace cpputil
 template<typename InputIterator, typename T>
 constexpr auto count(InputIterator first, InputIterator last, const T& value) -> difference_type_t<InputIterator>
 {
-    difference_type_t<InputIterator> counter = 0;
+    difference_type_t<InputIterator> total = 0;
 
     for (; first != last; ++first)
     {
-        if (*first == value) { counter++; }
+        if (*first == value) { total++; }
     }
 
-    return counter;
+    return total;
 }
 
 template<typename InputIterator, typename Pred>
 constexpr auto count_if(InputIterator first, InputIterator last, Pred predicate) -> difference_type_t<InputIterator>
 {
-    difference_type_t<InputIterator> counter = 0;
+    difference_type_t<InputIterator> total = 0;
 
     for (; first != last; ++first)
     {
-        if (predicate(*first)) { counter++; }
+        if (predicate(*first)) { total++; }
     }
 
-    return counter;
+    return total;
 }
 
 } // namespace cpputil
