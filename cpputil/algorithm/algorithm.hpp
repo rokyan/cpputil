@@ -5,6 +5,7 @@
 #include "find.hpp"
 #include "for_each.hpp"
 #include "mismatch.hpp"
-#include "op_of.hpp"
+#include "range_check.hpp"
+#include "search.hpp"
 
 #endif // CPPUTIL_ALGORITHM_HPP
