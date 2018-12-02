@@ -1,37 +1,45 @@
-#ifndef CPPUTIL_COUNT_HPP
-#define CPPUTIL_COUNT_HPP
+#ifndef CPPUTIL_ALGORITHM_COUNT_HPP
+#define CPPUTIL_ALGORITHM_COUNT_HPP
 
 #include <iterator_traits.hpp>
+#include <predicates.hpp>
 
 namespace cpputil
 {
 
-template<typename InputIterator, typename T>
-constexpr auto count(InputIterator first, InputIterator last, const T& value) -> difference_type_t<InputIterator>
+namespace impl_details
+{
+
+template<typename InputIterator, typename Predicate>
+constexpr auto count(InputIterator first, InputIterator last, Predicate pred)
+    -> difference_type_t<InputIterator>
 {
     difference_type_t<InputIterator> total = 0;
 
     for (; first != last; ++first)
     {
-        if (*first == value) { total++; }
+        if (pred(first)) { total++; }
     }
 
     return total;
 }
 
-template<typename InputIterator, typename Pred>
-constexpr auto count_if(InputIterator first, InputIterator last, Pred predicate) -> difference_type_t<InputIterator>
+} // namespace impl_details
+
+template<typename InputIterator, typename T>
+constexpr auto count(InputIterator first, InputIterator last, const T& value)
+    -> difference_type_t<InputIterator>
 {
-    difference_type_t<InputIterator> total = 0;
+    return impl_details::count(first, last, make_iter_eq_to_val(value));
+}
 
-    for (; first != last; ++first)
-    {
-        if (predicate(*first)) { total++; }
-    }
-
-    return total;
+template<typename InputIterator, typename Predicate>
+constexpr auto count_if(InputIterator first, InputIterator last, Predicate pred)
+    -> difference_type_t<InputIterator>
+{
+    return impl_details::count(first, last, make_iter_pred(pred));
 }
 
 } // namespace cpputil
 
-#endif // CPPUTIL_COUNT_HPP
+#endif // CPPUTIL_ALGORITHM_COUNT_HPP

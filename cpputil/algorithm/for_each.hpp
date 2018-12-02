@@ -1,31 +1,31 @@
-#ifndef CPPUTIL_FOR_EACH_HPP
-#define CPPUTIL_FOR_EACH_HPP
+#ifndef CPPUTIL_ALGORITHM_FOR_EACH_HPP
+#define CPPUTIL_ALGORITHM_FOR_EACH_HPP
 
 namespace cpputil
 {
 
-    template<typename InputIterator, typename Function>
-    constexpr auto for_each(InputIterator first, InputIterator last, Function func) -> Function
+template<typename InputIterator, typename Function>
+constexpr auto for_each(InputIterator first, InputIterator last, Function func) -> Function
+{
+    for (; first < last; ++first)
     {
-        for (; first < last; ++first)
-        {
-            func(*first);
-        }
-
-        return func;
+        func(*first);
     }
 
-    template<typename InputIterator, typename T, typename Function>
-    constexpr auto for_each_n(InputIterator first, T n, Function func) -> Function
-    {
-        for (T i = 0; i < n; ++first, static_cast<void>(++i))
-        {
-            func(*first);
-        }
+    return func;
+}
 
-        return func;
+template<typename InputIterator, typename T, typename Function>
+constexpr auto for_each_n(InputIterator first, T n, Function func) -> Function
+{
+    for (T i = 0; i < n; ++first, static_cast<void>(++i))
+    {
+        func(*first);
     }
+
+    return func;
+}
 
 } // namespace cpputil
 
-#endif // CPPUTIL_FOR_EACH_HPP
+#endif // CPPUTIL_ALGORITHM_FOR_EACH_HPP
