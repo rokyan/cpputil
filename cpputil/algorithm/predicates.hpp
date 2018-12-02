@@ -81,7 +81,7 @@ struct iter_pred
 template<typename Predicate>
 constexpr auto make_iter_pred(Predicate pred) -> iter_pred<Predicate>
 {
-    return iter_pred<Predicate>{ pred };
+    return iter_pred<Predicate>(pred);
 }
 
 template<typename Predicate>
