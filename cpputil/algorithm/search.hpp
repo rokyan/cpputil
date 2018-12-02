@@ -1,14 +1,18 @@
-#ifndef CPPUTIL_SEARCH_HPP
-#define CPPUTIL_SEARCH_HPP
+#ifndef CPPUTIL_ALGORITHM_SEARCH_HPP
+#define CPPUTIL_ALGORITHM_SEARCH_HPP
 
-#include "predicates.hpp"
+#include <predicates.hpp>
 
 namespace cpputil
 {
 
+namespace impl_details
+{
+
+// TODO: clean up the implementation
 template<typename ForwardIterator1, typename ForwardIterator2, typename Predicate>
-constexpr auto search_impl(ForwardIterator1 first1, ForwardIterator1 last1,
-    ForwardIterator2 first2, ForwardIterator2 last2, Predicate predicate) -> ForwardIterator1
+constexpr auto search(ForwardIterator1 first1, ForwardIterator1 last1,
+    ForwardIterator2 first2, ForwardIterator2 last2, Predicate pred) -> ForwardIterator1
 {
     if (first2 == last2 || first1 == last1)
     {
@@ -27,7 +31,7 @@ constexpr auto search_impl(ForwardIterator1 first1, ForwardIterator1 last1,
                 return last1;
             }
 
-            if (!predicate(*it1, *it2))
+            if (!pred(it1, it2))
             {
                 break;
             }
@@ -41,20 +45,22 @@ constexpr auto search_impl(ForwardIterator1 first1, ForwardIterator1 last1,
     return first1;
 }
 
+} // namespace impl_details
+
 template<typename ForwardIterator1, typename ForwardIterator2>
 constexpr auto search(ForwardIterator1 first1, ForwardIterator1 last1,
     ForwardIterator2 first2, ForwardIterator2 last2) -> ForwardIterator1
 {
-    return search_impl(first1, last1, first2, last2, eq_predicate{});
+    return impl_details::search(first1, last1, first2, last2, make_iter_eq_to_iter());
 }
 
 template<typename ForwardIterator1, typename ForwardIterator2, typename Predicate>
 constexpr auto search(ForwardIterator1 first1, ForwardIterator1 last1,
-    ForwardIterator2 first2, ForwardIterator2 last2, Predicate predicate) -> ForwardIterator1
+    ForwardIterator2 first2, ForwardIterator2 last2, Predicate pred) -> ForwardIterator1
 {
-    return search_impl(first1, last1, first2, last2, predicate);
+    return impl_details::search(first1, last1, first2, last2, make_iter_comp_to_iter(pred));
 }
 
 } // namespace cpputil
 
-#endif // CPPUTIL_SEARCH_HPP
+#endif // CPPUTIL_ALGORITHM_SEARCH_HPP
