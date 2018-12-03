@@ -3,6 +3,8 @@
 
 #include "count.hpp"
 #include "find.hpp"
+#include "find_first_of.hpp"
+#include "find_end.hpp"
 #include "for_each.hpp"
 #include "mismatch.hpp"
 #include "range_check.hpp"

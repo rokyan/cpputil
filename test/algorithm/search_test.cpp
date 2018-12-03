@@ -80,4 +80,17 @@ TEST(SearchTest, TestSearchForNonExistingSubRange)
         cpputil::begin(data_4), cpputil::end(data_4), pred), cpputil::end(data_3));
 }
 
+TEST(SearchTest, TestSearchMultipleSubranges)
+{
+    const integer_container data_1{ 2, 0, 1, 3, 0, 1, 4 };
+    const integer_container data_2{ 0, 1 };
+
+    const auto pred = [](int x, int y) { return x == y; };
+
+    EXPECT_EQ(cpputil::search(cpputil::begin(data_1), cpputil::end(data_1),
+        cpputil::begin(data_2), cpputil::end(data_2)), cpputil::next(cpputil::begin(data_1)));
+    EXPECT_EQ(cpputil::search(cpputil::begin(data_1), cpputil::end(data_1),
+        cpputil::begin(data_2), cpputil::end(data_2), pred), cpputil::next(cpputil::begin(data_1)));
+}
+
 } // namespace test
