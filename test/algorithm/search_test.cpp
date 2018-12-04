@@ -15,9 +15,9 @@ TEST(SearchTest, TestEmptyRanges)
     const auto pred = [](int x, int y) { return x == y; };
 
     EXPECT_EQ(cpputil::search(cpputil::begin(empty), cpputil::end(empty),
-        cpputil::begin(data), cpputil::end(data)), cpputil::begin(empty));
+        cpputil::begin(data), cpputil::end(data)), cpputil::end(empty));
     EXPECT_EQ(cpputil::search(cpputil::begin(empty), cpputil::end(empty),
-        cpputil::begin(data), cpputil::end(data), pred), cpputil::begin(empty));
+        cpputil::begin(data), cpputil::end(data), pred), cpputil::end(empty));
 
     EXPECT_EQ(cpputil::search(cpputil::begin(data), cpputil::end(data),
         cpputil::begin(empty), cpputil::end(empty)), cpputil::begin(data));
@@ -25,9 +25,9 @@ TEST(SearchTest, TestEmptyRanges)
         cpputil::begin(empty), cpputil::end(empty), pred), cpputil::begin(data));
 
     EXPECT_EQ(cpputil::search(cpputil::begin(empty), cpputil::end(empty),
-        cpputil::begin(empty), cpputil::end(empty)), cpputil::begin(empty));
+        cpputil::begin(empty), cpputil::end(empty)), cpputil::end(empty));
     EXPECT_EQ(cpputil::search(cpputil::begin(empty), cpputil::end(empty),
-        cpputil::begin(empty), cpputil::end(empty), pred), cpputil::begin(empty));
+        cpputil::begin(empty), cpputil::end(empty), pred), cpputil::end(empty));
 }
 
 TEST(SearchTest, TestSearchForExistingSubRange)

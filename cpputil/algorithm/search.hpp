@@ -9,37 +9,33 @@ namespace cpputil
 namespace impl_details
 {
 
-// TODO: clean up the implementation
 template<typename ForwardIterator1, typename ForwardIterator2, typename Predicate>
 constexpr auto search(ForwardIterator1 first1, ForwardIterator1 last1,
     ForwardIterator2 first2, ForwardIterator2 last2, Predicate pred) -> ForwardIterator1
 {
-    if (first2 == last2 || first1 == last1)
-    {
-        return first1;
-    }
-
     for (; first1 != last1; ++first1)
     {
-        ForwardIterator1 it1 = first1;
-        ForwardIterator2 it2 = first2;
+        ForwardIterator1 first_range_it = first1;
 
-        while (it2 != last2)
+        for (ForwardIterator2 second_range_it = first2; ;
+            ++first_range_it, static_cast<void>(++second_range_it))
         {
-            if (it1 == last1)
+            if (second_range_it == last2)
+            {
+                return first1;
+            }
+
+            if (first_range_it == last1)
             {
                 return last1;
             }
 
-            if (!pred(it1, it2))
+            if (!pred(first_range_it, second_range_it))
             {
                 break;
             }
-
-            ++it1; ++it2;
         }
 
-        if (it2 == last2) { break; }
     }
 
     return first1;
