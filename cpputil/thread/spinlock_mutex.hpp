@@ -21,7 +21,7 @@ public:
 
     auto unlock() -> void
     {
-        flag.clear();
+        flag.clear(std::memory_order_release);
     }
 
 private:
