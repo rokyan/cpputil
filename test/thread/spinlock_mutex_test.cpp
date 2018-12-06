@@ -33,9 +33,8 @@ TEST(SpinlockMutexTest, TestSpinlockMutex)
         threads.emplace_back(payload);
     }
 
-    cpputil::for_each(cpputil::begin(threads), cpputil::end(threads), [](auto& thread) {
-        thread.join();
-    });
+    cpputil::for_each(cpputil::begin(threads), cpputil::end(threads),
+        [](auto& thread) { thread.join(); });
 
     EXPECT_EQ(counter, threads_num * iters_num);
 }
