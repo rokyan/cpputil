@@ -1,5 +1,5 @@
-#ifndef CPPUTIL_SCOPED_THREAD_HPP
-#define CPPUTIL_SCOPED_THREAD_HPP
+#ifndef CPPUTIL_THREAD_SCOPED_THREAD_HPP
+#define CPPUTIL_THREAD_SCOPED_THREAD_HPP
 
 #include <thread>
 #include <move.hpp>
@@ -36,4 +36,4 @@ private:
 
 } // namespace cpputil
 
-#endif // CPPUTIL_SCOPED_THREAD_HP
+#endif // CPPUTIL_THREAD_SCOPED_THREAD_HP
