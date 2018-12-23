@@ -20,6 +20,7 @@
 #include "is_same.hpp"
 #include "is_volatile.hpp"
 #include "is_writable_to_stream.hpp"
+#include "rank.hpp"
 #include "remove_const.hpp"
 #include "remove_cv.hpp"
 #include "remove_extent.hpp"
