@@ -10,6 +10,7 @@
 #include "conditional.hpp"
 #include "decay.hpp"
 #include "declval.hpp"
+#include "extent.hpp"
 #include "identity.hpp"
 #include "integral_constant.hpp"
 #include "is_array.hpp"
