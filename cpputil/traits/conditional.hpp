@@ -3,7 +3,7 @@
 
 #include "identity.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<bool Condition, typename T, typename U>
@@ -17,6 +17,6 @@ struct conditional<false, T, U> :
 template<bool Condition, typename T, typename U>
 using conditional_t = typename conditional<Condition, T, U>::type;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_CONDITIONAL_HPP

@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::remove_extent_t;
+using cpputil::remove_extent_t;
 
 TEST(TraitsTest, TestRemoveExtent)
 {

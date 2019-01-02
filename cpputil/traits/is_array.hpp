@@ -4,7 +4,7 @@
 #include "integral_constant.hpp"
 #include <cstddef>
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>

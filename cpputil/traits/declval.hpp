@@ -3,7 +3,7 @@
 
 #include "add_rvalue_reference.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 namespace declval_impl
@@ -25,6 +25,6 @@ add_rvalue_reference_t<T> declval() noexcept
     return declval_protector::call();
 }
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_DECLVAL_HPP

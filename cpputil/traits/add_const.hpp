@@ -3,7 +3,7 @@
 
 #include "identity.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -13,6 +13,6 @@ struct add_const :
 template<typename T>
 using add_const_t = typename add_const<T>::type;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_ADD_CONST_HPP

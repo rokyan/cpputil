@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::extent_v;
+using cpputil::extent_v;
 
 TEST(ExtentTest, TestExtent)
 {

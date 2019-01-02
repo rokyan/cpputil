@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::add_pointer_t;
+using cpputil::add_pointer_t;
 
 TEST(TraitsTest, TestAddPointer)
 {

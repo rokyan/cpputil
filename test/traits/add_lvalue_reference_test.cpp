@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::add_lvalue_reference_t;
+using cpputil::add_lvalue_reference_t;
 
 TEST(TraitsTest, TestGeneralCase)
 {

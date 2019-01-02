@@ -3,7 +3,7 @@
 
 #include "identity.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -13,6 +13,6 @@ struct add_volatile :
 template<typename T>
 using add_volatile_t = typename add_volatile<T>::type;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPTUIL_ADD_VOLATILE_HPP

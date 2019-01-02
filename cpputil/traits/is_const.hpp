@@ -3,7 +3,7 @@
 
 #include "integral_constant.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>

@@ -6,7 +6,7 @@
 #include "void_t.hpp"
 #include <iosfwd>
 
-namespace traits
+namespace cpputil
 {
 
 template<typename, typename = void>
@@ -24,6 +24,6 @@ struct is_writable_to_stream :
 template<typename T>
 inline constexpr auto is_writable_to_stream_v = is_writable_to_stream<T>::value;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_IS_WRITABLE_TO_STREAM_HPP

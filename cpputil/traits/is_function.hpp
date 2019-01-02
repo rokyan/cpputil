@@ -3,7 +3,7 @@
 
 #include "integral_constant.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename>
@@ -157,6 +157,6 @@ struct is_function<R(Args..., ...) const volatile && noexcept> : true_type {};
 template<typename T>
 inline constexpr auto is_function_v = is_function<T>::value;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_IS_FUNCTION_HPP

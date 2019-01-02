@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::identity_t;
+using cpputil::identity_t;
 
 TEST(TraitsTest, TestIdentity)
 {

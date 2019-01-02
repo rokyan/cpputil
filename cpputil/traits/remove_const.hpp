@@ -4,7 +4,7 @@
 #include "integral_constant.hpp"
 #include "identity.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -18,6 +18,6 @@ struct remove_const<const T> :
 template<typename T>
 using remove_const_t = typename remove_const<T>::type;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_REMOVE_CONST_HPP

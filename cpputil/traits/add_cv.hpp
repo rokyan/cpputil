@@ -3,7 +3,7 @@
 
 #include "identity.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -13,6 +13,6 @@ struct add_cv :
 template<typename T>
 using add_cv_t = typename add_cv<T>::type;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_ADD_CV_HPP

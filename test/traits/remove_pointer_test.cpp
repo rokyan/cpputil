@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::remove_pointer_t;
+using cpputil::remove_pointer_t;
 
 TEST(TraitsTest, TestRemovePointer)
 {

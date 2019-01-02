@@ -9,7 +9,7 @@
 #include "remove_extent.hpp"
 #include "remove_reference.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T, bool = is_array_v<T>, bool = is_function_v<T>>
@@ -31,6 +31,6 @@ struct decay :
 template<typename T>
 using decay_t = typename decay<T>::type;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_DECAY_HPP

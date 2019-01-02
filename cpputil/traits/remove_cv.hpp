@@ -6,7 +6,7 @@
 #include "remove_const.hpp"
 #include "remove_volatile.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>

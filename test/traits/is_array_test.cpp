@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::is_array_v;
+using cpputil::is_array_v;
 
 TEST(TraitsTest, TestIsArray)
 {

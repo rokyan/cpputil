@@ -7,13 +7,13 @@ namespace test
 
 // Test traits.
 
-template<typename T, typename = traits::void_t<>>
+template<typename T, typename = cpputil::void_t<>>
 struct is_transparent :
-    traits::false_type {};
+    cpputil::false_type {};
 
 template<typename T>
-struct is_transparent<T, traits::void_t<typename T::is_transparent>> :
-    traits::true_type {};
+struct is_transparent<T, cpputil::void_t<typename T::is_transparent>> :
+    cpputil::true_type {};
 
 template<typename T>
 inline constexpr auto is_transparent_v = is_transparent<T>::value;

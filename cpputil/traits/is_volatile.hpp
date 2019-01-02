@@ -3,7 +3,7 @@
 
 #include "integral_constant.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -17,6 +17,6 @@ struct is_volatile<volatile T> :
 template<typename T>
 inline constexpr auto is_volatile_v = is_volatile<T>::value;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_IS_VOLATILE_HPP

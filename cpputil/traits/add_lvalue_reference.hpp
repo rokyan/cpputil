@@ -4,7 +4,7 @@
 #include "identity.hpp"
 #include "void_t.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T, typename = void>
@@ -22,6 +22,6 @@ struct add_lvalue_reference :
 template<typename T>
 using add_lvalue_reference_t = typename add_lvalue_reference<T>::type;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_ADD_LVALUE_REFERENCE_HPP

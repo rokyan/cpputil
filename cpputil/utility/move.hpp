@@ -8,9 +8,9 @@
 namespace cpputil
 {
     template<typename T>
-    constexpr traits::remove_reference_t<T>&& move(T&& t) noexcept
+    constexpr cpputil::remove_reference_t<T>&& move(T&& t) noexcept
     {
-        return static_cast<traits::remove_reference_t<T>&&>(t);
+        return static_cast<cpputil::remove_reference_t<T>&&>(t);
     }
 
     namespace detail
@@ -21,7 +21,7 @@ namespace cpputil
     }
 
     template<typename T>
-    constexpr traits::conditional_t<detail::move_if_noexcept_condition_v<T>, const T&, T&&> move_if_noexcept(T& t) noexcept
+    constexpr cpputil::conditional_t<detail::move_if_noexcept_condition_v<T>, const T&, T&&> move_if_noexcept(T& t) noexcept
     {
         return cpputil::move(t);
     }

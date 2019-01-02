@@ -4,7 +4,7 @@
 #include "identity.hpp"
 #include <cstddef>
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>

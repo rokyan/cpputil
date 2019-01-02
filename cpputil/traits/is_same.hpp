@@ -3,7 +3,7 @@
 
 #include "integral_constant.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T, typename U>
@@ -17,6 +17,6 @@ struct is_same<T, T> :
 template<typename T, typename U>
 inline constexpr auto is_same_v = is_same<T, U>::value;
 
-} // namespace traits
+} // namespace cpputil
 
 #endif // CPPUTIL_IS_SAME_HPP
