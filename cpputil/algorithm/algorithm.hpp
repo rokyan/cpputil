@@ -1,6 +1,7 @@
 #ifndef CPPUTIL_ALGORITHM_HPP
 #define CPPUTIL_ALGORITHM_HPP
 
+#include "adjacent_find.hpp"
 #include "count.hpp"
 #include "find.hpp"
 #include "find_first_of.hpp"
