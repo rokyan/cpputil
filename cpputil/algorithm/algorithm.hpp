@@ -8,6 +8,7 @@
 #include "find_end.hpp"
 #include "for_each.hpp"
 #include "mismatch.hpp"
+#include "minmax_ops.hpp"
 #include "range_check.hpp"
 #include "search.hpp"
 

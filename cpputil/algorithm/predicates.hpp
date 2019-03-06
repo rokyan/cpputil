@@ -40,6 +40,20 @@ constexpr auto make_iter_eq_to_iter() -> iter_eq_to_iter
     return iter_eq_to_iter();
 }
 
+struct iter_less_then_iter
+{
+    template<typename Iterator1, typename Iterator2>
+    constexpr auto operator()(Iterator1 iter1, Iterator2 iter2) const -> bool
+    {
+        return *iter1 < *iter2;
+    }
+};
+
+constexpr auto make_iter_less_then_iter() -> iter_less_then_iter
+{
+    return iter_less_then_iter();
+}
+
 template<typename Predicate>
 struct iter_comp_to_iter
 {
