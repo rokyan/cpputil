@@ -1,5 +1,5 @@
-#ifndef CPPUTIL_ALGORITHM_MINMAX_OP_HPP
-#define CPPUTIL_ALGORITHM_MINMAX_OP_HPP
+#ifndef CPPUTIL_ALGORITHM_MINMAX_OPS_HPP
+#define CPPUTIL_ALGORITHM_MINMAX_OPS_HPP
 
 #include <predicates.hpp>
 #include <initializer_list> // for std::initializer_list
@@ -303,4 +303,4 @@ constexpr const T& clamp(const T& value, const T& lo, const T& hi, Comp comp)
 
 } // namespace cpputil
 
-#endif // CPPUTIL_ALGORITHM_MINMAX_OP_HPP
+#endif // CPPUTIL_ALGORITHM_MINMAX_OPS_HPP
