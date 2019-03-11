@@ -1,15 +1,16 @@
-#ifndef CPPUTIL_ALGORITHM_NON_MD_SEQ_OPS_HPP
-#define CPPUTIL_ALGORITHM_NON_MD_SEQ_OPS_HPP
+#pragma once
 
 #include "predicates.hpp"
 #include <iterator.hpp>
+
 #include <utility> // for std::pair and std::make_pair
 
 namespace cpputil
 {
 
 template<typename ForwardIterator1, typename ForwardIterator2, typename Predicate>
-constexpr ForwardIterator1 search_impl(ForwardIterator1 first1, ForwardIterator1 last1, ForwardIterator2 first2, ForwardIterator2 last2, Predicate pred)
+constexpr ForwardIterator1 search_impl(ForwardIterator1 first1, ForwardIterator1 last1,
+    ForwardIterator2 first2, ForwardIterator2 last2, Predicate pred)
 {
     for (; first1 != last1; ++first1)
     {
@@ -299,5 +300,3 @@ constexpr std::pair<InputIterator1, InputIterator2>mismatch(InputIterator1 first
 }
 
 } // namespace cpputil
-
-#endif // CPPUTIL_ALGORITHM_NON_MD_SEQ_OPS_HPP
