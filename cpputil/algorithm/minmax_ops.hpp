@@ -1,7 +1,7 @@
-#ifndef CPPUTIL_ALGORITHM_MINMAX_OPS_HPP
-#define CPPUTIL_ALGORITHM_MINMAX_OPS_HPP
+#pragma once
 
 #include <predicates.hpp>
+
 #include <initializer_list> // for std::initializer_list
 #include <utility> // for std::pair and std::make_pair
 
@@ -301,6 +301,4 @@ constexpr const T& clamp(const T& value, const T& lo, const T& hi, Comp comp)
     return value;
 }
 
-} // namespace cpputil
-
-#endif // CPPUTIL_ALGORITHM_MINMAX_OPS_HPP
+} // namespace cpputi
