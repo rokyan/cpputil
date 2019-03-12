@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_ALGORITHM_PREDICATES_HPP
-#define CPPUTIL_ALGORITHM_PREDICATES_HPP
+#pragma once
 
 namespace cpputil
 {
@@ -121,5 +120,3 @@ constexpr auto make_iter_neg_pred(Predicate pred) -> iter_neg_pred<Predicate>
 }
 
 } // namespace cpputil
-
-#endif // CPPUTIL_ALGORITHM_PREDICATES_HPP
