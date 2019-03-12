@@ -2,6 +2,8 @@
 #include <functional.hpp>
 #include <not_fn_types.hpp>
 
+#include <functional> // for std::function
+
 namespace test
 {
 

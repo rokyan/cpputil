@@ -3,6 +3,8 @@
 
 #include <iterator_tags.hpp>
 
+#include <functional> // for std::function
+
 namespace test
 {
 
