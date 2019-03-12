@@ -1,8 +1,10 @@
 #ifndef CPPUTIL_APPLY_HPP
 #define CPPUTIL_APPLY_HPP
 
-#include <utility> // for std::tuple and std::index_sequence.
 #include <forward.hpp>
+
+#include <utility> // for std::tuple and std::index_sequence.
+#include <functional> // for std::invoke.
 
 namespace cpputil
 {

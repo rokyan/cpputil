@@ -2,7 +2,9 @@
 #define CPPUTIL_REFERENCE_WRAPPER_HPP
 
 #include <utility.hpp>
-#include <type_traits>
+
+#include <type_traits> // for standard type traits.
+#include <functional> // for std::invoke.
 
 namespace cpputil
 {
