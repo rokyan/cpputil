@@ -3,8 +3,9 @@
 
 #include <traits.hpp>
 #include <utility.hpp>
-// TODO: remove a dependecy on type_traits in the future
-#include <type_traits>
+
+#include <type_traits> // for standard type traits.
+#include <functional> // for std::invoke.
 
 namespace cpputil
 {
