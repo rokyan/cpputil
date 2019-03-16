@@ -31,7 +31,7 @@ namespace test
 
     TYPED_TEST(MoveIfNoexceptTypedTest, TestMoveIfNoexceptRetValueType)
     {
-        using expected_type = traits::conditional_t<cpputil::detail::move_if_noexcept_condition_v<TypeParam>, const TypeParam&, TypeParam&&>;
+        using expected_type = traits::conditional_t<cpputil::move_if_noexcept_condition_v<TypeParam>, const TypeParam&, TypeParam&&>;
         using actual_type = decltype(cpputil::move_if_noexcept(traits::declval<TypeParam&>()));
 
         EXPECT_SAME_TYPES(expected_type, actual_type);

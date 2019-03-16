@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_UTILITY_HPP
-#define CPPUTIL_UTILITY_HPP
+#pragma once
 
 #include "apply.hpp"
 #include "as_const.hpp"
@@ -8,5 +7,3 @@
 #include "forward.hpp"
 #include "literals.hpp"
 #include "move.hpp"
-
-#endif // CPPUTIL_UTILITY_HPP

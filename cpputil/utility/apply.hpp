@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_APPLY_HPP
-#define CPPUTIL_APPLY_HPP
+#pragma once
 
 #include <forward.hpp>
 
@@ -8,22 +7,20 @@
 
 namespace cpputil
 {
-    namespace detail
-    {
-        template<typename Func, typename Tuple, std::size_t... Is>
-        decltype(auto) apply(Func&& f, Tuple&& t, std::index_sequence<Is...>)
-        {
-            return std::invoke(cpputil::forward<Func>(f), std::get<Is>(t)...);
-        }
-    }
 
-    template<typename Func, typename Tuple>
-    decltype(auto) apply(Func&& f, Tuple&& t)
-    {
-        using index_sequence_type = std::make_index_sequence<std::tuple_size_v<std::decay_t<Tuple>>>;
-
-        return detail::apply(cpputil::forward<Func>(f), cpputil::forward<Tuple>(t), index_sequence_type{});
-    }
+template<typename Func, typename Tuple, std::size_t... Is>
+decltype(auto) apply_impl(Func&& func, Tuple&& tuple_of_args, std::index_sequence<Is...>)
+{
+    return std::invoke(cpputil::forward<Func>(func), std::get<Is>(tuple_of_args)...);
 }
 
-#endif // CPPUTIL_APPLY_HPP
+template<typename Func, typename Tuple>
+decltype(auto) apply(Func&& func, Tuple&& tuple_of_args)
+{
+    using index_sequence_type = std::make_index_sequence<std::tuple_size_v<std::decay_t<Tuple>>>;
+
+    return cpputil::apply_impl(cpputil::forward<Func>(func),
+        cpputil::forward<Tuple>(tuple_of_args), index_sequence_type{});
+}
+
+} // namespace cpputil
