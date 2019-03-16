@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_EXCHANGE_TEST_TYPES_HPP
-#define CPPUTIL_EXCHANGE_TEST_TYPES_HPP
+#pragma once
 
 namespace test
 {
@@ -28,5 +27,3 @@ struct convertible_to
 };
 
 } // namespace test
-
-#endif // CPPUTIL_EXCHANGE_TEST_TYPES_HPP
