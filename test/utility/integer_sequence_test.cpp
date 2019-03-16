@@ -92,8 +92,9 @@ TEST(IntegerSequenceTest, TestIndexSequence)
 TEST(IntegerSequenceTest, TestIndexSequenceFor)
 {
     using index_seq = cpputil::index_sequence_for<T0, T1, T2, T3>;
+    using expected = cpputil::index_sequence<0, 1, 2, 3>;
 
-    EXPECT_TRUE((traits::is_same_v<index_seq, cpputil::index_sequence<0, 1, 2, 3>>));
+    EXPECT_SAME_TYPES(index_seq, expected);
     EXPECT_EQ(index_seq::size(), 4);
 }
 
