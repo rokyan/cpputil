@@ -5,6 +5,24 @@
 namespace test
 {
 
+TEST(IntegerSeqeunceTest, TestValueType)
+{
+    using integer_seq = cpputil::make_integer_sequence<char, 0>;
+    EXPECT_SAME_TYPES(integer_seq::value_type, char);
+}
+
+TEST(IntegerSeqeunceTest, TestSize)
+{
+    using integer_seq_0 = cpputil::make_integer_sequence<char, 0>;
+    EXPECT_EQ(integer_seq_0::size(), 0);
+
+    using integer_seq_1 = cpputil::make_integer_sequence<char, 1>;
+    EXPECT_EQ(integer_seq_1::size(), 1);
+
+    using integer_seq_2 = cpputil::make_integer_sequence<char, 2>;
+    EXPECT_EQ(integer_seq_2::size(), 2);
+}
+
 TEST(IntegerSequenceTest, TestIntegerSequence)
 {
     using integer_seq_0 = cpputil::make_integer_sequence<int, 0>;
