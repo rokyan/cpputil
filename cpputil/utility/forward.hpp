@@ -1,21 +1,20 @@
-#ifndef CPPUTIL_FORWARD_HPP
-#define CPPUTIL_FORWARD_HPP
+#pragma once
 
 #include <type_traits>
 
 namespace cpputil
 {
-    template<typename T>
-    constexpr T&& forward(std::remove_reference_t<T>& t) noexcept
-    {
-        return static_cast<T&&>(t);
-    }
 
-    template<typename T>
-    constexpr T&& forward(std::remove_reference_t<T>&& t) noexcept
-    {
-        return static_cast<T&&>(t);
-    }
+template<typename T>
+constexpr T&& forward(std::remove_reference_t<T>& t) noexcept
+{
+    return static_cast<T&&>(t);
 }
 
-#endif // CPPUTIL_FORWARD_HPP
+template<typename T>
+constexpr T&& forward(std::remove_reference_t<T>&& t) noexcept
+{
+    return static_cast<T&&>(t);
+}
+
+} // namespace cpputil

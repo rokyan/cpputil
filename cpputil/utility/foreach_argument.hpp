@@ -1,43 +1,37 @@
-#ifndef CPPUTIL_FOREACH_ARGUMENT_HPP
-#define CPPUTIL_FOREACH_ARGUMENT_HPP
+#pragma once
+
+#include <forward.hpp>
 
 #include <type_traits>
 #include <utility>
 #include <tuple>
-#include <forward.hpp>
 
 namespace cpputil
 {
-    // foreach_argument implementation
 
-    template<typename Func, typename... Args>
-    void foreach_argument(Func&& f, Args&&... args)
-    {
-        (static_cast<void>(std::invoke(cpputil::forward<Func>(f), cpputil::forward<Args>(args))), ...);
-    }
-
-    // foreach_tuple_argument implementation
-
-    namespace detail
-    {
-        template<typename Func, typename Tuple, std::size_t... Is>
-        void foreach_tuple_argument_impl(Func&& f, Tuple&& t, std::index_sequence<Is...>)
-        {
-            foreach_argument(
-                [&f](auto&&... elems) {
-                    std::invoke(cpputil::forward<Func>(f), cpputil::forward<decltype(elems)>(elems)...);
-                },
-                std::get<Is>(t)...);
-        }
-    }
-
-    template<typename Func, typename Tuple>
-    void foreach_tuple_argument(Func&& f, Tuple&& t)
-    {
-        using index_sequence_type = std::make_index_sequence<std::tuple_size_v<std::decay_t<Tuple>>>;
-
-        detail::foreach_tuple_argument_impl(cpputil::forward<Func>(f), cpputil::forward<Tuple>(t), index_sequence_type{});
-    }
+template<typename Func, typename... Args>
+void foreach_argument(Func&& func, Args&&... args)
+{
+    (static_cast<void>(std::invoke(cpputil::forward<Func>(func), cpputil::forward<Args>(args))), ...);
 }
 
-#endif // CPPUTIL_FOREACH_ARGUMENT_HPP
+template<typename Func, typename Tuple, std::size_t... Is>
+void foreach_tuple_argument_impl(Func&& func, Tuple&& tuple_of_args, std::index_sequence<Is...>)
+{
+    foreach_argument(
+        [&func](auto&&... elems) {
+            std::invoke(cpputil::forward<Func>(func), cpputil::forward<decltype(elems)>(elems)...);
+        },
+        std::get<Is>(tuple_of_args)...);
+}
+
+template<typename Func, typename Tuple>
+void foreach_tuple_argument(Func&& func, Tuple&& tuple_of_args)
+{
+    using index_sequence_type = std::make_index_sequence<std::tuple_size_v<std::decay_t<Tuple>>>;
+
+    cpputil::foreach_tuple_argument_impl(cpputil::forward<Func>(func),
+        cpputil::forward<Tuple>(tuple_of_args), index_sequence_type{});
+}
+
+} // namespace cpputil
