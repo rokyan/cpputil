@@ -51,4 +51,4 @@ TEST(ApplyTest, TestValueCategoryCorrectness)
     EXPECT_EQ(cpputil::apply(cpputil::move(t), std::make_tuple(1)), -1);
 }
 
-}
+} // namespace test

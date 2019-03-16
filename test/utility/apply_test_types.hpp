@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_APPLY_TEST_TYPES_HPP
-#define CPPUTIL_APPLY_TEST_TYPES_HPP
+#pragma once
 
 namespace test
 {
@@ -16,7 +15,4 @@ struct ref_qualifiers_testable
     int operator()(int x) const && { return -x; }
 };
 
-}
-
-#endif // CPPUTIL_APPLY_TEST_TYPES_HPP
-
+} // namespace test

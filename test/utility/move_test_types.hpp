@@ -1,7 +1,5 @@
-#ifndef CPPUTIL_MOVE_TEST_TYPES_HPP
-#define CPPUTIL_MOVE_TEST_TYPES_HPP
+#pragma once
 
-// TODO: remove <type_traits> inclusion and use custom traits
 #include <type_traits>
 
 namespace test
@@ -74,5 +72,3 @@ static_assert(std::is_copy_constructible_v<movable_copyable>);
 static_assert(!std::is_nothrow_copy_constructible_v<movable_copyable>);
 
 } // namespace test
-
-#endif // CPPUTIL_MOVE_TEST_TYPES_HPP

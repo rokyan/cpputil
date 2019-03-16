@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_FOREACH_ARGUMENT_TEST_TYPES_HPP
-#define CPPUTIL_FOREACH_ARGUMENT_TEST_TYPES_HPP
+#pragma once
 
 namespace test
 {
@@ -20,6 +19,4 @@ struct testable
     T value{};
 };
 
-} // namespace cpputil
-
-#endif // CPPUTIL_FOREACH_ARGUMENT_TEST_TYPES_HPP
+} // namespace test
