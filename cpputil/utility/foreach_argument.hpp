@@ -1,6 +1,7 @@
 #pragma once
 
 #include <forward.hpp>
+#include <integer_sequence.hpp>
 
 #include <type_traits>
 #include <utility>
@@ -16,7 +17,7 @@ void foreach_argument(Func&& func, Args&&... args)
 }
 
 template<typename Func, typename Tuple, std::size_t... Is>
-void foreach_tuple_argument_impl(Func&& func, Tuple&& tuple_of_args, std::index_sequence<Is...>)
+void foreach_tuple_argument_impl(Func&& func, Tuple&& tuple_of_args, cpputil::index_sequence<Is...>)
 {
     foreach_argument(
         [&func](auto&&... elems) {
@@ -28,7 +29,7 @@ void foreach_tuple_argument_impl(Func&& func, Tuple&& tuple_of_args, std::index_
 template<typename Func, typename Tuple>
 void foreach_tuple_argument(Func&& func, Tuple&& tuple_of_args)
 {
-    using index_sequence_type = std::make_index_sequence<std::tuple_size_v<std::decay_t<Tuple>>>;
+    using index_sequence_type = cpputil::make_index_sequence<std::tuple_size_v<std::decay_t<Tuple>>>;
 
     cpputil::foreach_tuple_argument_impl(cpputil::forward<Func>(func),
         cpputil::forward<Tuple>(tuple_of_args), index_sequence_type{});
