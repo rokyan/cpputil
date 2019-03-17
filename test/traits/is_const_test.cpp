@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::is_const_v;
+using cpputil::is_const_v;
 
 TEST(TraitsTest, TestIsConst)
 {

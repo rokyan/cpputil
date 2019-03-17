@@ -1,7 +1,6 @@
-#ifndef CPPUTIL_INTERGRAL_CONSTANT_HPP
-#define CPPUTIL_INTERGRAL_CONSTANT_HPP
+#pragma once
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T, T v>
@@ -22,6 +21,4 @@ using bool_constant = integral_constant<bool, B>;
 using false_type = bool_constant<false>;
 using true_type = bool_constant<true>;
 
-} // namespace traits
-
-#endif // CPPUTIL_INTERGRAL_CONSTANT_HPP
+} // namespace cpputil

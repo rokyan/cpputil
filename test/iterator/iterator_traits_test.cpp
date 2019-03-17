@@ -51,7 +51,7 @@ namespace test
         EXPECT_SAME_TYPES(actual_iterator_category, std::random_access_iterator_tag);
 
         using actual_value_type = typename cpputil::iterator_traits<TypeParam>::value_type;
-        EXPECT_SAME_TYPES(actual_value_type, traits::remove_const_t<traits::remove_pointer_t<TypeParam>>);
+        EXPECT_SAME_TYPES(actual_value_type, cpputil::remove_const_t<cpputil::remove_pointer_t<TypeParam>>);
 
         using actual_difference_type = typename cpputil::iterator_traits<TypeParam>::difference_type;
         EXPECT_SAME_TYPES(actual_difference_type, std::ptrdiff_t);
@@ -60,7 +60,7 @@ namespace test
         EXPECT_SAME_TYPES(actual_pointer, TypeParam);
 
         using actual_reference = typename cpputil::iterator_traits<TypeParam>::reference;
-        EXPECT_SAME_TYPES(actual_reference, traits::add_lvalue_reference_t<traits::remove_pointer_t<TypeParam>>);
+        EXPECT_SAME_TYPES(actual_reference, cpputil::add_lvalue_reference_t<cpputil::remove_pointer_t<TypeParam>>);
     }
 
     TEST(IteratorTraitsTest, TestHelperTraits)

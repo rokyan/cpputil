@@ -1,12 +1,11 @@
-#ifndef CPPUTIL_REMOVE_CV_HPP
-#define CPPUTIL_REMOVE_CV_HPP
+#pragma once
 
 #include "integral_constant.hpp"
 #include "identity.hpp"
 #include "remove_const.hpp"
 #include "remove_volatile.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -16,6 +15,4 @@ struct remove_cv :
 template<typename T>
 using remove_cv_t = typename remove_cv<T>::type;
 
-}
-
-#endif // CPPUTIL_REMOVE_CV_HPP
+} // namespace cpputil

@@ -14,18 +14,18 @@ TYPED_TEST(ForwardTypedTest, TestForwardReturnValueType)
 {
     // Test lvalue case. Emulate type deduction for forwarding references.
     EXPECT_SAME_TYPES(TypeParam&,
-        decltype(cpputil::forward<TypeParam&>(traits::declval<TypeParam&>())));
+        decltype(cpputil::forward<TypeParam&>(cpputil::declval<TypeParam&>())));
     // Test rvalue case. Emulate type deduction for forwarding references.
     EXPECT_SAME_TYPES(TypeParam&&,
-        decltype(cpputil::forward<TypeParam>(traits::declval<TypeParam>())));
+        decltype(cpputil::forward<TypeParam>(cpputil::declval<TypeParam>())));
 }
 
 TYPED_TEST(ForwardTypedTest, TestForwardNoexcept)
 {
     // Test lvalue case. Emulate type deduction for forwarding references.
-    EXPECT_TRUE(noexcept(cpputil::forward<TypeParam&>(traits::declval<TypeParam&>())));
+    EXPECT_TRUE(noexcept(cpputil::forward<TypeParam&>(cpputil::declval<TypeParam&>())));
     // Test rvalue case. Emulate type deduction for forwarding references.
-    EXPECT_TRUE(noexcept(cpputil::forward<TypeParam>(traits::declval<TypeParam>())));
+    EXPECT_TRUE(noexcept(cpputil::forward<TypeParam>(cpputil::declval<TypeParam>())));
 }
 
 } // namespace test

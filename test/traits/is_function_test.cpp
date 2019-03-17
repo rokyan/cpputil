@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::is_function_v;
+using cpputil::is_function_v;
 
 TEST(TraitsTest, TestIsFunction)
 {

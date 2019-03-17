@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::remove_cv_t;
+using cpputil::remove_cv_t;
 
 TEST(TraitsTest, TestRemoveConstVolatile)
 {

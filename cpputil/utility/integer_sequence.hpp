@@ -30,26 +30,26 @@ struct merger<integer_sequence<T, Ints1...>, integer_sequence<T, Ints2...>>
 template<typename T, typename N>
 struct builder
 {
-    using left_merged = typename builder<T, traits::integral_constant<T, N::value / 2>>::type;
-    using right_merged = typename builder<T, traits::integral_constant<T, N::value - N::value / 2>>::type;
+    using left_merged = typename builder<T, cpputil::integral_constant<T, N::value / 2>>::type;
+    using right_merged = typename builder<T, cpputil::integral_constant<T, N::value - N::value / 2>>::type;
 
     using type = typename merger<left_merged, right_merged>::type;
 };
 
 template<typename T>
-struct builder<T, traits::integral_constant<T, 0>>
+struct builder<T, cpputil::integral_constant<T, 0>>
 {
     using type = integer_sequence<T>;
 };
 
 template<typename T>
-struct builder<T, traits::integral_constant<T, 1>>
+struct builder<T, cpputil::integral_constant<T, 1>>
 {
     using type = integer_sequence<T, 0>;
 };
 
 template<typename T, T N>
-using make_integer_sequence = typename builder<T, traits::integral_constant<T, N>>::type;
+using make_integer_sequence = typename builder<T, cpputil::integral_constant<T, N>>::type;
 
 template<std::size_t N>
 using make_index_sequence = make_integer_sequence<std::size_t, N>;

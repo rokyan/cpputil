@@ -4,8 +4,8 @@
 namespace test
 {
 
-using traits::integral_constant;
-using traits::bool_constant;
+using cpputil::integral_constant;
+using cpputil::bool_constant;
 
 TEST(TraitsTest, TestIntegralConstant)
 {

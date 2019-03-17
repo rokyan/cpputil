@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::decay_t;
+using cpputil::decay_t;
 
 TEST(TraitsTest, TestReferenceDecay)
 {

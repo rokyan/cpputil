@@ -1,9 +1,8 @@
-#ifndef CPPUTIL_CONDITIONAL_HPP
-#define CPPUTIL_CONDITIONAL_HPP
+#pragma once
 
 #include "identity.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<bool Condition, typename T, typename U>
@@ -17,6 +16,4 @@ struct conditional<false, T, U> :
 template<bool Condition, typename T, typename U>
 using conditional_t = typename conditional<Condition, T, U>::type;
 
-} // namespace traits
-
-#endif // CPPUTIL_CONDITIONAL_HPP
+} // namespace cpputil

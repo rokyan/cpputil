@@ -27,8 +27,8 @@ public:
 #define NOT_FN_WRAP_FUNCTION_CALL_OP(QUALIFIERS) \
     template<typename... Args> \
     auto operator()(Args&&... args) QUALIFIERS \
-        noexcept(std::is_nothrow_invocable_v<FD QUALIFIERS, Args...> && noexcept(!traits::declval<std::invoke_result_t<FD QUALIFIERS, Args...>>())) \
-        -> decltype(!traits::declval<std::invoke_result_t<FD QUALIFIERS, Args...>>()) \
+        noexcept(std::is_nothrow_invocable_v<FD QUALIFIERS, Args...> && noexcept(!cpputil::declval<std::invoke_result_t<FD QUALIFIERS, Args...>>())) \
+        -> decltype(!cpputil::declval<std::invoke_result_t<FD QUALIFIERS, Args...>>()) \
     { \
         return !std::invoke(cpputil::forward<FD QUALIFIERS>(fn), cpputil::forward<Args>(args)...); \
     }
@@ -43,10 +43,10 @@ private:
 };
 
 template<typename F>
-not_fn_wrapper<traits::decay_t<F>> not_fn(F&& fn)
-    noexcept(std::is_nothrow_constructible_v<traits::decay_t<F>, F>)
+not_fn_wrapper<cpputil::decay_t<F>> not_fn(F&& fn)
+    noexcept(std::is_nothrow_constructible_v<cpputil::decay_t<F>, F>)
 {
-    return not_fn_wrapper<traits::decay_t<F>>(cpputil::forward<F>(fn), not_fn_tag{});
+    return not_fn_wrapper<cpputil::decay_t<F>>(cpputil::forward<F>(fn), not_fn_tag{});
 }
 
 } // namespace cpputil

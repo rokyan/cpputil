@@ -1,10 +1,9 @@
-#ifndef CPPUTIL_IS_ARRAY_HPP
-#define CPPUTIL_IS_ARRAY_HPP
+#pragma once
 
 #include "integral_constant.hpp"
 #include <cstddef>
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -22,6 +21,4 @@ struct is_array<T[]> :
 template<typename T>
 inline constexpr auto is_array_v = is_array<T>::value;
 
-}
-
-#endif // CPPUTIL_IS_ARRAY_HPP
+} // namespace cpputil

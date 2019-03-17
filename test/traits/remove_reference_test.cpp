@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::remove_reference_t;
+using cpputil::remove_reference_t;
 
 TEST(TraitsTest, TestRemoveReference)
 {

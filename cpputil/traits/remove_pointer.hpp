@@ -1,10 +1,9 @@
-#ifndef CPPUTIL_REMOVE_POINTER_HPP
-#define CPPUTIL_REMOVE_POINTER_HPP
+#pragma once
 
 #include "identity.hpp"
 #include "remove_cv.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T, typename U>
@@ -22,6 +21,4 @@ struct remove_pointer :
 template<typename T>
 using remove_pointer_t = typename remove_pointer<T>::type;
 
-} // namespace traits
-
-#endif // CPPUTIL_REMOVE_POINTER_HPP
+} // namespace cpputil

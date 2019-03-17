@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::is_volatile_v;
+using cpputil::is_volatile_v;
 
 TEST(TraitsTest, TestIsVolatile)
 {

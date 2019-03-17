@@ -1,9 +1,8 @@
-#ifndef CPPUTIL_DECLVAL_HPP
-#define CPPUTIL_DECLVAL_HPP
+#pragma once
 
 #include "add_rvalue_reference.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 namespace declval_impl
@@ -25,6 +24,4 @@ add_rvalue_reference_t<T> declval() noexcept
     return declval_protector::call();
 }
 
-} // namespace traits
-
-#endif // CPPUTIL_DECLVAL_HPP
+} // namespace cpputil

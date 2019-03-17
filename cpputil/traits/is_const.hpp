@@ -1,9 +1,8 @@
-#ifndef CPPUTIL_IS_CONST_HPP
-#define CPPUTIL_IS_CONST_HPP
+#pragma once
 
 #include "integral_constant.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -17,6 +16,4 @@ struct is_const<const T> :
 template<typename T>
 inline constexpr auto is_const_v = is_const<T>::value;
 
-}
-
-#endif // CPPUTIL_IS_CONST_HPP
+} // namespace cpputil

@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::add_const_t;
+using cpputil::add_const_t;
 
 TEST(TraitsTest, TestAddConst)
 {

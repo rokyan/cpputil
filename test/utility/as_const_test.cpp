@@ -13,9 +13,9 @@ TYPED_TEST_CASE(AsConstTypedTest, test_types);
 TYPED_TEST(AsConstTypedTest, TestAsConstRetValueType)
 {
     EXPECT_SAME_TYPES(const TypeParam&,
-        decltype(cpputil::as_const(traits::declval<TypeParam&>())));
+        decltype(cpputil::as_const(cpputil::declval<TypeParam&>())));
     EXPECT_SAME_TYPES(const TypeParam&,
-        decltype(cpputil::as_const(traits::declval<const TypeParam&>())));
+        decltype(cpputil::as_const(cpputil::declval<const TypeParam&>())));
 }
 
 TYPED_TEST(AsConstTypedTest, TestAsConstRetValue)
@@ -26,8 +26,8 @@ TYPED_TEST(AsConstTypedTest, TestAsConstRetValue)
 
 TYPED_TEST(AsConstTypedTest, TestAsConstNoexcept)
 {
-    EXPECT_TRUE(noexcept(cpputil::as_const(traits::declval<TypeParam&>())));
-    EXPECT_TRUE(noexcept(cpputil::as_const(traits::declval<const TypeParam&>())));
+    EXPECT_TRUE(noexcept(cpputil::as_const(cpputil::declval<TypeParam&>())));
+    EXPECT_TRUE(noexcept(cpputil::as_const(cpputil::declval<const TypeParam&>())));
 }
 
 } // namespace test
