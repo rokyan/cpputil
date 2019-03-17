@@ -16,6 +16,7 @@
 #include "is_const.hpp"
 #include "is_contained_in.hpp"
 #include "is_function.hpp"
+#include "is_null_pointer.hpp"
 #include "is_readable_from_stream.hpp"
 #include "is_same.hpp"
 #include "is_volatile.hpp"
