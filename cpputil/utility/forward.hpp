@@ -1,18 +1,18 @@
 #pragma once
 
-#include <type_traits>
+#include <traits.hpp>
 
 namespace cpputil
 {
 
 template<typename T>
-constexpr T&& forward(std::remove_reference_t<T>& t) noexcept
+constexpr T&& forward(traits::remove_reference_t<T>& t) noexcept
 {
     return static_cast<T&&>(t);
 }
 
 template<typename T>
-constexpr T&& forward(std::remove_reference_t<T>&& t) noexcept
+constexpr T&& forward(traits::remove_reference_t<T>&& t) noexcept
 {
     return static_cast<T&&>(t);
 }

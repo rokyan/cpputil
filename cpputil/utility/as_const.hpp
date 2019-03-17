@@ -17,4 +17,4 @@ constexpr cpputil::add_const_t<T>& as_const(T& t) noexcept
 template<typename T>
 void as_const(const T&&) = delete;
 
-}
+} // namespace cpputil
