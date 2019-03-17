@@ -1,9 +1,8 @@
-#ifndef CPPTUIL_ADD_VOLATILE_HPP
-#define CPPTUIL_ADD_VOLATILE_HPP
+#pragma once
 
 #include "identity.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -13,6 +12,4 @@ struct add_volatile :
 template<typename T>
 using add_volatile_t = typename add_volatile<T>::type;
 
-} // namespace traits
-
-#endif // CPPTUIL_ADD_VOLATILE_HPP
+} // namespace cpputil

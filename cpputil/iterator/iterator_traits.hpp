@@ -7,11 +7,11 @@
 namespace cpputil
 {
 
-template<typename Iterator, typename = traits::void_t<>>
+template<typename Iterator, typename = cpputil::void_t<>>
 struct iterator_traits_base {};
 
 template<typename Iterator>
-struct iterator_traits_base<Iterator, traits::void_t<
+struct iterator_traits_base<Iterator, cpputil::void_t<
     typename Iterator::iterator_category,
     typename Iterator::value_type,
     typename Iterator::difference_type,

@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::remove_volatile_t;
+using cpputil::remove_volatile_t;
 
 TEST(TraitsTest, TestRemoveVolatile)
 {

@@ -1,10 +1,9 @@
-#ifndef CPPUTIL_TRAITS_RANK_HPP
-#define CPPUTIL_TRAITS_RANK_HPP
+#pragma once
 
 #include "integral_constant.hpp"
 #include <cstddef>
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -22,6 +21,4 @@ struct rank<T[]> :
 template<typename T>
 inline constexpr auto rank_v = rank<T>::value;
 
-} // namespace traits
-
-#endif // CPPUTIL_TRAITS_RANK_HPP
+} // namespace cpputil

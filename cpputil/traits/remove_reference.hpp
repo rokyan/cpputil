@@ -1,9 +1,8 @@
-#ifndef CPPUTIL_REMOVE_REFERENCE_HPP
-#define CPPUTIL_REMOVE_REFERENCE_HPP
+#pragma once
 
 #include "identity.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -21,6 +20,4 @@ struct remove_reference<T&&> :
 template<typename T>
 using remove_reference_t = typename remove_reference<T>::type;
 
-} // namespace traits
-
-#endif // CPPUTIL_REMOVE_REFERENCE_HPP
+} // namespace cpputil

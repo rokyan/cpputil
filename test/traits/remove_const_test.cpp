@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::remove_const_t;
+using cpputil::remove_const_t;
 
 TEST(TraitsTest, TestRemoveConst)
 {

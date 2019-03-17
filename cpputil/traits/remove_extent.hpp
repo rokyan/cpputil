@@ -1,10 +1,9 @@
-#ifndef CPPUTIL_REMOVE_EXTENT_HPP
-#define CPPUTIL_REMOVE_EXTENT_HPP
+#pragma once
 
 #include "identity.hpp"
 #include <cstddef>
 
-namespace traits
+namespace cpputil
 {
 
 template<typename T>
@@ -22,6 +21,4 @@ struct remove_extent<T[]> :
 template<typename T>
 using remove_extent_t = typename remove_extent<T>::type;
 
-}
-
-#endif // CPPUTIL_REMOVE_EXTENT_HPP
+} // namespace cpputil

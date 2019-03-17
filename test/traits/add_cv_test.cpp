@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::add_cv_t;
+using cpputil::add_cv_t;
 
 TEST(TraitsTest, TestAddConstVolatile)
 {

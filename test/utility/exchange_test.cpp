@@ -14,7 +14,7 @@ TYPED_TEST_CASE(ExchangeTypedTest, test_types);
 TYPED_TEST(ExchangeTypedTest, TestExchangeReturnType)
 {
     EXPECT_TRUE((std::is_same_v<TypeParam,
-        decltype(cpputil::exchange(traits::declval<TypeParam&>(), traits::declval<TypeParam>()))>));
+        decltype(cpputil::exchange(cpputil::declval<TypeParam&>(), cpputil::declval<TypeParam>()))>));
 }
 
 TEST(ExchangeTypedTest, TestLvalueParamCase)

@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_TRAITS_HPP
-#define CPPUTIL_TRAITS_HPP
+#pragma once
 
 #include "add_const.hpp"
 #include "add_cv.hpp"
@@ -29,5 +28,3 @@
 #include "remove_reference.hpp"
 #include "remove_volatile.hpp"
 #include "void_t.hpp"
-
-#endif // CPPUTIL_TRAITS_HPP

@@ -4,7 +4,7 @@
 namespace test
 {
 
-using traits::void_t;
+using cpputil::void_t;
 
 TEST(TraitsTest, TestVoidT)
 {

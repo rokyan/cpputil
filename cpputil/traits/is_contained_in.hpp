@@ -1,9 +1,8 @@
-#ifndef CPPUTIL_IS_CONTAINED_IN_HPP
-#define CPPUTIL_IS_CONTAINED_IN_HPP
+#pragma once
 
 #include "integral_constant.hpp"
 
-namespace traits
+namespace cpputil
 {
 
 template<typename, typename...>
@@ -21,6 +20,4 @@ struct is_contained_in<T, U, Ts...> :
 template<typename T, typename... Ts>
 inline constexpr auto is_contained_in_v = is_contained_in<T, Ts...>::value;
 
-}
-
-#endif // CPPUTIL_IS_CONTAINED_IN_HPP
+} // namespace cpputil
