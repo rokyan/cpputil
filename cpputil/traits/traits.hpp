@@ -9,6 +9,7 @@
 #include "conditional.hpp"
 #include "decay.hpp"
 #include "declval.hpp"
+#include "enable_if.hpp"
 #include "extent.hpp"
 #include "identity.hpp"
 #include "integral_constant.hpp"
