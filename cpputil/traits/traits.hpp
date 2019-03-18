@@ -6,6 +6,7 @@
 #include "add_pointer.hpp"
 #include "add_rvalue_reference.hpp"
 #include "add_volatile.hpp"
+#include "alignment_of.hpp"
 #include "conditional.hpp"
 #include "decay.hpp"
 #include "declval.hpp"
