@@ -7,58 +7,137 @@
 namespace test
 {
 
-TEST(AdjacentFindTest, TestEmptyRanges)
+#define RANGE(cont)     cont.begin(), cont.end()
+
+TEST(AdjacentFindTest, TestEmptyRange)
 {
     const integer_container empty;
 
     const auto pred = [](int x, int y) { return x == y; };
 
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(empty), cpputil::end(empty)),
-        cpputil::end(empty));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(empty), cpputil::end(empty), pred),
-        cpputil::end(empty));
+    {
+        const auto expected = empty.end();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(empty)), expected);
+    }
+    {
+        const auto expected = empty.end();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(empty), pred), expected);
+    }
 }
 
-TEST(AdjacentFindTest, TestAdjacentFind)
+TEST(AdjacentFindTest, TestSingleElement)
 {
-    const integer_container data_1{ 1, 1 };
-    const integer_container data_2{ 1, 2 };
-    const integer_container data_3{ 1, 1, 2 };
-    const integer_container data_4{ 2, 1, 1 };
-    const integer_container data_5{ 2, 1, 2 };
-
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_1), cpputil::end(data_1)),
-        cpputil::begin(data_1));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_2), cpputil::end(data_2)),
-        cpputil::end(data_2));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_3), cpputil::end(data_3)),
-        cpputil::begin(data_3));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_4), cpputil::end(data_4)),
-        cpputil::next(cpputil::begin(data_4)));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_5), cpputil::end(data_5)),
-        cpputil::end(data_5));
-}
-
-TEST(AdjacentFindTest, TestAdjacentFindPred)
-{
-    const integer_container data_1{ 1, 1 };
-    const integer_container data_2{ 1, 2 };
-    const integer_container data_3{ 1, 1, 2 };
-    const integer_container data_4{ 2, 1, 1 };
-    const integer_container data_5{ 2, 1, 2 };
+    const integer_container data{ 1 };
 
     const auto pred = [](int x, int y) { return x == y; };
 
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_1), cpputil::end(data_1), pred),
-        cpputil::begin(data_1));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_2), cpputil::end(data_2), pred),
-        cpputil::end(data_2));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_3), cpputil::end(data_3), pred),
-        cpputil::begin(data_3));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_4), cpputil::end(data_4), pred),
-        cpputil::next(cpputil::begin(data_4)));
-    EXPECT_EQ(cpputil::adjacent_find(cpputil::begin(data_5), cpputil::end(data_5), pred),
-        cpputil::end(data_5));
+    {
+        const auto expected = data.end();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data)), data.end());
+    }
+    {
+        const auto expected = data.end();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data), pred), data.end());
+    }
+
+}
+
+TEST(AdjacentFindTest, TestResultAtTheBeginning)
+{
+    const integer_container data_1{ 1, 1 };
+    const integer_container data_2{ 1, 1, 2 };
+
+    const auto pred = [](int x, int y) { return x == y; };
+
+    {
+        const auto expected = data_1.begin();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data_1)), expected);
+    }
+    {
+        const auto expected = data_1.begin();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data_1), pred), expected);
+    }
+    {
+        const auto expected = data_2.begin();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data_2)), expected);
+    }
+    {
+        const auto expected = data_2.begin();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data_2), pred), expected);
+    }
+}
+
+TEST(AdjacentFindTest, TestResultAtTheEnd)
+{
+    const integer_container data_1{ 1, 1 };
+    const integer_container data_2{ 2, 1, 1 };
+
+    const auto pred = [](int x, int y) { return x == y; };
+
+    {
+        const auto expected = data_1.begin();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data_1)), expected);
+    }
+    {
+        const auto expected = data_1.begin();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data_1), pred), expected);
+    }
+    {
+        const auto expected = cpputil::next(data_2.begin());
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data_2)), expected);
+    }
+    {
+        const auto expected = cpputil::next(data_2.begin());
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data_2), pred), expected);
+    }
+}
+
+TEST(AdjacentFindTest, TestResultInTheMiddle)
+{
+    const integer_container data{ 2, 1, 1, 2, 3 };
+
+    const auto pred = [](int x, int y) { return x == y; };
+
+    {
+        const auto expected = cpputil::next(data.begin());
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data)), expected);
+    }
+    {
+        const auto expected = cpputil::next(data.begin());
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data), pred), expected);
+    }
+}
+
+TEST(AdjacentFindTest, TestMultipleInclusions)
+{
+    const integer_container data{ 2, 1, 1, 2, 1, 1, 3 };
+
+    const auto pred = [](int x, int y) { return x == y; };
+
+    {
+        const auto expected = cpputil::next(data.begin());
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data)), expected);
+    }
+    {
+        const auto expected = cpputil::next(data.begin());
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data), pred), expected);
+    }
+}
+
+TEST(AdjacentFindTest, TestNoResults)
+{
+    const integer_container data{ 1, 2, 1, 2, 1 };
+
+    const auto pred = [](int x, int y) { return x == y; };
+
+    {
+        const auto expected = data.end();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data)), expected);
+    }
+    {
+        const auto expected = data.end();
+        EXPECT_EQ(cpputil::adjacent_find(RANGE(data), pred), expected);
+    }
 }
 
 } // namespace test
