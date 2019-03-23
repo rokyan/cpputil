@@ -1,13 +1,12 @@
-#ifndef CPPUTIL_ALGORITHM_TEST_COMMON_HPP
-#define CPPUTIL_ALGORITHM_TEST_COMMON_HPP
+#pragma once
 
 #include <vector>
+
+#define RANGE(cont)     cont.begin(), cont.end()
 
 namespace test
 {
 
 using integer_container = std::vector<int>;
 
-}
-
-#endif // CPPUTIL_ALGORITHM_TEST_COMMON_HPP
+} // namespace test
