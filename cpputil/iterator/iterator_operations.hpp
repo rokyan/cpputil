@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_ITERATOR_OPERATIONS_HPP
-#define CPPUTIL_ITERATOR_OPERATIONS_HPP
+#pragma once
 
 #include "iterator_traits.hpp"
 #include "iterator_tags.hpp"
@@ -8,39 +7,47 @@ namespace cpputil
 {
 
 template<typename InputIterator>
-constexpr auto advance_impl(InputIterator& it, difference_type_t<InputIterator> n, input_iterator_tag)
+constexpr void advance_impl(InputIterator& it, difference_type_t<InputIterator> n, input_iterator_tag)
 {
-    while (n--) { ++it; }
+    while (n--)
+    {
+        ++it;
+    }
 }
 
 template<typename InputIterator>
-constexpr auto advance_impl(InputIterator& it, difference_type_t<InputIterator> n, bidirectional_iterator_tag)
+constexpr void advance_impl(InputIterator& it, difference_type_t<InputIterator> n, bidirectional_iterator_tag)
 {
     if (n > 0)
     {
-        while (n--) { ++it; }
+        while (n--)
+        {
+            ++it;
+        }
     }
     else
     {
-        while (n++) { --it; }
+        while (n++)
+        {
+            --it;
+        }
     }
 }
 
 template<typename InputIterator>
-constexpr auto advance_impl(InputIterator& it, difference_type_t<InputIterator> n, random_access_iterator_tag)
+constexpr void advance_impl(InputIterator& it, difference_type_t<InputIterator> n, random_access_iterator_tag)
 {
     it += n;
 }
 
 template<typename InputIterator>
-constexpr auto advance(InputIterator& it, difference_type_t<InputIterator> n)
+constexpr void advance(InputIterator& it, difference_type_t<InputIterator> n)
 {
-    advance_impl(it, n, iterator_category_t<InputIterator>{});
+    cpputil::advance_impl(it, n, iterator_category_t<InputIterator>{});
 }
 
 template<typename InputIterator>
-constexpr auto distance_impl(InputIterator first, InputIterator last, input_iterator_tag) ->
-    difference_type_t<InputIterator>
+constexpr difference_type_t<InputIterator> distance_impl(InputIterator first, InputIterator last, input_iterator_tag)
 {
     difference_type_t<InputIterator> difference = 0;
 
@@ -54,33 +61,29 @@ constexpr auto distance_impl(InputIterator first, InputIterator last, input_iter
 }
 
 template<typename InputIterator>
-constexpr auto distance_impl(InputIterator first, InputIterator last, random_access_iterator_tag) ->
-    difference_type_t<InputIterator>
+constexpr difference_type_t<InputIterator> distance_impl(InputIterator first, InputIterator last, random_access_iterator_tag)
 {
     return last - first;
 }
 
 template<typename InputIterator>
-constexpr auto distance(InputIterator first, InputIterator last) ->
-    difference_type_t<InputIterator>
+constexpr difference_type_t<InputIterator>distance(InputIterator first, InputIterator last)
 {
-    return distance_impl(first, last, iterator_category_t<InputIterator>{});
+    return cpputil::distance_impl(first, last, iterator_category_t<InputIterator>{});
 }
 
 template<typename InputIterator>
-constexpr auto next(InputIterator it, difference_type_t<InputIterator> n = 1) -> InputIterator
+constexpr InputIterator next(InputIterator it, difference_type_t<InputIterator> n = 1)
 {
     cpputil::advance(it, n);
     return it;
 }
 
 template<typename BidirectionalIterator>
-constexpr auto prev(BidirectionalIterator it, difference_type_t<BidirectionalIterator> n = 1) -> BidirectionalIterator
+constexpr BidirectionalIterator prev(BidirectionalIterator it, difference_type_t<BidirectionalIterator> n = 1)
 {
     cpputil::advance(it, -n);
     return it;
 }
 
 } // namespace cpputil
-
-#endif // CPPUTIL_ITERATOR_OPERATIONS_HPP
