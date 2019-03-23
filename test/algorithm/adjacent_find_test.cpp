@@ -6,8 +6,6 @@
 namespace test
 {
 
-#define RANGE(cont)     cont.begin(), cont.end()
-
 TEST(AdjacentFindTest, TestEmptyRange)
 {
     const integer_container empty;
