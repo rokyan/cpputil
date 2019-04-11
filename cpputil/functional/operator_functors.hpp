@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_OPERATOR_FUNCTORS_HPP
-#define CPPUTIL_OPERATOR_FUNCTORS_HPP
+#pragma once
 
 #include <utility.hpp>
 
@@ -352,5 +351,3 @@ struct bit_not<void> : transparent_functor_base
 };
 
 } // namespace cpputil
-
-#endif // CPPUTIL_OPERATOR_FUNCTORS_HPP

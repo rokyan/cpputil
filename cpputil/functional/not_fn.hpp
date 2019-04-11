@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_NOT_FN_HPP
-#define CPPUTIL_NOT_FN_HPP
+#pragma once
 
 #include <traits.hpp>
 #include <utility.hpp>
@@ -50,5 +49,3 @@ not_fn_wrapper<cpputil::decay_t<F>> not_fn(F&& fn)
 }
 
 } // namespace cpputil
-
-#endif // CPPUTIL_NOT_FN_HPP

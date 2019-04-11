@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_NOT_FN_TYPES_HPP
-#define CPPUTIL_NOT_FN_TYPES_HPP
+#pragma once
 
 namespace test
 {
@@ -53,6 +52,3 @@ DEFINE_CALLABLE_STRUCT(callable_noexcept,
     ret_type_rvalue_case_noexcept, ret_type_const_rvalue_case_noexcept, noexcept)
 
 } // namespace test
-
-#endif // CPPUTIL_NOT_FN_TYPES_HPP
-
