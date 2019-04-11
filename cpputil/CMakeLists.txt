@@ -8,6 +8,7 @@ include_directories(
     ${CPPUTIL_DIR}/algorithm
     ${CPPUTIL_DIR}/functional
     ${CPPUTIL_DIR}/iterator
+    ${CPPUTIL_DIR}/memory
     ${CPPUTIL_DIR}/thread
     ${CPPUTIL_DIR}/traits
     ${CPPUTIL_DIR}/utility
