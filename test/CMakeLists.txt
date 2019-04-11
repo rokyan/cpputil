@@ -34,12 +34,14 @@ include_directories(
     ${CPPUTIL_DIR}/algorithm
     ${CPPUTIL_DIR}/functional
     ${CPPUTIL_DIR}/iterator
+    ${CPPUTIL_DIR}/memory
     ${CPPUTIL_DIR}/traits
     ${CPPUTIL_DIR}/thread
     ${CPPUTIL_DIR}/utility
     ${CMAKE_SOURCE_DIR}/test/algorithm
     ${CMAKE_SOURCE_DIR}/test/functional
     ${CMAKE_SOURCE_DIR}/test/iterator
+    ${CMAKE_SOURCE_DIR}/test/memory
     ${CMAKE_SOURCE_DIR}/test/traits
     ${CMAKE_SOURCE_DIR}/test/thread
     ${CMAKE_SOURCE_DIR}/test/utility
