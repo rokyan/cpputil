@@ -4,84 +4,84 @@
 namespace test
 {
 
-class entity
+class test_entity
 {
-private:
-    static std::size_t destroyed;
-
 public:
-    ~entity()
+    ~test_entity()
     {
         destroyed++;
     }
 
-    void reset_destroyed() const noexcept
+    static void reset_destroyed() noexcept
     {
         destroyed = 0;
     }
 
-    [[nodiscard]] std::size_t get_destroyed() const noexcept
+    [[nodiscard]] static std::size_t get_destroyed() noexcept
     {
         return destroyed;
     }
+
+private:
+    static std::size_t destroyed;
 };
 
-std::size_t entity::destroyed = 0;
+std::size_t test_entity::destroyed = 0;
 
-TEST(DestroyTest, TestDestroyAt)
+class DestroyTest : public testing::Test
 {
-    constexpr std::size_t objects_num = 1;
+public:
+    virtual void SetUp() override
+    {
+        test_entity::reset_destroyed();
+    }
+};
 
-    entity e;
-    e.reset_destroyed();
+TEST_F(DestroyTest, TestDestroyAt)
+{
+    const std::size_t objects_num = 1;
 
-    alignas(entity) unsigned char raw_buffer[objects_num * sizeof(entity)];
-    const entity* const ptr = new (raw_buffer) entity{};
+    alignas(test_entity) unsigned char raw_buffer[objects_num * sizeof(test_entity)];
+    const test_entity* const ptr = new (raw_buffer) test_entity{};
 
     cpputil::destroy_at(ptr);
 
-    EXPECT_EQ(e.get_destroyed(), 1);
+    EXPECT_EQ(test_entity::get_destroyed(), 1);
 }
 
-TEST(DestroyTest, TestDestroy)
+TEST_F(DestroyTest, TestDestroy)
 {
-    constexpr std::size_t objects_num = 4;
+    const std::size_t objects_num = 4;
 
-    entity e;
-    e.reset_destroyed();
-
-    alignas(entity) unsigned char raw_buffer[objects_num * sizeof(entity)];
+    alignas(test_entity) unsigned char raw_buffer[objects_num * sizeof(test_entity)];
 
     for (std::size_t i = 0; i < objects_num; i++)
     {
-        const std::size_t offset = i * sizeof(entity);
-        static_cast<void>(new (raw_buffer + offset) entity{});
+        const std::size_t offset = i * sizeof(test_entity);
+        static_cast<void>(new (raw_buffer + offset) test_entity{});
     }
 
-    cpputil::destroy(reinterpret_cast<entity*>(raw_buffer),
-        reinterpret_cast<entity*>(raw_buffer + objects_num * sizeof(entity)));
+    cpputil::destroy(reinterpret_cast<test_entity*>(raw_buffer),
+        reinterpret_cast<test_entity*>(raw_buffer + objects_num * sizeof(test_entity)));
 
-    EXPECT_EQ(e.get_destroyed(), objects_num);
+    EXPECT_EQ(test_entity::get_destroyed(), objects_num);
 }
 
-TEST(DestroyTest, TestDestroyN)
+TEST_F(DestroyTest, TestDestroyN)
 {
-    constexpr std::size_t objects_num = 4;
+    const std::size_t objects_num = 4;
 
-    entity e;
-    e.reset_destroyed();
-
-    alignas(entity) unsigned char raw_buffer[objects_num * sizeof(entity)];
+    alignas(test_entity) unsigned char raw_buffer[objects_num * sizeof(test_entity)];
 
     for (std::size_t i = 0; i < objects_num; i++)
     {
-        const std::size_t offset = i * sizeof(entity);
-        static_cast<void>(new (raw_buffer + offset) entity{});
+        const std::size_t offset = i * sizeof(test_entity);
+        static_cast<void>(new (raw_buffer + offset) test_entity{});
     }
 
-    cpputil::destroy_n(reinterpret_cast<entity*>(raw_buffer), objects_num);
+    cpputil::destroy_n(reinterpret_cast<test_entity*>(raw_buffer), objects_num);
 
-    EXPECT_EQ(e.get_destroyed(), objects_num);
+    EXPECT_EQ(test_entity::get_destroyed(), objects_num);
 }
 
 } // namespace test
