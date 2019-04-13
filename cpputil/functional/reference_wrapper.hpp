@@ -1,6 +1,7 @@
 #pragma once
 
 #include <utility.hpp>
+#include <memory.hpp>
 
 #include <type_traits> // for standard type traits.
 #include <functional> // for std::invoke.
@@ -34,7 +35,7 @@ private:
 
 template<typename T>
 reference_wrapper<T>::reference_wrapper(T& t) noexcept
-    : referenced(std::addressof(t))
+    : referenced(cpputil::addressof(t))
 {}
 
 template<typename T>

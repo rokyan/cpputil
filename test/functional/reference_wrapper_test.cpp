@@ -31,8 +31,8 @@ TYPED_TEST(ReferenceWrapperTypedTest, TestConstructors)
     reference_wrapper<TypeParam> rw1(referenced);
     reference_wrapper<TypeParam> rw2(rw1);
 
-    EXPECT_EQ(&rw1.get(), std::addressof(referenced));
-    EXPECT_EQ(&rw2.get(), std::addressof(referenced));
+    EXPECT_EQ(&rw1.get(), cpputil::addressof(referenced));
+    EXPECT_EQ(&rw2.get(), cpputil::addressof(referenced));
 }
 
 TYPED_TEST(ReferenceWrapperTypedTest, TestCopyAssignmentOperator)
@@ -42,14 +42,14 @@ TYPED_TEST(ReferenceWrapperTypedTest, TestCopyAssignmentOperator)
 
     TypeParam referenced1{};
     reference_wrapper<TypeParam> rw1(referenced1);
-    EXPECT_EQ(&rw1.get(), std::addressof(referenced1));
+    EXPECT_EQ(&rw1.get(), cpputil::addressof(referenced1));
 
     TypeParam referenced2{};
     reference_wrapper<TypeParam> rw2(referenced2);
-    EXPECT_EQ(&rw2.get(), std::addressof(referenced2));
+    EXPECT_EQ(&rw2.get(), cpputil::addressof(referenced2));
 
     rw1 = rw2;
-    EXPECT_EQ(&rw1.get(), std::addressof(referenced2));
+    EXPECT_EQ(&rw1.get(), cpputil::addressof(referenced2));
 }
 
 TYPED_TEST(ReferenceWrapperTypedTest, TestConversionOperator)
@@ -84,7 +84,7 @@ TYPED_TEST(ReferenceWrapperTypedTest, TestRefFunction)
     auto rw = cpputil::ref(referenced);
 
     EXPECT_SAME_TYPES(decltype(rw), reference_wrapper<TypeParam>);
-    EXPECT_EQ(&rw.get(), std::addressof(referenced));
+    EXPECT_EQ(&rw.get(), cpputil::addressof(referenced));
 }
 
 TYPED_TEST(ReferenceWrapperTypedTest, TestCRefFunction)
@@ -93,7 +93,7 @@ TYPED_TEST(ReferenceWrapperTypedTest, TestCRefFunction)
     auto rw = cpputil::cref(referenced);
 
     EXPECT_SAME_TYPES(decltype(rw), reference_wrapper<const TypeParam>);
-    EXPECT_EQ(&rw.get(), std::addressof(referenced));
+    EXPECT_EQ(&rw.get(), cpputil::addressof(referenced));
 }
 
 } // namespace test
