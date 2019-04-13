@@ -1,6 +1,7 @@
 #include <gtest.hpp>
 #include <traits.hpp>
-#include <as_const.hpp>
+#include <memory.hpp>
+#include <utility.hpp>
 
 namespace test
 {
@@ -21,7 +22,7 @@ TYPED_TEST(AsConstTypedTest, TestAsConstRetValueType)
 TYPED_TEST(AsConstTypedTest, TestAsConstRetValue)
 {
     TypeParam value{};
-    EXPECT_EQ(std::addressof(value), std::addressof(cpputil::as_const(value)));
+    EXPECT_EQ(cpputil::addressof(value), cpputil::addressof(cpputil::as_const(value)));
 }
 
 TYPED_TEST(AsConstTypedTest, TestAsConstNoexcept)
