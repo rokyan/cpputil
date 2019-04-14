@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_THREAD_HIERARCHICAL_MUTEX_HPP
-#define CPPUTIL_THREAD_HIERARCHICAL_MUTEX_HPP
+#pragma once
 
 #include <mutex>
 
@@ -14,13 +13,13 @@ public:
     hierarchical_mutex(const hierarchical_mutex&) = delete;
     hierarchical_mutex& operator=(const hierarchical_mutex&) = delete;
 
-    auto lock() -> void;
-    auto unlock() -> void;
-    auto try_lock() -> bool;
+    void lock();
+    void unlock();
+    bool try_lock();
 
 private:
-    auto check_violation() const -> void;
-    auto update_hierarchy() -> void;
+    void check_violation() const;
+    void update_hierarchy();
 
 private:
     std::mutex internal_mutex;
@@ -32,5 +31,3 @@ private:
 };
 
 } // namespace cpputil
-
-#endif // CPPUTIL_THREAD_HIERARCHICAL_MUTEX_HPP

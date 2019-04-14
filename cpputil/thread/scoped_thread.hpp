@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_THREAD_SCOPED_THREAD_HPP
-#define CPPUTIL_THREAD_SCOPED_THREAD_HPP
+#pragma onc3
 
 #include <thread>
 #include <move.hpp>
@@ -35,5 +34,3 @@ private:
 };
 
 } // namespace cpputil
-
-#endif // CPPUTIL_THREAD_SCOPED_THREAD_HP

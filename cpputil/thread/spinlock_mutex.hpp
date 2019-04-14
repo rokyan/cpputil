@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_THREAD_SPINLOCK_MUTEX_HPP
-#define CPPUTIL_THREAD_SPINLOCK_MUTEX_HPP
+#pragma once
 
 #include <atomic>
 
@@ -29,5 +28,3 @@ private:
 };
 
 } // namespace cpputil
-
-#endif // CPPUTIL_THREAD_SPINLOCK_MUTEX_HPP

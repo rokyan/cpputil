@@ -12,20 +12,20 @@ hierarchical_mutex::hierarchical_mutex(std::size_t hierarchy)
     , prev_hierarchy(0)
 {}
 
-auto hierarchical_mutex::lock() -> void
+void hierarchical_mutex::lock()
 {
     check_violation();
     internal_mutex.lock();
     update_hierarchy();
 }
 
-auto hierarchical_mutex::unlock() -> void
+void hierarchical_mutex::unlock()
 {
     thread_hierarchy = prev_hierarchy;
     internal_mutex.unlock();
 }
 
-auto hierarchical_mutex::try_lock() -> bool
+bool hierarchical_mutex::try_lock()
 {
     check_violation();
 
@@ -39,7 +39,7 @@ auto hierarchical_mutex::try_lock() -> bool
     return true;
 }
 
-auto hierarchical_mutex::check_violation() const -> void
+void hierarchical_mutex::check_violation() const
 {
     if (hierarchy >= thread_hierarchy)
     {
@@ -47,7 +47,7 @@ auto hierarchical_mutex::check_violation() const -> void
     }
 }
 
-auto hierarchical_mutex::update_hierarchy() -> void
+void hierarchical_mutex::update_hierarchy()
 {
     prev_hierarchy = thread_hierarchy;
     thread_hierarchy = hierarchy;
