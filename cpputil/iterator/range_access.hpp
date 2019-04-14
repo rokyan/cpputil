@@ -1,8 +1,7 @@
-#ifndef CPPUTIL_BEGIN_HPP
-#define CPPUTIL_BEGIN_HPP
+#pragma once
 
+#include "range_access.hpp"
 #include <cstddef>
-#include <iterator>
 
 namespace cpputil
 {
@@ -104,5 +103,3 @@ constexpr auto crend(const Container& c) noexcept(noexcept(cpputil::rend(c)))
 }
 
 } // namespace cpputil
-
-#endif // CPPUTIL_BEGIN_HPP
