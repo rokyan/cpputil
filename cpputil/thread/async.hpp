@@ -1,5 +1,4 @@
-#ifndef CPPUTIL_ALWAYS_ASYNC_HPP
-#define CPPUTIL_ALWAYS_ASYNC_HPP
+#pragma once
 
 #include <forward.hpp>
 #include <future>
@@ -15,5 +14,3 @@ auto always_async(Func&& func, Args&&... args)
 }
 
 } // namespace cpputil
-
-#endif // CPPUTIL_ALWAYS_ASYNC_HPP
