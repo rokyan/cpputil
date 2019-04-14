@@ -35,3 +35,4 @@ packages/
 
 # CMake build folder
 build/
+_build/
