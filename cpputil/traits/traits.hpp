@@ -24,7 +24,7 @@
 #include "is_readable_from_stream.hpp"
 #include "is_same.hpp"
 #include "is_volatile.hpp"
-#include "is_void.h"
+#include "is_void.hpp"
 #include "is_writable_to_stream.hpp"
 #include "rank.hpp"
 #include "remove_const.hpp"
