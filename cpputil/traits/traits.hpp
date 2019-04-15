@@ -15,6 +15,8 @@
 #include "identity.hpp"
 #include "integral_constant.hpp"
 #include "is_array.hpp"
+#include "is_bounded_array.hpp"
+#include "is_unbounded_array.hpp"
 #include "is_const.hpp"
 #include "is_contained_in.hpp"
 #include "is_function.hpp"
