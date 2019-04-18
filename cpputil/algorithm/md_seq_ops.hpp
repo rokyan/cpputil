@@ -4,7 +4,7 @@ namespace cpputil
 {
 
 template<typename InputIterator, typename OutputIterator>
-OutputIterator copy(InputIterator first, InputIterator last, OutputIterator result)
+constexpr OutputIterator copy(InputIterator first, InputIterator last, OutputIterator result)
 {
     for (; first != last; ++first)
     {
@@ -16,7 +16,7 @@ OutputIterator copy(InputIterator first, InputIterator last, OutputIterator resu
 }
 
 template<typename InputIterator, typename OutputIterator, typename Predicate>
-OutputIterator copy_if(InputIterator first, InputIterator last, OutputIterator result, Predicate pred)
+constexpr OutputIterator copy_if(InputIterator first, InputIterator last, OutputIterator result, Predicate pred)
 {
     for (; first != last; ++first)
     {
