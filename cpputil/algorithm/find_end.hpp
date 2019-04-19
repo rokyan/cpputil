@@ -1,6 +1,7 @@
 #pragma once
 
 #include "predicates.hpp"
+#include "search.hpp"
 
 namespace cpputil
 {
