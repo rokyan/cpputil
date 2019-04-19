@@ -1,5 +1,29 @@
 #pragma once
 
-#include "non_md_seq_ops.hpp"
-#include "md_seq_ops.hpp"
-#include "minmax_ops.hpp"
+// Non-modifying sequence operations.
+
+#include "all_of.hpp"
+#include "any_of.hpp"
+#include "none_of.hpp"
+#include "for_each.hpp"
+#include "count.hpp"
+#include "mismatch.hpp"
+#include "find.hpp"
+#include "find_end.hpp"
+#include "find_first_of.hpp"
+#include "adjacent_find.hpp"
+#include "search.hpp"
+
+// Modifying sequence operations.
+
+#include "copy.hpp"
+
+// Minimum/maximum operations.
+
+#include "min_element.hpp"
+#include "max_element.hpp"
+#include "minmax_element.hpp"
+#include "min.hpp"
+#include "max.hpp"
+#include "minmax.hpp"
+#include "clamp.hpp"
