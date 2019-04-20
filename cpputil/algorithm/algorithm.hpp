@@ -17,6 +17,7 @@
 // Modifying sequence operations.
 
 #include "copy.hpp"
+#include "copy_n.hpp"
 
 // Minimum/maximum operations.
 
