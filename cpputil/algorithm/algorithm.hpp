@@ -19,6 +19,8 @@
 #include "copy.hpp"
 #include "copy_n.hpp"
 #include "copy_backward.hpp"
+#include "move.hpp"
+#include "move_backward.hpp"
 
 // Minimum/maximum operations.
 
