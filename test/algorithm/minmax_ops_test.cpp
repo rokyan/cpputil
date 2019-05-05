@@ -171,26 +171,26 @@ TEST(MinMaxOpsTest, TestMin)
 TEST(MinMaxOpsTest, TestMinMax)
 {
     {
-        const auto& result = cpputil::minmax(1, 0);
+        const auto result = cpputil::minmax(1, 0);
 
         EXPECT_EQ(result.first, 0);
         EXPECT_EQ(result.second, 1);
     }
     {
-        const auto& result = cpputil::minmax(1, 0, cpputil::less<>());
+        const auto result = cpputil::minmax(1, 0, cpputil::less<>());
 
         EXPECT_EQ(result.first, 0);
         EXPECT_EQ(result.second, 1);
     }
 
     {
-        const auto& result = cpputil::minmax({ 1, 2, 0, 3 });
+        const auto result = cpputil::minmax({ 1, 2, 0, 3 });
 
         EXPECT_EQ(result.first, 0);
         EXPECT_EQ(result.second, 3);
     }
     {
-        const auto& result = cpputil::minmax({ 1, 2, 0, 3 }, cpputil::less<>());
+        const auto result = cpputil::minmax({ 1, 2, 0, 3 }, cpputil::less<>());
 
         EXPECT_EQ(result.first, 0);
         EXPECT_EQ(result.second, 3);
