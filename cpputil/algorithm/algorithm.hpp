@@ -21,6 +21,7 @@
 #include "copy_backward.hpp"
 #include "move.hpp"
 #include "move_backward.hpp"
+#include "fill.hpp"
 
 // Minimum/maximum operations.
 
