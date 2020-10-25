@@ -4,11 +4,11 @@
 namespace test
 {
 
-using cpputil::identity_t;
+using cpputil::type_identity_t;
 
 TEST(TraitsTest, TestIdentity)
 {
-    EXPECT_SAME_TYPES(T0, identity_t<T0>);
+    EXPECT_SAME_TYPES(T0, type_identity_t<T0>);
 }
 
 } // namespace test

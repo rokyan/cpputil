@@ -12,7 +12,6 @@
 #include "declval.hpp"
 #include "enable_if.hpp"
 #include "extent.hpp"
-#include "type_identity.hpp"
 #include "integral_constant.hpp"
 #include "is_array.hpp"
 #include "is_bounded_array.hpp"
@@ -35,4 +34,5 @@
 #include "remove_pointer.hpp"
 #include "remove_reference.hpp"
 #include "remove_volatile.hpp"
+#include "type_identity.hpp"
 #include "void_t.hpp"
