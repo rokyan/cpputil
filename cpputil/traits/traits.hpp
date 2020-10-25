@@ -12,7 +12,7 @@
 #include "declval.hpp"
 #include "enable_if.hpp"
 #include "extent.hpp"
-#include "identity.hpp"
+#include "type_identity.hpp"
 #include "integral_constant.hpp"
 #include "is_array.hpp"
 #include "is_bounded_array.hpp"

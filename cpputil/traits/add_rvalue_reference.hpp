@@ -1,6 +1,6 @@
 #pragma once
 
-#include "identity.hpp"
+#include "type_identity.hpp"
 #include "void_t.hpp"
 
 namespace cpputil
@@ -8,11 +8,11 @@ namespace cpputil
 
 template<typename T, typename = void>
 struct add_rvalue_reference_impl :
-    identity<T> {};
+    type_identity<T> {};
 
 template<typename T>
 struct add_rvalue_reference_impl<T, void_t<T&&>> :
-    identity<T&&> {};
+    type_identity<T&&> {};
 
 template<typename T>
 struct add_rvalue_reference :

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "identity.hpp"
+#include "type_identity.hpp"
 #include "is_array.hpp"
 #include "is_function.hpp"
 #include "add_pointer.hpp"
@@ -13,15 +13,15 @@ namespace cpputil
 
 template<typename T, bool = is_array_v<T>, bool = is_function_v<T>>
 struct decay_impl :
-    identity<remove_cv_t<T>> {};
+    type_identity<remove_cv_t<T>> {};
 
 template<typename T>
 struct decay_impl<T, true, false> :
-    identity<remove_extent_t<T>*> {};
+    type_identity<remove_extent_t<T>*> {};
 
 template<typename T>
 struct decay_impl<T, false, true> :
-    identity<add_pointer_t<T>> {};
+    type_identity<add_pointer_t<T>> {};
 
 template<typename T>
 struct decay :

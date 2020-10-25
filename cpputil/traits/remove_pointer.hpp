@@ -1,6 +1,6 @@
 #pragma once
 
-#include "identity.hpp"
+#include "type_identity.hpp"
 #include "remove_cv.hpp"
 
 namespace cpputil
@@ -8,11 +8,11 @@ namespace cpputil
 
 template<typename T, typename U>
 struct remove_pointer_impl :
-    identity<T> {};
+    type_identity<T> {};
 
 template<typename T, typename U>
 struct remove_pointer_impl<T, U*> :
-    identity<U> {};
+    type_identity<U> {};
 
 template<typename T>
 struct remove_pointer :

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <identity.hpp>
+#include <type_identity.hpp>
 
 namespace cpputil
 {
@@ -10,7 +10,7 @@ struct enable_if {};
 
 template<typename T>
 struct enable_if<true, T>
-    : identity<T> {};
+    : type_identity<T> {};
 
 template<bool B, typename T = void>
 using enable_if_t = typename enable_if<B, T>::type;

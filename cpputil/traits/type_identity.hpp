@@ -4,12 +4,12 @@ namespace cpputil
 {
 
 template<typename T>
-struct identity
+struct type_identity
 {
     using type = T;
 };
 
 template<typename T>
-using identity_t = typename identity<T>::type;
+using type_identity_t = typename type_identity<T>::type;
 
 } // namespace cpputil

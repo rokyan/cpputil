@@ -1,21 +1,21 @@
 #pragma once
 
-#include "identity.hpp"
+#include "type_identity.hpp"
 
 namespace cpputil
 {
 
 template<typename T>
 struct remove_reference :
-    identity<T> {};
+    type_identity<T> {};
 
 template<typename T>
 struct remove_reference<T&> :
-    identity<T> {};
+    type_identity<T> {};
 
 template<typename T>
 struct remove_reference<T&&> :
-    identity<T> {};
+    type_identity<T> {};
 
 template<typename T>
 using remove_reference_t = typename remove_reference<T>::type;

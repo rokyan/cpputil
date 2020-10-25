@@ -1,17 +1,17 @@
 #pragma once
 
-#include "identity.hpp"
+#include "type_identity.hpp"
 
 namespace cpputil
 {
 
 template<bool Condition, typename T, typename U>
 struct conditional :
-    identity<T> {};
+    type_identity<T> {};
 
 template<typename T, typename U>
 struct conditional<false, T, U> :
-    identity<U> {};
+    type_identity<U> {};
 
 template<bool Condition, typename T, typename U>
 using conditional_t = typename conditional<Condition, T, U>::type;
