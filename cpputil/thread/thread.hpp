@@ -4,3 +4,4 @@
 #include "hierarchical_mutex.hpp"
 #include "scoped_thread.hpp"
 #include "spinlock_mutex.hpp"
+#include "threads_joiner.hpp"
